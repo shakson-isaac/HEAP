@@ -1064,8 +1064,94 @@ runAllInteractiveAssoc("Type6") #Expected Runtime is 1 Hour...: took 1 hour 10 m
 
 
 ##### Get Tables for Univariate Associations: E and GxE #####
-### Only Show GxE on Website, E for download
 
+# FUNCTION: Obtain DF of replicated stats between Train and Test
+replication_stats_final <- function(train, test){
+  sigRES <- list()
+  
+  train_assoc <- train
+  test_assoc <- test
+  
+  colnames(train_assoc)[!(colnames(train_assoc) %in% c("ID","omicID"))] <-  gsub(" ", "",
+                                                                                 paste0(colnames(train_assoc)[!(colnames(train_assoc) %in% c("ID","omicID"))], "_train"))
+  
+  colnames(test_assoc)[!(colnames(test_assoc) %in% c("ID","omicID"))] <-  gsub(" ", "",
+                                                                               paste0(colnames(test_assoc)[!(colnames(test_assoc) %in% c("ID","omicID"))], "_test"))
+  
+  
+  all_assoc <- list(train_assoc, test_assoc) %>% reduce(full_join)
+  
+  #Add unique ID for each Exposure-Protein Pair:
+  all_assoc$AssocID <- paste0(all_assoc$omicID,":", all_assoc$ID)
+  
+  
+  
+  pval_thresh <- 0.05/nrow(all_assoc) #Standard Bonferroni Correction for All ASSOCIATIONS. Ex. for 200 exposures, 3000 proteins: 0.05/(200*3000)
+  
+  allAssoc_significant <- all_assoc %>%
+    filter(`Pr(>|t|)_test` < pval_thresh &
+             `Pr(>|t|)_train` < pval_thresh)
+  
+  trainAssoc_significant <- all_assoc %>%
+    filter(`Pr(>|t|)_train` < pval_thresh)
+  
+  testAssoc_significant <- all_assoc %>%
+    filter(`Pr(>|t|)_test` < pval_thresh)
+  
+  sigRES[["sigTrain"]] <- trainAssoc_significant
+  sigRES[["sigTest"]] <- testAssoc_significant
+  sigRES[["sigBOTH"]] <- allAssoc_significant
+  sigRES[["Bonf.correction"]] <- pval_thresh
+  
+  return(sigRES)
+}
+
+# CovarSpec: All Significant Assocations Datastructure
+CovarSpecAssocList <- lapply(CovarSpecList, function(x){
+  Assoc <- list()
+  E <- replication_stats_final(x$train[[1]], x$test[[1]]) #E
+  GxE <- replication_stats_final(x$train[[2]], x$test[[2]]) #GxE
+  
+  Assoc[["E"]] <- E
+  Assoc[["GxE"]] <- GxE
+  
+  return(Assoc)
+})
+
+
+# E Associations:
+fwrite(CovarSpecAssocList$Type1$E$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec1EassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type2$E$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec2EassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type3$E$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec3EassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type4$E$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec4EassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type5$E$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec5EassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type6$E$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec6EassocReplicated.txt")
+
+# GxE Associations:
+fwrite(CovarSpecAssocList$Type1$GxE$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec1GxEassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type2$GxE$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec2GxEassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type3$GxE$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec3GxEassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type4$GxE$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec4GxEassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type5$GxE$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec5GxEassocReplicated.txt")
+fwrite(CovarSpecAssocList$Type6$GxE$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/SupplementaryTables/CovarSpec6GxEassocReplicated.txt")
+
+
+fwrite(CovarSpecAssocList$Type6$E$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/App/Tables/Signif_Eassoc.txt")
+fwrite(CovarSpecAssocList$Type6$GxE$sigBOTH,
+       file = "/n/groups/patel/shakson_ukb/UK_Biobank/Output/App/Tables/Signif_GxEassoc.txt")
 
 
 

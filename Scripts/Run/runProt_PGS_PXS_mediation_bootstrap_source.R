@@ -557,7 +557,7 @@ MultiDisease_run <- function(protID, MDobject){
 }
 
 # Function to run mediation analysis: w/ Bootstrapping (One Disease)
-runBoot_oneMD <- function(protlist, dz, MDstruct, nsamp = 100){
+runBoot_oneMD <- function(protlist, dz, MDstruct, nsamp = 1000){
   MDres_bootstrap <- lapply(protlist, function(i) {
     res <- protMediation_Boot(protID = i, 
                               DZ_ID = dz,
@@ -574,7 +574,7 @@ runBoot_oneMD <- function(protlist, dz, MDstruct, nsamp = 100){
 
 
 # Function to run mediation analysis: w/ Bootstrapping (Multiple Disease)
-runBoot_MDmulti <- function(protlist, dzlist, MDstruct, nsamp = 100){
+runBoot_MDmulti <- function(protlist, dzlist, MDstruct, nsamp = 1000){
   
   multiMDres <- pblapply(dzlist, function(i){
     res <- runBoot_oneMD(protlist, i, MDstruct, nsamp)
