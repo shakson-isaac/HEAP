@@ -1,0 +1,38 @@
+#Make function later:
+#TODO:
+##'*Make function to do enrichment with tissue types!*
+##'*Survey through GTEx both overrepresentation and GSEA results*
+##'*For overrepresentation split the pool into up, down, total regulated sets*
+##'*Figure out a way to decompose effects in ExWAS to Tissue Specific Prediction?!*
+##'*Maybe utilize CCA or PLS for the above*
+
+#TODO:
+#MAKE Visualization for a single exposure.
+#MAKE visualization for multiple exposures.
+#MAKE visualization to easily compare and contrast
+#Do tissues first --> Then respective pathways
+#'*Currently Running this on TEST Set.*
+#'I should probably do both Train and TEST.
+#'*Then keep associations that replicate across both!!!*
+
+#TODO:
+#Increase accuracy of pvalue estimates by setting eps = 0?
+#Create Datastructure to Capture all results.
+#Compare the datastructures across TRAIN and TEST sets.
+#ADD Specific examples of GSEA results in supplemental figures...
+
+
+#TODO:
+#MAIN PRIORITY:
+#Create Function to run specific enrichments (one function for each)
+#Create Function to aggregate results together from multiple enrichments (Tissue, GO, KEGG, etc.)
+#Create Function to visualize aggregated results across exposure types.
+#Double Check: *need to split the omicID by underscores to match properly!*
+
+
+#To Simplify the Story:
+#Figure out if there is a way to combine enrichments across correlated exposure types to 
+#get a meta-analyzed enrichment score.
+#etc.
+#Figure out how to aggregate across covariate specifications.
+
