@@ -28,13 +28,7 @@ PXSconstruct <- setClass(
 
 
 #'*Loading:*
-#1st ver:
-#load(file = "/n/scratch/users/s/shi872/UKB_intermediate/UKB_PGS_PXS_data.rds")
 PXSloader <- readRDS(file = "/n/scratch/users/s/shi872/UKB_intermediate/UKB_PGS_PXS_load.rds")
-
-#Get the amount of exposures per category:
-#table(PXSloader@Eid_cat$Category)
-      
 
 
 #'*Functions: Loadings Genetic Score*
@@ -1013,77 +1007,3 @@ runProt_PGS_PXS_multi(split_vectors[[idx]],
                       PXSdata = PXScovarSpec(PXSloader, CovarSpec[[covarType]]), 
                       folder_id = covarType,
                       idx)
-
-##'*To-DO*
-#ADD: covarslist and covars_folder for PGS_PXS. 
-#Specify set of covariates
-#MODIFY bash script for RAM and stuff.
-#MODIFY bash script to take in folder name + covar specification
-#Other specifications outside of  to implement.
-#Remove related individuals
-#Remove extremely unhealthy individuals
-
-
-##### :: COMMENTS ::
-
-#Test edge cases of adding PXS:
-# t1 <- list()
-# t2 <- list()
-# t3 <- list()
-# t4 <- list()
-# 
-# t1$test <- data.frame(
-#   eid = c("1","2","3"),
-#   E = c("1.1","1.2","1.3"),
-#   GxE = c("2.1","2.2","2.3")
-# )
-# t2$test <- data.frame(
-#   eid = c("1","2","3"),
-#   GxE = c("2.1","2.2","2.3")
-# )
-# t3$test <- data.frame(
-#   eid = c("1","2","3"),
-#   E = c("1.1","1.2","1.3")
-# )
-# t4$test <- data.frame(
-#   eid = c("1","2","3")
-# )
-# 
-# r1 <- OOF_scores(protID = "try", scores = t1)
-# r2 <- OOF_scores(protID = "try", scores = t2)
-# r3 <- OOF_scores(protID = "try", scores = t3)
-# r4 <- OOF_scores(protID = "try", scores = t4)
-# rbind(r1, r2)
-# rbind(r2,r1)
-# rbind(r4,r3)
-# rbind(r4,r4)
-
-#To ADD:
-#variability of all components (not just G, E, GxE) but also the covariates
-#DONE::: 4 minutes for 10 fold CV on 1 protein.
-
-
-#Timing:
-#5 * 5 = 25 minutes - split by 600
-#5 * 7 = 35 minutes - split by 400
-#5 * 15 = 75 minutes - split by 200
-
-#Problems to fix later: DONE
-#Ill defined covars_df and covars_list
-#I am pretty sure we want covars_df to have the maximal amount of columns 
-#and covars_list to list the appropriate column names
-
-
-# Example code:
-# runProt_PGS_PXS_multi(protlist = c("GDF15"), PXSdata = PXSloader_v2, 
-#                       folder_id = "CovSpec4",
-#                       idx = 1)
-# PXSloader_v3 <- PXScovarSpec(PXSloader, 
-#                              covars_subset = c("age_when_attended_assessment_centre_f21003_0_0",
-#                                                "sex_f31_0_0",
-#                                                "body_mass_index_bmi_f23104_0_0",
-#                                                "fasting_time_f74_0_0")
-# )
-# runProt_PGS_PXS_multi(protlist = c("GDF15"), PXSdata = PXSloader_v3, 
-#                       folder_id = "CovSpec5",
-#                       idx = 1)

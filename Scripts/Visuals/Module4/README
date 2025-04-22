@@ -1,1 +1,6 @@
-Finished: main, interactive, supp, graph
+This folder contains scripts to run the follwing visualizations:
+
+Intervention Analysis:
+- Individual Figures
+- Tables to Generate Cytoscape Graph
+- Interactive Plots (App)

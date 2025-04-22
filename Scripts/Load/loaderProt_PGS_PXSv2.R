@@ -4,12 +4,7 @@ library(tidyverse)
 library(ggplot2)
 library(ggpmisc)
 
-##Organization
-#Make a datastructure:
-#PXSconstruct:
-#names dataframes:
-#E, Prot, Covars
-#Label if the variables are ordinal, continuous, etc.
+##Organization: DataStructure -- PXSconstruct
 
 #'*PXS Object:*
 PXSconstruct <- setClass(
@@ -53,7 +48,6 @@ prot_names <- gsub("-","_", prot_names)
 colnames(UKBprot)[-c(1:2)] <- prot_names
 
 #'ins_index for proteomics: subset only for instance 0*
-#'Forgot to include this earlier: check any prior versions of proteomics!!*
 UKBprot <- UKBprot[UKBprot$ins_index == 0, ]
 
 PXSloader <- PXSconstruct(
@@ -61,33 +55,12 @@ PXSloader <- PXSconstruct(
   protIDs = prot_names
 )
 
-
-
-#'Double check info*
-# #Load MetaboProteome Data:
-# UKB_Omics <- readRDS("/n/scratch/users/s/shi872/UKB_intermediate/UKB_fc_metaboproteome.rds")
-# gc()
-# #Extract Proteomics:
-# UKBprot_df <- UKB_Omics@data %>% select(all_of(c("eid",UKB_Omics@protIDs)))
-# #colSums(!is.na(UKBprot_df))
-
-
 #'*Load Environmental Variables*
 setwd("/n/groups/patel/shakson_ukb/UK_Biobank/RScripts/Extract_Raw/Finalized")
 source("./dataloader_functions_parallel.R")
 projID = 52887
 load_project(projID)
 UKBdict <- fread(file = paste0("/n/groups/patel/shakson_ukb/UK_Biobank/Data/Paths/",projID,"/allpaths.txt")) #'*UKBdict should be a global variable now!!*
-
-#' #Check nutrient info: 24-hour survey
-#' nutr_metab <- readRDS(file = "/n/scratch/users/s/shi872/UKB_intermediate/UKB_nutr_metab_df.rds")
-#' #'*Need to update this later:*
-#' nutr_list = scan(file = "/n/groups/patel/shakson_ukb/UK_Biobank/RScripts/Env_Preprocess/nutr_names.txt",
-#'                  what = as.character())
-#' UKBnutr_df <- nutr_metab %>% select(all_of(c("eid",nutr_list)))
-
-#70K individuals at instance 0: according to UKBshowcase - https://biobank.ndph.ox.ac.uk/showcase/field.cgi?id=26030
-#sum(!is.na(UKBnutr_df$total_weight_of_all_foods_and_beverages_f26000_0_0))
 
 
 #SES, Income, Deprivation
@@ -128,9 +101,6 @@ vit_df <- fast_dataloader_viafield(UKBdict, UKBfieldIDs = vit, directoryInfo)
 vit_df <- UKB_instances(vit_df, "_0_")
 vit_df <- UKB_multiarray_handle(vit_df)
 vit_df <- UKB_onehot_handle(vit_df)
-
-# takes 7-10 minutes to load!!!
-
 
 
 #'*Organize Environmental Variables: Elist, Elist_names and Eids*
@@ -254,25 +224,9 @@ PXSloader@covars_list <- full_covars_list
 
 
 
-
-
 #Save RDS file of PXSloader object
 gc()
 class(PXSloader)
 saveRDS(PXSloader, file = "/n/scratch/users/s/shi872/UKB_intermediate/UKB_PGS_PXS_load.rds")
-
-
-
-#'*ADDITIONAL THINGS TO CONSIDER*
-#Additional Covariates:
-#batch/plate: 30901 - ? need to also use this file: https://biobank.ndph.ox.ac.uk/showcase/ukb/auxdata/olink_batch_number.dat
-#if want the correct batch number.
-#well used: 30902 - ?
-#consortium participants: 30903 - ?
-# Medications: 6154 (pain relief) (TO-ADD Later)
-
-
-#Specify different coars_list:
-#gPC_names <- paste0("genetic_principal_components_f22009_0_",1:20)
 
 

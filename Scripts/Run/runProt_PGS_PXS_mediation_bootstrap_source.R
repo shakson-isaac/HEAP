@@ -7,20 +7,16 @@ library(gridExtra)
 library(survival)
 library(pbapply)
 
-#'*TO-DO*
+#'*STEP TO RUN*
 #'RUN THIS Bootstrap Procedure on potential findings of the mediation analysis.
 #'Save the MODELS for each protein <--> disease pair for further visualizations.
 #'Save the STATS (Mediation indirect/direct/etc.) of the bootstrap samples to use for visualizations.
 #'SPECIFY the covarType in each.
 #'CREATE a list to parallelize through for each covarType 
 #'Write bash script for the mediation analysis
-#'
-#'
 #'Make MDloader for each covarType!
 #'Make sure the run occurs with specified covarType
-#'Allow individual or batch runs
-#'20 minutes per ~ covarType5
-#'2 minutes per ~ covarType1/2
+
 
 ####'*NEW VERSION* 
 PXSmediation <- setClass(
@@ -595,32 +591,4 @@ runBoot_MDwrap <- function(covarType, protlist, dzlist, n){
   
   return(DZres)
 }
-
-
-#'*Mediation Bootstrap RUNS*
-
-#TODO: Arguments:
-# Protein Names: ex.) protlist <- c("IGFBP1","IGFBP2","CKB","FABP4","FGF21","LEP")
-# covarType: ex.) covarType <- "Type1"
-# dzIDs: dz <- "age_e11_first_reported_non_insulin_dependent_diabetes_mellitus_f130708_0_0"
-
-
-#Example arguments
-# covarType = "Type1"
-# protlist <- c("IGFBP1","IGFBP2","CKB","FABP4","FGF21","LEP")
-# dzlist <- c("age_e11_first_reported_non_insulin_dependent_diabetes_mellitus_f130708_0_0",
-#             "age_n18_first_reported_chronic_renal_failure_f132032_0_0",
-#             "age_i25_first_reported_chronic_ischaemic_heart_disease_f131306_0_0")
-# dzNames <- c("T2D","CRF","CIHD")
-
-#try <- runBoot_MDwrap(covarType, protlist, dzlist, 10)
-
-
-
-
-#Example 1: Many Proteins - 1 Disease (For Real RUN do 1000 bootstraps)
-#1000 bootstraps estimated time:
-#1 protein / CovarSpec4  --> 32 minutes
-#Original Estimate, 2.5%, 97.5% of bootstrap to get CI
-#Percentile Bootstrap Method
 

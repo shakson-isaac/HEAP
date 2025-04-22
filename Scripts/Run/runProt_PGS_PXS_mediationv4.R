@@ -7,13 +7,10 @@ library(gridExtra)
 library(survival)
 library(pbapply)
 
-#'*TO-DO*
+#'*CHECKLIST*
 #'Make MDloader for each covarType!
 #'Make sure the run occurs with specified covarType
 #'Allow individual or batch runs
-#'20 minutes per ~ covarType5
-#'2 minutes per ~ covarType1/2
-
 
 
 ####'*NEW VERSION* 
@@ -493,31 +490,3 @@ runMediation <- function(protlist, MDobject, covarType, idx){
 }
 runMediation(split_vectors[[idx]], MDloader, covarType, idx)
 
-#Approx Times:
-#Around 2-3 minutes for each protein - CovarType2
-#Around 20 minutes for each protein - CovarType5
-
-
-#runProt_Mediation(split_vectors[[idx]], idx)
-
-
-##### TRASH ####
-#Distributions time to event for diseases:
-# hist(MDdf %>% 
-#        filter(status_age_e11_first_reported_non_insulin_dependent_diabetes_mellitus_f130708_0_0 == 1) %>%
-#        pull(survtime_yrs_age_e11_first_reported_non_insulin_dependent_diabetes_mellitus_f130708_0_0)
-# )
-
-# Example filter to describe results:
-# potential_candidates <- MDres %>%
-#   filter(abs(`Exposure Indirect Effect`) > abs(`Exposure Direct Effect`) &
-#            abs(`Exposure Indirect Effect`) > abs(`Genetic Indirect Effect`)) 
-
-# MDobject <- MDloader
-# covarType = "Type5"
-# IGFBP2 <- MultiDisease_run(protID = "IGFBP2", MDobject = PXScovarSpec(MDobject , CovarSpec[[covarType]]))
-# LEP <- MultiDisease_run(protID = "LEP", MDobject = PXScovarSpec(MDobject , CovarSpec[[covarType]]))
-# GDF15 <- MultiDisease_run(protID = "GDF15", MDobject = PXScovarSpec(MDobject , CovarSpec[[covarType]]))
-# CA14 <- MultiDisease_run(protID = "CA14", MDobject = PXScovarSpec(MDobject , CovarSpec[[covarType]]))
-# FABP4 <- MultiDisease_run(protID = "FABP4", MDobject = PXScovarSpec(MDobject , CovarSpec[[covarType]]))
-# IL1RN <- MultiDisease_run(protID = "IL1RN", MDobject = PXScovarSpec(MDobject , CovarSpec[[covarType]]))

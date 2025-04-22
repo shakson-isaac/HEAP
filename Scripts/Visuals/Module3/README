@@ -1,2 +1,8 @@
-Completed: main, interactive, tables, and bootstrap
-Please check for functionality and dpi tomorrow
+This folder contains scripts to run the follwing visualizations:
+
+Medaiation Analysis:
+- Individual Figures
+- Bootstrapped Results for Select Protein-Disease Pairs
+- Tables: GEM and Mediation Results
+- Bootstrapped Results for Select Protein-Disease Pairs
+- Interactive Plots (App)

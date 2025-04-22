@@ -1,4 +1,7 @@
-Completed: main, trends, static, table, interactive, GxEplots
-#GxEplots is self contained
+This folder contains scripts to run the follwing visualizations:
 
-To Work On: Pathways
+Gene-by-Environment Analysis:
+- Pathways
+- Tables
+- Individual Figures
+- Interactive Plots (App)

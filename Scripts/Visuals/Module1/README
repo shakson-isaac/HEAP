@@ -3,19 +3,6 @@ This folder contains scripts to run the follwing visualizations:
 GvE Analysis:
 - Pathways
 - Tables
-- Individual Figures (To individually modify easily)
+- Individual Figures
 - Interactive Plots (App)
-
-
-Checked and Completed?
-
-CSpecVar - YES - NEED New Analysis
-Demographics - YES
-Ecat - YES
-Interactive - YES
-MainPlot - YES
-Metrics - YES
-Pathways - NO - WORK ON TOMORROW
-SummaryStats - YES
-Tables - YES
 

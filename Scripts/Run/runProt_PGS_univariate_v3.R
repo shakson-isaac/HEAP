@@ -3,7 +3,7 @@ library(data.table)
 library(tidyverse)
 library(ggplot2)
 library(ggpmisc)
-library(car) #for Type 2/3 Anova
+library(car)
 set.seed(123)
 
 # Definition of PXSconstruct to make modifications to covars_list
@@ -25,8 +25,6 @@ PXSconstruct <- setClass(
 
 
 #'*Loading:*
-#1st ver:
-#load(file = "/n/scratch/users/s/shi872/UKB_intermediate/UKB_PGS_PXS_data.rds")
 PXSloader <- readRDS(file = "/n/scratch/users/s/shi872/UKB_intermediate/UKB_PGS_PXS_load.rds")
 
 
@@ -642,71 +640,3 @@ if(covarType %in% c(paste0("Type",1:5))){
                          folder_id = covarType,
                          idx)
 }
-
-
-# To-DO Potential:
-# Set condition on the PXSloader: Current is ALL covariates:
-# Later can introduce: PXScond = PXScovarSpec(PXSloader, CovarSpec[[covarType]])
-# PXScond <- PXSloader and use PXScond to do further branching of specifications.
-
-
-
-
-
-## Load the list: once get the results:
-#example_load <- readRDS(paste0("/n/groups/patel/shakson_ukb/UK_Biobank/Data/Parallel/Prot_PGSPXS_univar/",
-#                               covarType,"/univar_assoc_",idx,".rds"))
-#example_load <- readRDS(paste0("/n/groups/patel/shakson_ukb/UK_Biobank/Data/Parallel/Prot_PGSPXS_univar/Type1/univar_assoc_20.rds"))
-
-#3:34 - 3:31 for 2-3 proteins
-#3:39 - 4 proteins
-#TOOK 13 mins for the above. ~6-7 proteins.
-
-#Specific Features that apply to all folds:
-#Elist_names = PXSdata@Elist_names
-#Eid_cat = PXSdata@Eid_cat
-
-
-
-
-#Why the SWAPS:
-#Build Function to move features: 
-# Covariates --> E (example medications)
-# E --> Covariates (Income Score, Deprivation)
-# Covariates --> NULL
-
-#Medications (Covariates to E)
-#Move all Medication Info --> Shift to Medications Category in 'Elist'
-
-#Version 1 specific features
-#Deprivation Indices:
-#England_Income_...
-#What Category is the above in:
-#move the enitre category out (set to NULL inside)
-#Shift the individual features to covariates 
-
-#Version 2 whole category:
-#Alcohol has a category.
-#move the enitre category out (set to NULL inside)
-#Shift the individual features to covariates 
-
-
-#To-DO:
-#Make functional code for all the association related stuff.
-#Build off the above code with the conditionals mentioned.
-#Make code serpate for individual modeling.
-#Expand the loaderProt_PGS_PXS for just the univariate case to allow for
-#Extend to categories with more missing E variables.
-
-
-#'*Stats to have in paper:*
-#'How many E and GxE association had significant hits replicated across train and validation set?
-#'Are these effects correlated across train and test set?
-#'Visualization of GxE effects - Counterfactuals + Meta-Analysis Estimates (or just train)
-#'Trends of E
-#'Etc.
-#'Conditional Analysis on Important Features
-
-
-#Load Category Data: (NEED to have this as an additional feature in Assoc Table)
-#cat <- PXSdata@Eid_cat

@@ -1,3 +1,3 @@
-# UKB-Omics
-# This repo contains all code related to UK Biobank Analysis
-# The github action workflow moves specific files to corresponding project repos for publication
+# HEAP
+# This repo contains all code for analysis and visualization in the HEAP manuscript
+# For further details on HEAP functions and utlity please look here: {insert link}

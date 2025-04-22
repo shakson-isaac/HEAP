@@ -6,11 +6,9 @@ library(ggpmisc)
 library(car) #for Type 2/3 Anova
 set.seed(123)
 
-#TODO:
-#Merge files: runProt_PGS_univariate_v3.R and this file to double check
-#exact train/test splits are occuring even though seed is set correctly.
+#CHECKLIST:
 #This script is for visualization purposes.
-#1st RUN THROUGH IS USING THE ENTIRETY OF DATA!!! NO SPLIT
+#Uses entire dataset to produce plots (no split) - ONLY USE of Replicated Associations
 
 # Definition of PXSconstruct to make modifications to covars_list
 PXSconstruct <- setClass(
@@ -175,9 +173,6 @@ create_data <- function(protID, PXSdata, split_ratio){
   
   return(Edata)
 }
-#TEST CASE to have for above function:
-#nrow(Edata$train) + nrow(Edata$test) == length(unique(c(Edata$train$eid, Edata$test$eid)))
-
 
 ######FUNCTION 2: MORE PREPROCESSING!!
 
@@ -312,13 +307,7 @@ GxE_assoc_fin <- function(df, protID, covariates, Eids){
     aov_type2$ID <- rownames(aov_type2)
     
     stat5[[i]] <- aov_type2
-    
-    
-    #Old Version:
-    #stat1[[i]] <- stat_tbl %>% filter(id == i)
-    #stat2[[i]] <- stat_tbl %>% filter(id == paste0(i,":",G_var))
   }
-  #print(stat3)
   
   #Aggregate the stats to make a dataframe
   stat1 <- do.call(rbind, stat1)
@@ -579,13 +568,6 @@ omiclist <- scan(file = "/n/groups/patel/shakson_ukb/UK_Biobank/BScripts/ProtPGS
                  as.character())
 
 
-# Obtain arguments from bash script:
-#args = commandArgs(trailingOnly = T)
-#idx <- as.integer(args[1])
-#split_num <- as.integer(args[2])
-#covarType <- as.character(args[3])
-
-
 #'*NECESSARY FUNCTIONS BELOW FOR VISUALIZATION*
 
 # Function to Switch Covariate Selection:
@@ -788,10 +770,6 @@ GWIS_plots <- function(statmodel, Evar, Evar_name, protID, custom_levels = c(),
   
   # Get pvalues of E and GxE associations:
   model_summary <- summary(model)
-  #pval_GxE <- model_summary$coefficients[protGxEid, 4] #GxE pvalue.
-  #pval_E <- model_summary$coefficients[Evar, 4]
-  #print(paste0("GxE:", pval_GxE, " E:", pval_E))
-  
   
   gg1 <- newdata %>%
     ggplot(aes(x = .data[[protGS]],
@@ -807,19 +785,7 @@ GWIS_plots <- function(statmodel, Evar, Evar_name, protID, custom_levels = c(),
     ylab(paste0(protID, ": Normalized Expression")) +
     ggtitle(paste0(protID, ": ", title)) +
     labs(color = Evar_name, fill = Evar_name) +
-    theme_minimal() #+ 
-    
-    # Add p-value box for GxE and E
-    # annotate("rect", xmin = min(newdata[[protGS]]) - 0.3, xmax = min(newdata[[protGS]]) + 1.8, 
-    #          ymin = max(newdata$y_pred) * 0.9, ymax = max(newdata$y_pred) * 1.2, 
-    #          alpha=0.2, color="black", fill="white", size = 0.5) +
-    # annotate("text",
-    #          x = c(min(newdata[[protGS]]) + 0.1, min(newdata[[protGS]])) + 0.7,
-    #          y = c(max(newdata$y_pred) * 1.1, max(newdata$y_pred) * 1),
-    #          label = c(paste("E: p =", format(pval_E, digits = 2)), 
-    #                    paste("GxE: p =", format(pval_GxE, digits = 2))) , 
-    #          color="black",
-    #          size= 3)
+    theme_minimal() 
   
   # Add custom levels if provided
   if(length(custom_levels) > 0){
@@ -854,39 +820,4 @@ runGWISplot <- function(omic, exposure, CType,
              )
   return(gg)
 }
-
-# Example Usage Below
-# gg1 <- runGWISplot(omic = "ALPP",
-#             exposure = "current_tobacco_smoking_f1239_0_0_Yes._on_most_or_all_days",
-#             CType = "Type5",
-#             ename = "Daily Smoker",
-#             levels = c("NO","YES"),
-#             plotname = "Polygenic GxE Interaction")
-# 
-# runGWISplot(omic = "LEP",
-#            exposure = "types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Strenuous_sports",
-#            CType = "Type5",
-#            ename = "Strenuous Sports",
-#            levels = c("NO","YES"),
-#            plotname = "Exposure Effect Conditioned on Genetics")
-# 
-# runGWISplot(omic = "APOF",
-#            exposure = "alcohol_intake_frequency_f1558_0_0",
-#            CType = "Type5",
-#            ename = "Alcohol Intake Freq.",
-#            levels = c("Never","Special Occasions",
-#                       "1-3 times monthly","1-2 times weekly",
-#                       "3-4 times weekly","Daily"),
-#            plotname = "Polygenic GxE Interaction")
-# 
-# runGWISplot(omic = "APOF",
-#            exposure = "income_score_england_f26411_0_0",
-#            CType = "Type5",
-#            ename = "Income Score",
-#            plotname = "Polygenic GxE Interaction")
-
-
-
-
-
 

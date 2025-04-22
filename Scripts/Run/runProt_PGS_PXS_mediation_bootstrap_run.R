@@ -65,31 +65,3 @@ write.table(MDfinaldf,
                           cType,"/","MDboot_",idx,".txt"),
             row.names = F
             )
-
-
-##### Did below to populate txt files for protein and disease code IDs: ####
-#Load Mediation Data:
-# MDloader <- readRDS(file = paste0("/n/scratch/users/s/shi872/UKB_intermediate/UKB_MDstore_",
-#                                   covarType,".rds"))
-
-#Get omiclist to parallelize through
-# omiclist <- MDloader@protIDs
-# dzlist <- MDloader@DZ_ids
-# 
-# write.table(omiclist, "/n/groups/patel/shakson_ukb/UK_Biobank/BScripts/ProtMediation/protlist.txt",
-#             row.names = F, col.names = F)
-# write.table(dzlist, "/n/groups/patel/shakson_ukb/UK_Biobank/BScripts/ProtMediation/dzlist.txt",
-#             row.names = F, col.names = F)
-
-#Obtain a paired list to iterate: (Small EXAMPLE But can extend to all)
-# omiclist_final <- c("MAMDC4","CEACAM16", "CXCL17","LAMP3","WFDC2","TNR","GDF15",
-#                     "IGFBP1","IGFBP2","CKB","LPL","FABP4","FGF21","LEP","IL18R1","IGSF9")
-# 
-# dzlist_final <- c("age_f10_first_reported_mental_and_behavioural_disorders_due_to_use_of_alcohol_f130854_0_0",
-#                   "age_j43_first_reported_emphysema_f131490_0_0", 
-#                   "age_e11_first_reported_non_insulin_dependent_diabetes_mellitus_f130708_0_0")
-# 
-# # Generate all combinations
-# pair_df <- expand.grid(omic = omiclist_final, dz = dzlist_final, stringsAsFactors = FALSE)
-# write.table(pair_df, "/n/groups/patel/shakson_ukb/UK_Biobank/BScripts/ProtMediation/pairs.txt",
-#             row.names = F, col.names = T)
