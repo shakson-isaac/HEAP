@@ -458,7 +458,7 @@ covarType <- as.character(args[3])
 #split_num = 1000
 #covarType = "Type1"
 
-#Load Mediation Data:
+#Load Mediation Data: (Has around 270 disease codes)
 MDloader <- readRDS(file = paste0("/n/scratch/users/s/shi872/UKB_intermediate/UKB_MDstore_",
                        covarType,".rds"))
 
