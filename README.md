@@ -1,7 +1,7 @@
 # HEAP
 
-This repo contains all code for analysis and visualization in the HEAP manuscript.
+This repository contains code for analysis and visualization in the HEAP manuscript.
 
-![HEAP overview](HEAPsumm.png)
+![HEAP overview](Docs/HEAP.png)
 
-To interactively view results, please visit our website here: [HEAP website](https://heap.bio)
+Please visit our website here: [HEAP website](https://heap.bio) to interactively view results.
