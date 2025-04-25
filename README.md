@@ -1,6 +1,6 @@
 # HEAP
 
-This repository contains code for analysis and visualization in the HEAP manuscript.
+This repository contains code for analysis and visualizations in the HEAP manuscript.
 
 ![HEAP overview](HEAP.png)
 
