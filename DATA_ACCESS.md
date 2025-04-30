@@ -22,8 +22,7 @@
 
 ---
 
-For further information or questions, please contact:  
-📧 shakson_isaac@g.harvard.edu
+For further information or questions, please contact: shakson_isaac@g.harvard.edu
 
 
 
