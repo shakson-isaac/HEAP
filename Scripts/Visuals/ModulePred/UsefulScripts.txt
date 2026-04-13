@@ -1,0 +1,11 @@
+Module6_dumbbellv8.R - Top 10 exposures per Disease to look at.
+Module6_viz_final.R - AUC/R2 etc. of the exposures to understand PES scores
+- Good move with just making the AUC/R2 stuff a table. 
+- It is intuitive and not super difficult to parse through.
+
+
+Need HR version somewhere?
+
+# Figure 1 and 2: How much is predicted from proteins.
+# Figure 3: Heatmap stuff.
+# Figure 4: Addn Predictive Value.

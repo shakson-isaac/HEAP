@@ -1,0 +1,8 @@
+Rscript runColoc.R \
+  --pqtl /n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_5452_71_ASGR1_ASGR1_10032022.txt.gz \
+  --gwas /n/groups/patel/IGLOO/FinnGen/SummaryStats/finngen_R12_E4_LIPOPROT.gz \
+  --snp rs55714927 \
+  --window_kb 500 \
+  --s 0.10 \
+  --n_gwas 300000 \
+  --out /n/groups/patel/shakson_ukb/UK_Biobank/Output/Coloc/Results/rs55714927_ASGR1_E4_LIPOPROT
