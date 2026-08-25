@@ -1,0 +1,16 @@
+name: ldsc
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=2.7
+  - pip=20.3.4        # py2-compatible pip from defaults
+  - numpy=1.16
+  - scipy=0.18
+  - pandas=0.20
+  - bitarray=0.8
+  - nose=1.3
+  - pybedtools=0.7
+  - bedtools           # often needed by pybedtools at runtime
+# no "pip:" section; everything heavy is installed via conda

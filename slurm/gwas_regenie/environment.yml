@@ -1,0 +1,15 @@
+# Reproducible conda environment for HEAP exposure GWAS (regenie step1/step2).
+# Build it with:
+#   conda env create -f slurm/gwas_regenie/environment.yml -p /path/to/regenie_env
+#   export HEAP_REGENIE_ENV=/path/to/regenie_env
+#
+# The Slurm scripts (gwas_regenie_exposures_*_v2.sh) activate this env via
+# CONDA_ENV, defaulting to the shared IGLOO copy and overridable with
+# HEAP_REGENIE_ENV. Pinned regenie version used for HEAP runs: v4.1.
+name: regenie_env
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - regenie=4.1

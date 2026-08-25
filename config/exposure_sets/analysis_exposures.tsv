@@ -1,0 +1,400 @@
+category	field_id	variable	variable_type	miss_rate_prot_i0	include	notes
+Alcohol	1558	alcohol_intake_frequency_f1558_0_0	ordinal	0.0012	1	
+Alcohol	1568	average_weekly_red_wine_intake_f1568_0_0	continuous	0.3194	0	miss_rate_prot_i0 > 0.20
+Alcohol	1578	average_weekly_champagne_plus_white_wine_intake_f1578_0_0	continuous	0.3196	0	miss_rate_prot_i0 > 0.20
+Alcohol	1588	average_weekly_beer_plus_cider_intake_f1588_0_0	continuous	0.3176	0	miss_rate_prot_i0 > 0.20
+Alcohol	1598	average_weekly_spirits_intake_f1598_0_0	continuous	0.3204	0	miss_rate_prot_i0 > 0.20
+Alcohol	1608	average_weekly_fortified_wine_intake_f1608_0_0	continuous	0.3181	0	miss_rate_prot_i0 > 0.20
+Alcohol	1618	alcohol_usually_taken_with_meals_f1618_0_0_Do_not_know	binary	0.2352	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	1618	alcohol_usually_taken_with_meals_f1618_0_0_It_varies	binary	0.2352	0	miss_rate_prot_i0 > 0.20
+Alcohol	1618	alcohol_usually_taken_with_meals_f1618_0_0_No	binary	0.2352	0	miss_rate_prot_i0 > 0.20
+Alcohol	1618	alcohol_usually_taken_with_meals_f1618_0_0_Prefer_not_to_answer	binary	0.2352	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	1618	alcohol_usually_taken_with_meals_f1618_0_0_Yes	binary	0.2352	0	miss_rate_prot_i0 > 0.20
+Alcohol	1628	alcohol_intake_versus_10_years_previously_f1628_0_0	ordinal	0.0945	1	
+Alcohol	2664	reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Do_not_know	binary	0.5837	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	2664	reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Doctor.s_advice	binary	0.5837	0	miss_rate_prot_i0 > 0.20
+Alcohol	2664	reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Financial_reasons	binary	0.5837	0	miss_rate_prot_i0 > 0.20
+Alcohol	2664	reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Health_precaution	binary	0.5837	0	miss_rate_prot_i0 > 0.20
+Alcohol	2664	reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Illness_or_ill_health	binary	0.5837	0	miss_rate_prot_i0 > 0.20
+Alcohol	2664	reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Other_reason	binary	0.5837	0	miss_rate_prot_i0 > 0.20
+Alcohol	2664	reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Prefer_not_to_answer	binary	0.5837	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	3731	former_alcohol_drinker_f3731_0_0	binary	0	0	monomorphic (zero variance in proteomics-i0 sample)
+Alcohol	3731	former_alcohol_drinker_f3731_0_0_No	binary	0.9135	0	miss_rate_prot_i0 > 0.20
+Alcohol	3731	former_alcohol_drinker_f3731_0_0_Prefer_not_to_answer	binary	0.9135	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	3731	former_alcohol_drinker_f3731_0_0_Yes	binary	0.9135	0	miss_rate_prot_i0 > 0.20
+Alcohol	3859	reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Do_not_know	binary	0.9612	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	3859	reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Doctor.s_advice	binary	0.9612	0	miss_rate_prot_i0 > 0.20
+Alcohol	3859	reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Financial_reasons	binary	0.9612	0	miss_rate_prot_i0 > 0.20
+Alcohol	3859	reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Health_precaution	binary	0.9612	0	miss_rate_prot_i0 > 0.20
+Alcohol	3859	reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Illness_or_ill_health	binary	0.9612	0	miss_rate_prot_i0 > 0.20
+Alcohol	3859	reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Other_reason	binary	0.9612	0	miss_rate_prot_i0 > 0.20
+Alcohol	3859	reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Prefer_not_to_answer	binary	0.9612	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	4407	average_monthly_red_wine_intake_f4407_0_0	continuous	0.9216	0	miss_rate_prot_i0 > 0.20
+Alcohol	4418	average_monthly_champagne_plus_white_wine_intake_f4418_0_0	continuous	0.9217	0	miss_rate_prot_i0 > 0.20
+Alcohol	4429	average_monthly_beer_plus_cider_intake_f4429_0_0	continuous	0.9215	0	miss_rate_prot_i0 > 0.20
+Alcohol	4440	average_monthly_spirits_intake_f4440_0_0	continuous	0.9218	0	miss_rate_prot_i0 > 0.20
+Alcohol	4451	average_monthly_fortified_wine_intake_f4451_0_0	continuous	0.9214	0	miss_rate_prot_i0 > 0.20
+Alcohol	4462	average_monthly_intake_of_other_alcoholic_drinks_f4462_0_0	continuous	0.9212	0	miss_rate_prot_i0 > 0.20
+Alcohol	5364	average_weekly_intake_of_other_alcoholic_drinks_f5364_0_0	continuous	0.7765	0	miss_rate_prot_i0 > 0.20
+Alcohol	10818	reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Do_not_know	binary	0.998	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	10818	reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Financial_reasons	binary	0.998	0	miss_rate_prot_i0 > 0.20
+Alcohol	10818	reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Illness	binary	0.998	0	miss_rate_prot_i0 > 0.20
+Alcohol	10818	reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Other_reason	binary	0.998	0	miss_rate_prot_i0 > 0.20
+Alcohol	10818	reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Prefer_not_to_answer	binary	0.998	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	10853	reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Do_not_know	binary	0.9998	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	10853	reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Financial_reasons	binary	0.9998	0	miss_rate_prot_i0 > 0.20
+Alcohol	10853	reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Illness	binary	0.9998	0	miss_rate_prot_i0 > 0.20
+Alcohol	10853	reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Other_reason	binary	0.9998	0	miss_rate_prot_i0 > 0.20
+Alcohol	10853	reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Prefer_not_to_answer	binary	0.9998	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	20117	alcohol_drinker_status_f20117_0_0_Current	binary	0	1	
+Alcohol	20117	alcohol_drinker_status_f20117_0_0_Never	binary	0	1	
+Alcohol	20117	alcohol_drinker_status_f20117_0_0_Prefer_not_to_answer	binary	0	0	non-response indicator (one-hot); not an informative exposure
+Alcohol	20117	alcohol_drinker_status_f20117_0_0_Previous	binary	0	1	
+Deprivation_Indices	738	average_total_household_income_before_tax_f738_0_0	ordinal	0.1556	1	
+Deprivation_Indices	26410	index_of_multiple_deprivation_england_f26410_0_0	continuous	0.1383	1	
+Deprivation_Indices	26411	income_score_england_f26411_0_0	continuous	0.1383	1	
+Deprivation_Indices	26412	employment_score_england_f26412_0_0	continuous	0.1383	1	
+Deprivation_Indices	26413	health_score_england_f26413_0_0	continuous	0.1383	1	
+Deprivation_Indices	26414	education_score_england_f26414_0_0	continuous	0.1383	1	
+Deprivation_Indices	26415	housing_score_england_f26415_0_0	continuous	0.1383	1	
+Deprivation_Indices	26416	crime_score_england_f26416_0_0	continuous	0.1383	1	
+Deprivation_Indices	26417	living_environment_score_england_f26417_0_0	continuous	0.1383	1	
+Deprivation_Indices	26418	income_score_wales_f26418_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26419	employment_score_wales_f26419_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26420	health_score_wales_f26420_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26421	education_score_wales_f26421_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26422	access_to_services_score_wales_f26422_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26423	housing_score_wales_f26423_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26424	physical_environment_score_wales_f26424_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26425	community_safety_score_wales_f26425_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26426	index_of_multiple_deprivation_wales_f26426_0_0	continuous	0.9587	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26427	index_of_multiple_deprivation_scotland_f26427_0_0	continuous	0.9299	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26428	income_score_scotland_f26428_0_0	continuous	0.9299	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26429	employment_score_scotland_f26429_0_0	continuous	0.9299	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26430	health_score_scotland_f26430_0_0	continuous	0.9299	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26431	education_score_scotland_f26431_0_0	continuous	0.9299	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26432	housing_score_scotland_f26432_0_0	continuous	0.9299	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26433	access_to_services_score_scotland_f26433_0_0	continuous	0.9299	0	miss_rate_prot_i0 > 0.20
+Deprivation_Indices	26434	crime_score_scotland_f26434_0_0	continuous	0.9341	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	1289	cooked_vegetable_intake_f1289_0_0	continuous	0.0145	1	
+Diet_Weekly	1299	salad_raw_vegetable_intake_f1299_0_0	continuous	0.0151	1	
+Diet_Weekly	1309	fresh_fruit_intake_f1309_0_0	continuous	0.0051	1	
+Diet_Weekly	1319	dried_fruit_intake_f1319_0_0	continuous	0.0131	1	
+Diet_Weekly	1329	oily_fish_intake_f1329_0_0	ordinal	0.0072	1	
+Diet_Weekly	1339	non_oily_fish_intake_f1339_0_0	ordinal	0.0069	1	
+Diet_Weekly	1349	processed_meat_intake_f1349_0_0	ordinal	0.003	1	
+Diet_Weekly	1359	poultry_intake_f1359_0_0	ordinal	0.0025	1	
+Diet_Weekly	1369	beef_intake_f1369_0_0	ordinal	0.0054	1	
+Diet_Weekly	1379	lamb_mutton_intake_f1379_0_0	ordinal	0.0079	1	
+Diet_Weekly	1389	pork_intake_f1389_0_0	ordinal	0.0076	1	
+Diet_Weekly	1408	cheese_intake_f1408_0_0	ordinal	0.0293	1	
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Do_not_know	binary	1e-04	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Full_cream	binary	1e-04	1	
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Never.rarely_have_milk	binary	1e-04	1	
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Other_type_of_milk	binary	1e-04	1	
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Prefer_not_to_answer	binary	1e-04	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Semi.skimmed	binary	1e-04	1	
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Skimmed	binary	1e-04	1	
+Diet_Weekly	1418	milk_type_used_f1418_0_0_Soya	binary	1e-04	1	
+Diet_Weekly	1428	spread_type_f1428_0_0_Butter.spreadable_butter	binary	0.0045	1	
+Diet_Weekly	1428	spread_type_f1428_0_0_Do_not_know	binary	0.0045	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1428	spread_type_f1428_0_0_Flora_Pro.Active.Benecol	binary	0.0045	1	
+Diet_Weekly	1428	spread_type_f1428_0_0_Never.rarely_use_spread	binary	0.0045	1	
+Diet_Weekly	1428	spread_type_f1428_0_0_Other_type_of_spread.margarine	binary	0.0045	1	
+Diet_Weekly	1428	spread_type_f1428_0_0_Prefer_not_to_answer	binary	0.0045	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1438	bread_intake_f1438_0_0	continuous	0.0169	1	
+Diet_Weekly	1448	bread_type_f1448_0_0_Brown	binary	0.0373	1	
+Diet_Weekly	1448	bread_type_f1448_0_0_Do_not_know	binary	0.0373	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1448	bread_type_f1448_0_0_Other_type_of_bread	binary	0.0373	1	
+Diet_Weekly	1448	bread_type_f1448_0_0_Prefer_not_to_answer	binary	0.0373	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1448	bread_type_f1448_0_0_White	binary	0.0373	1	
+Diet_Weekly	1448	bread_type_f1448_0_0_Wholemeal_or_wholegrain	binary	0.0373	1	
+Diet_Weekly	1458	cereal_intake_f1458_0_0	continuous	0.0047	1	
+Diet_Weekly	1468	cereal_type_f1468_0_0_Biscuit_cereal_.e.g._Weetabix.	binary	0.1749	1	
+Diet_Weekly	1468	cereal_type_f1468_0_0_Bran_cereal_.e.g._All_Bran._Branflakes.	binary	0.1749	1	
+Diet_Weekly	1468	cereal_type_f1468_0_0_Do_not_know	binary	0.1749	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1468	cereal_type_f1468_0_0_Muesli	binary	0.1749	1	
+Diet_Weekly	1468	cereal_type_f1468_0_0_Oat_cereal_.e.g._Ready_Brek._porridge.	binary	0.1749	1	
+Diet_Weekly	1468	cereal_type_f1468_0_0_Other_.e.g._Cornflakes._Frosties.	binary	0.1749	1	
+Diet_Weekly	1468	cereal_type_f1468_0_0_Prefer_not_to_answer	binary	0.1749	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1478	salt_added_to_food_f1478_0_0	ordinal	5e-04	1	
+Diet_Weekly	1488	tea_intake_f1488_0_0	continuous	0.0027	1	
+Diet_Weekly	1498	coffee_intake_f1498_0_0	continuous	0.0028	1	
+Diet_Weekly	1508	coffee_type_f1508_0_0_Decaffeinated_coffee_.any_type.	binary	0.231	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	1508	coffee_type_f1508_0_0_Do_not_know	binary	0.231	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1508	coffee_type_f1508_0_0_Ground_coffee_.include_espresso._filter_etc.	binary	0.231	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	1508	coffee_type_f1508_0_0_Instant_coffee	binary	0.231	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	1508	coffee_type_f1508_0_0_Other_type_of_coffee	binary	0.231	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	1508	coffee_type_f1508_0_0_Prefer_not_to_answer	binary	0.231	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1518	hot_drink_temperature_f1518_0_0	ordinal	0.0113	1	
+Diet_Weekly	1528	water_intake_f1528_0_0	continuous	0.0081	1	
+Diet_Weekly	1538	major_dietary_changes_in_the_last_5_years_f1538_0_0_No	binary	0	1	
+Diet_Weekly	1538	major_dietary_changes_in_the_last_5_years_f1538_0_0_Prefer_not_to_answer	binary	0	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	1538	major_dietary_changes_in_the_last_5_years_f1538_0_0_Yes._because_of_illness	binary	0	1	
+Diet_Weekly	1538	major_dietary_changes_in_the_last_5_years_f1538_0_0_Yes._because_of_other_reasons	binary	0	1	
+Diet_Weekly	1548	variation_in_diet_f1548_0_0	ordinal	0.0099	1	
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Do_not_know	binary	0.4816	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Flora_Pro.Active_or_Benecol	binary	0.4816	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Hard_.block._margarine	binary	0.4816	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Olive_oil_based_spread_.eg._Bertolli.	binary	0.4816	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Other_low_or_reduced_fat_spread	binary	0.4816	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Other_type_of_spread.margarine	binary	0.4816	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Polyunsaturated.sunflower_oil_based_spread_.eg._Flora.	binary	0.4816	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Prefer_not_to_answer	binary	0.4816	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	2654	non_butter_spread_type_details_f2654_0_0_Soft_.tub._margarine	binary	0.4816	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	3680	age_when_last_ate_meat_f3680_0_0	continuous	0.9602	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	6144	never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Dairy_products	binary	0.0045	1	
+Diet_Weekly	6144	never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Eggs_or_foods_containing_eggs	binary	0.0045	1	
+Diet_Weekly	6144	never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_I_eat_all_of_the_above	binary	0.0045	1	
+Diet_Weekly	6144	never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Prefer_not_to_answer	binary	0.0045	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	6144	never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Sugar_or_foods.drinks_containing_sugar	binary	0.0045	1	
+Diet_Weekly	6144	never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Wheat_products	binary	0.0045	1	
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Butter.spreadable_butter	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Do_not_know	binary	0.9955	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Low_or_reduced_fat_spread	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Margarine	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Never.rarely_use_spread	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Olive_oil_based_spread	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Other_type_of_spread	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10767	spread_type_pilot_f10767_0_0_Prefer_not_to_answer	binary	0.9955	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	10776	bread_type_intake_pilot_f10776_0_0_Brown	binary	0.9956	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10776	bread_type_intake_pilot_f10776_0_0_Do_not_know	binary	0.9956	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	10776	bread_type_intake_pilot_f10776_0_0_Never.rarely_eat_bread	binary	0.9956	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10776	bread_type_intake_pilot_f10776_0_0_Other_type_of_bread	binary	0.9956	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10776	bread_type_intake_pilot_f10776_0_0_Prefer_not_to_answer	binary	0.9956	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	10776	bread_type_intake_pilot_f10776_0_0_White	binary	0.9956	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10776	bread_type_intake_pilot_f10776_0_0_Wholemeal_or_wholegrain	binary	0.9956	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10855	never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Dairy_products	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10855	never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Eggs	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10855	never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_I_eat_all_of_the_above	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10855	never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Prefer_not_to_answer	binary	0.9955	0	non-response indicator (one-hot); not an informative exposure
+Diet_Weekly	10855	never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Sugar	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10855	never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Wheat_products	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Diet_Weekly	10912	variation_in_diet_pilot_f10912_0_0	ordinal	0.9955	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	864	number_of_days_week_walked_10_plus_minutes_f864_0_0	ordinal	0.0217	1	
+Exercise_Freq	874	duration_of_walks_f874_0_0	continuous	0.1526	1	
+Exercise_Freq	884	number_of_days_week_of_moderate_physical_activity_10_plus_minutes_f884_0_0	ordinal	0.0542	1	
+Exercise_Freq	894	duration_of_moderate_activity_f894_0_0	continuous	0.2678	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	904	number_of_days_week_of_vigorous_physical_activity_10_plus_minutes_f904_0_0	ordinal	0.056	1	
+Exercise_Freq	914	duration_of_vigorous_activity_f914_0_0	continuous	0.4715	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	924	usual_walking_pace_f924_0_0	ordinal	0.0091	1	
+Exercise_Freq	943	frequency_of_stair_climbing_in_last_4_weeks_f943_0_0	ordinal	0.0158	1	
+Exercise_Freq	971	frequency_of_walking_for_pleasure_in_last_4_weeks_f971_0_0	ordinal	0.3076	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	981	duration_walking_for_pleasure_f981_0_0	ordinal	0.3077	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	991	frequency_of_strenuous_sports_in_last_4_weeks_f991_0_0	ordinal	0.904	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	1001	duration_of_strenuous_sports_f1001_0_0	ordinal	0.9039	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	1011	frequency_of_light_diy_in_last_4_weeks_f1011_0_0	ordinal	0.5261	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	1021	duration_of_light_diy_f1021_0_0	ordinal	0.5287	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	1070	time_spent_watching_television_tv_f1070_0_0	continuous	0.0102	1	
+Exercise_Freq	1080	time_spent_using_computer_f1080_0_0	continuous	0.015	1	
+Exercise_Freq	1090	time_spent_driving_f1090_0_0	continuous	0.0188	1	
+Exercise_Freq	1100	drive_faster_than_motorway_speed_limit_f1100_0_0_Do_not_drive_on_the_motorway	binary	2e-04	1	
+Exercise_Freq	1100	drive_faster_than_motorway_speed_limit_f1100_0_0_Do_not_know	binary	2e-04	0	non-response indicator (one-hot); not an informative exposure
+Exercise_Freq	1100	drive_faster_than_motorway_speed_limit_f1100_0_0_Most_of_the_time	binary	2e-04	1	
+Exercise_Freq	1100	drive_faster_than_motorway_speed_limit_f1100_0_0_Never.rarely	binary	2e-04	1	
+Exercise_Freq	1100	drive_faster_than_motorway_speed_limit_f1100_0_0_Often	binary	2e-04	1	
+Exercise_Freq	1100	drive_faster_than_motorway_speed_limit_f1100_0_0_Prefer_not_to_answer	binary	2e-04	0	non-response indicator (one-hot); not an informative exposure
+Exercise_Freq	1100	drive_faster_than_motorway_speed_limit_f1100_0_0_Sometimes	binary	2e-04	1	
+Exercise_Freq	2624	frequency_of_heavy_diy_in_last_4_weeks_f2624_0_0	ordinal	0.6248	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	2634	duration_of_heavy_diy_f2634_0_0	ordinal	0.6248	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	3637	frequency_of_other_exercises_in_last_4_weeks_f3637_0_0	ordinal	0.5451	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	3647	duration_of_other_exercises_f3647_0_0	ordinal	0.5446	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	6162	types_of_transport_used_excluding_work_f6162_0_0.multi_Car.motor_vehicle	binary	0.0092	1	
+Exercise_Freq	6162	types_of_transport_used_excluding_work_f6162_0_0.multi_Cycle	binary	0.0092	1	
+Exercise_Freq	6162	types_of_transport_used_excluding_work_f6162_0_0.multi_None_of_the_above	binary	0.0092	1	
+Exercise_Freq	6162	types_of_transport_used_excluding_work_f6162_0_0.multi_Prefer_not_to_answer	binary	0.0092	0	non-response indicator (one-hot); not an informative exposure
+Exercise_Freq	6162	types_of_transport_used_excluding_work_f6162_0_0.multi_Public_transport	binary	0.0092	1	
+Exercise_Freq	6162	types_of_transport_used_excluding_work_f6162_0_0.multi_Walk	binary	0.0092	1	
+Exercise_Freq	6164	types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Heavy_DIY_.eg._weeding._lawn_mowing._carpentry._digging.	binary	0.0086	1	
+Exercise_Freq	6164	types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Light_DIY_.eg._pruning._watering_the_lawn.	binary	0.0086	1	
+Exercise_Freq	6164	types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_None_of_the_above	binary	0.0086	1	
+Exercise_Freq	6164	types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Other_exercises_.eg._swimming._cycling._keep_fit._bowling.	binary	0.0086	1	
+Exercise_Freq	6164	types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Prefer_not_to_answer	binary	0.0086	0	non-response indicator (one-hot); not an informative exposure
+Exercise_Freq	6164	types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Strenuous_sports	binary	0.0086	1	
+Exercise_Freq	6164	types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Walking_for_pleasure_.not_as_a_means_of_transport.	binary	0.0086	1	
+Exercise_Freq	10953	duration_of_walks_pilot_f10953_0_0	ordinal	0.9957	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	10962	duration_of_moderate_physical_activity_pilot_f10962_0_0	ordinal	0.9965	0	miss_rate_prot_i0 > 0.20
+Exercise_Freq	10971	duration_of_vigorous_physical_activity_pilot_f10971_0_0	ordinal	0.9976	0	miss_rate_prot_i0 > 0.20
+Exercise_MET	22032	ipaq_activity_group_f22032_0_0	ordinal	0.0258	1	
+Exercise_MET	22033	summed_days_activity_f22033_0_0	continuous	0	1	
+Exercise_MET	22034	summed_minutes_activity_f22034_0_0	continuous	0.0258	1	
+Exercise_MET	22035	at_or_above_moderate_vigorous_recommendation_f22035_0_0	binary	0.0258	1	
+Exercise_MET	22036	at_or_above_moderate_vigorous_walking_recommendation_f22036_0_0	binary	0.026	1	
+Exercise_MET	22037	met_minutes_per_week_for_walking_f22037_0_0	continuous	0.0258	1	
+Exercise_MET	22038	met_minutes_per_week_for_moderate_activity_f22038_0_0	continuous	0.0258	1	
+Exercise_MET	22039	met_minutes_per_week_for_vigorous_activity_f22039_0_0	continuous	0.0258	1	
+Exercise_MET	22040	summed_met_minutes_per_week_for_all_activity_f22040_0_0	continuous	0.0258	1	
+Internet_Usage	1110	length_of_mobile_phone_use_f1110_0_0	ordinal	0.0147	1	
+Internet_Usage	1120	weekly_usage_of_mobile_phone_in_last_3_months_f1120_0_0	ordinal	0.1702	1	
+Internet_Usage	1130	hands_free_device_speakerphone_use_with_mobile_phone_in_last_3_month_f1130_0_0	ordinal	0.1664	1	
+Internet_Usage	1140	difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Do_not_know	binary	0.1561	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	1140	difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_I_didn.t_use_a_mobile_phone_two_years_ago	binary	0.1561	1	
+Internet_Usage	1140	difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_No	binary	0.1561	1	
+Internet_Usage	1140	difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Prefer_not_to_answer	binary	0.1561	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	1140	difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Yes._use_is_now_less_frequent	binary	0.1561	1	
+Internet_Usage	1140	difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Yes._use_is_now_more_frequent	binary	0.1561	1	
+Internet_Usage	1150	usual_side_of_head_for_mobile_phone_use_f1150_0_0_Do_not_know	binary	0.1561	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	1150	usual_side_of_head_for_mobile_phone_use_f1150_0_0_Equally_left_and_right	binary	0.1561	1	
+Internet_Usage	1150	usual_side_of_head_for_mobile_phone_use_f1150_0_0_Left	binary	0.1561	1	
+Internet_Usage	1150	usual_side_of_head_for_mobile_phone_use_f1150_0_0_Prefer_not_to_answer	binary	0.1561	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	1150	usual_side_of_head_for_mobile_phone_use_f1150_0_0_Right	binary	0.1561	1	
+Internet_Usage	2237	plays_computer_games_f2237_0_0	ordinal	0.0016	1	
+Internet_Usage	10016	regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_Do_not_know	binary	0.9967	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	10016	regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_No	binary	0.9967	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10016	regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_Prefer_not_to_answer	binary	0.9967	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	10016	regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_Yes	binary	0.9967	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10105	internet_user_pilot_f10105_0_0_No	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10105	internet_user_pilot_f10105_0_0_Prefer_not_to_answer	binary	0.9955	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	10105	internet_user_pilot_f10105_0_0_Yes	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10114	willing_to_be_contacted_by_email_pilot_f10114_0_0_No	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10114	willing_to_be_contacted_by_email_pilot_f10114_0_0_Prefer_not_to_answer	binary	0.9955	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	10114	willing_to_be_contacted_by_email_pilot_f10114_0_0_Yes	binary	0.9955	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10749	time_using_mobile_phone_in_last_3_months_pilot_f10749_0_0	ordinal	0.9967	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10886	difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Do_not_know	binary	0.9967	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	10886	difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_I_didn.t_use_a_mobile_phone_one_year_ago	binary	0.9967	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10886	difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_No	binary	0.9967	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10886	difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Prefer_not_to_answer	binary	0.9967	0	non-response indicator (one-hot); not an informative exposure
+Internet_Usage	10886	difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Yes._use_is_now_less_frequent	binary	0.9967	0	miss_rate_prot_i0 > 0.20
+Internet_Usage	10886	difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Yes._use_is_now_more_frequent	binary	0.9967	0	miss_rate_prot_i0 > 0.20
+Residential_Air_Pollution	24003	nitrogen_dioxide_air_pollution._2010_f24003_0_0	continuous	0	0	superseded by no2_mean (mean-across-years feature used instead)
+Residential_Air_Pollution	24004	nitrogen_oxides_air_pollution._2010_f24004_0_0	continuous	0	1	
+Residential_Air_Pollution	24005	particulate_matter_air_pollution_pm10._2010_f24005_0_0	continuous	0.0672	1	
+Residential_Air_Pollution	24006	particulate_matter_air_pollution_pm2_5._2010_f24006_0_0	continuous	0.0672	0	superseded by pm2_5_mean (mean-across-years feature used instead)
+Residential_Air_Pollution	24007	particulate_matter_air_pollution_pm2_5_absorbance._2010_f24007_0_0	continuous	0.0672	1	
+Residential_Air_Pollution	24008	particulate_matter_air_pollution_2_5_10um._2010_f24008_0_0	continuous	0.0672	1	
+Residential_Air_Pollution	24009	traffic_intensity_on_the_nearest_road_f24009_0_0	continuous	0	1	
+Residential_Air_Pollution	24011	traffic_intensity_on_the_nearest_major_road_f24011_0_0	continuous	0	1	
+Residential_Air_Pollution	24013	total_traffic_load_on_major_roads_f24013_0_0	continuous	0	1	
+Residential_Air_Pollution	24015	sum_of_road_length_of_major_roads_within_100m_f24015_0_0	continuous	0	1	
+Residential_Air_Pollution	24016	nitrogen_dioxide_air_pollution._2005_f24016_0_0	continuous	0	0	superseded by no2_mean (mean-across-years feature used instead)
+Residential_Air_Pollution	24017	nitrogen_dioxide_air_pollution._2006_f24017_0_0	continuous	0	0	superseded by no2_mean (mean-across-years feature used instead)
+Residential_Air_Pollution	24018	nitrogen_dioxide_air_pollution._2007_f24018_0_0	continuous	0	0	superseded by no2_mean (mean-across-years feature used instead)
+Residential_Air_Pollution	24019	particulate_matter_air_pollution_pm10._2007_f24019_0_0	continuous	0.0021	1	
+Residential_Air_Pollution	NA	no2_mean	continuous	0	1	
+Residential_Air_Pollution	NA	pm2_5_mean	continuous	0.0672	1	
+Residential_Noise_Pollution	24020	average_daytime_sound_level_of_noise_pollution_f24020_0_0	continuous	0	1	
+Residential_Noise_Pollution	24021	average_evening_sound_level_of_noise_pollution_f24021_0_0	continuous	0	1	
+Residential_Noise_Pollution	24022	average_night_time_sound_level_of_noise_pollution_f24022_0_0	continuous	0	1	
+Sexual_Factors	2129	answered_sexual_history_questions_f2129_0_0	binary	0	1	
+Sexual_Factors	2139	age_first_had_sexual_intercourse_f2139_0_0	continuous	0.1355	1	
+Sexual_Factors	2149	lifetime_number_of_sexual_partners_f2149_0_0	continuous	0.1979	1	
+Sexual_Factors	2159	ever_had_same_sex_intercourse_f2159_0_0_No	binary	0.1035	1	
+Sexual_Factors	2159	ever_had_same_sex_intercourse_f2159_0_0_Prefer_not_to_answer	binary	0.1035	0	non-response indicator (one-hot); not an informative exposure
+Sexual_Factors	2159	ever_had_same_sex_intercourse_f2159_0_0_Yes	binary	0.1035	1	
+Sexual_Factors	3669	lifetime_number_of_same_sex_sexual_partners_f3669_0_0	continuous	0.9733	0	miss_rate_prot_i0 > 0.20
+Sleep	1160	sleep_duration_f1160_0_0	continuous	0.0076	1	
+Sleep	1170	getting_up_in_morning_f1170_0_0	ordinal	0.0067	1	
+Sleep	1180	morning_evening_person_chronotype_f1180_0_0_Definitely_evening	binary	0.1149	0	monomorphic (zero variance in proteomics-i0 sample)
+Sleep	1180	morning_evening_person_chronotype_f1180_0_0_Definitely_morning	binary	0.1149	1	
+Sleep	1180	morning_evening_person_chronotype_f1180_0_0_More_evening	binary	0.1149	1	
+Sleep	1180	morning_evening_person_chronotype_f1180_0_0_More_morning	binary	0.1149	1	
+Sleep	1190	nap_during_day_f1190_0_0	ordinal	0.0023	1	
+Sleep	1200	sleeplessness_insomnia_f1200_0_0	ordinal	0.0011	1	
+Sleep	1210	snoring_f1210_0_0_Do_not_know	binary	0	0	non-response indicator (one-hot); not an informative exposure
+Sleep	1210	snoring_f1210_0_0_No	binary	0	1	
+Sleep	1210	snoring_f1210_0_0_Prefer_not_to_answer	binary	0	0	non-response indicator (one-hot); not an informative exposure
+Sleep	1210	snoring_f1210_0_0_Yes	binary	0	1	
+Sleep	1220	daytime_dozing_sleeping_f1220_0_0	ordinal	0.006	1	
+Smoking	1239	current_tobacco_smoking_f1239_0_0_No	binary	0	1	
+Smoking	1239	current_tobacco_smoking_f1239_0_0_Only_occasionally	binary	0	1	
+Smoking	1239	current_tobacco_smoking_f1239_0_0_Prefer_not_to_answer	ordinal	0	0	non-response indicator (one-hot); not an informative exposure
+Smoking	1239	current_tobacco_smoking_f1239_0_0_Yes._on_most_or_all_days	binary	0	1	
+Smoking	1249	past_tobacco_smoking_f1249_0_0	ordinal	0.0814	1	
+Smoking	1259	smoking_smokers_in_household_f1259_0_0_No	binary	0.0819	1	
+Smoking	1259	smoking_smokers_in_household_f1259_0_0_Prefer_not_to_answer	binary	0.0819	0	non-response indicator (one-hot); not an informative exposure
+Smoking	1259	smoking_smokers_in_household_f1259_0_0_Yes._more_than_one_household_member_smokes	binary	0.0819	1	
+Smoking	1259	smoking_smokers_in_household_f1259_0_0_Yes._one_household_member_smokes	binary	0.0819	1	
+Smoking	1269	exposure_to_tobacco_smoke_at_home_f1269_0_0	continuous	0.1024	1	
+Smoking	1279	exposure_to_tobacco_smoke_outside_home_f1279_0_0	continuous	0.1622	1	
+Smoking	2644	light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_Do_not_know	binary	0.7271	0	non-response indicator (one-hot); not an informative exposure
+Smoking	2644	light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_No	binary	0.7271	0	miss_rate_prot_i0 > 0.20
+Smoking	2644	light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_Prefer_not_to_answer	binary	0.7271	0	non-response indicator (one-hot); not an informative exposure
+Smoking	2644	light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_Yes	binary	0.7271	0	miss_rate_prot_i0 > 0.20
+Smoking	2867	age_started_smoking_in_former_smokers_f2867_0_0	continuous	0.7557	0	miss_rate_prot_i0 > 0.20
+Smoking	2877	type_of_tobacco_previously_smoked_f2877_0_0_Cigars_or_pipes	binary	0.7543	0	miss_rate_prot_i0 > 0.20
+Smoking	2877	type_of_tobacco_previously_smoked_f2877_0_0_Hand.rolled_cigarettes	binary	0.7543	0	miss_rate_prot_i0 > 0.20
+Smoking	2877	type_of_tobacco_previously_smoked_f2877_0_0_Manufactured_cigarettes	binary	0.7543	0	miss_rate_prot_i0 > 0.20
+Smoking	2877	type_of_tobacco_previously_smoked_f2877_0_0_None_of_the_above	binary	0.7543	0	miss_rate_prot_i0 > 0.20
+Smoking	2877	type_of_tobacco_previously_smoked_f2877_0_0_Prefer_not_to_answer	binary	0.7543	0	non-response indicator (one-hot); not an informative exposure
+Smoking	2887	number_of_cigarettes_previously_smoked_daily_f2887_0_0	continuous	0.7676	0	miss_rate_prot_i0 > 0.20
+Smoking	2897	age_stopped_smoking_f2897_0_0	continuous	0.7556	0	miss_rate_prot_i0 > 0.20
+Smoking	2907	ever_stopped_smoking_for_6_plus_months_f2907_0_0_Do_not_know	binary	0.7555	0	non-response indicator (one-hot); not an informative exposure
+Smoking	2907	ever_stopped_smoking_for_6_plus_months_f2907_0_0_No	binary	0.7555	0	miss_rate_prot_i0 > 0.20
+Smoking	2907	ever_stopped_smoking_for_6_plus_months_f2907_0_0_Prefer_not_to_answer	binary	0.7555	0	non-response indicator (one-hot); not an informative exposure
+Smoking	2907	ever_stopped_smoking_for_6_plus_months_f2907_0_0_Yes	binary	0.7555	0	miss_rate_prot_i0 > 0.20
+Smoking	2926	number_of_unsuccessful_stop_smoking_attempts_f2926_0_0	continuous	0.7776	0	miss_rate_prot_i0 > 0.20
+Smoking	2936	likelihood_of_resuming_smoking_f2936_0_0	ordinal	0.7611	0	miss_rate_prot_i0 > 0.20
+Smoking	3436	age_started_smoking_in_current_smokers_f3436_0_0	continuous	0.9231	0	miss_rate_prot_i0 > 0.20
+Smoking	3446	type_of_tobacco_currently_smoked_f3446_0_0_Cigars_or_pipes	binary	0.9223	0	miss_rate_prot_i0 > 0.20
+Smoking	3446	type_of_tobacco_currently_smoked_f3446_0_0_Hand.rolled_cigarettes	binary	0.9223	0	miss_rate_prot_i0 > 0.20
+Smoking	3446	type_of_tobacco_currently_smoked_f3446_0_0_Manufactured_cigarettes	binary	0.9223	0	miss_rate_prot_i0 > 0.20
+Smoking	3446	type_of_tobacco_currently_smoked_f3446_0_0_None_of_the_above	binary	0.9223	0	miss_rate_prot_i0 > 0.20
+Smoking	3446	type_of_tobacco_currently_smoked_f3446_0_0_Prefer_not_to_answer	binary	0.9223	0	non-response indicator (one-hot); not an informative exposure
+Smoking	3456	number_of_cigarettes_currently_smoked_daily_current_cigarette_smokers_f3456_0_0	continuous	0.9279	0	miss_rate_prot_i0 > 0.20
+Smoking	3466	time_from_waking_to_first_cigarette_f3466_0_0	ordinal	0.9282	0	miss_rate_prot_i0 > 0.20
+Smoking	3476	difficulty_not_smoking_for_1_day_f3476_0_0	ordinal	0.9279	0	miss_rate_prot_i0 > 0.20
+Smoking	3486	ever_tried_to_stop_smoking_f3486_0_0_No	binary	0.9223	0	miss_rate_prot_i0 > 0.20
+Smoking	3486	ever_tried_to_stop_smoking_f3486_0_0_Prefer_not_to_answer	binary	0.9223	0	non-response indicator (one-hot); not an informative exposure
+Smoking	3486	ever_tried_to_stop_smoking_f3486_0_0_Yes._tried_and_stopped_for_at_least_6_months	binary	0.9223	0	miss_rate_prot_i0 > 0.20
+Smoking	3486	ever_tried_to_stop_smoking_f3486_0_0_Yes._tried_but_was_not_able_to_stop_or_stopped_for_less_than_6_months	binary	0.9223	0	miss_rate_prot_i0 > 0.20
+Smoking	3496	wants_to_stop_smoking_f3496_0_0	ordinal	0.9238	0	miss_rate_prot_i0 > 0.20
+Smoking	3506	smoking_compared_to_10_years_previous_f3506_0_0	ordinal	0.9225	0	miss_rate_prot_i0 > 0.20
+Smoking	5959	previously_smoked_cigarettes_on_most_all_days_f5959_0_0	binary	0	0	monomorphic (zero variance in proteomics-i0 sample)
+Smoking	5959	previously_smoked_cigarettes_on_most_all_days_f5959_0_0_No	binary	0.9952	0	miss_rate_prot_i0 > 0.20
+Smoking	5959	previously_smoked_cigarettes_on_most_all_days_f5959_0_0_Prefer_not_to_answer	binary	0.9952	0	non-response indicator (one-hot); not an informative exposure
+Smoking	5959	previously_smoked_cigarettes_on_most_all_days_f5959_0_0_Yes	binary	0.9952	0	miss_rate_prot_i0 > 0.20
+Smoking	6157	why_stopped_smoking_f6157_0_0.multi_Do_not_know	binary	0.7555	0	non-response indicator (one-hot); not an informative exposure
+Smoking	6157	why_stopped_smoking_f6157_0_0.multi_Doctor.s_advice	binary	0.7555	0	miss_rate_prot_i0 > 0.20
+Smoking	6157	why_stopped_smoking_f6157_0_0.multi_Financial_reasons	binary	0.7555	0	miss_rate_prot_i0 > 0.20
+Smoking	6157	why_stopped_smoking_f6157_0_0.multi_Health_precaution	binary	0.7555	0	miss_rate_prot_i0 > 0.20
+Smoking	6157	why_stopped_smoking_f6157_0_0.multi_Illness_or_ill_health	binary	0.7555	0	miss_rate_prot_i0 > 0.20
+Smoking	6157	why_stopped_smoking_f6157_0_0.multi_None_of_the_above	binary	0.7555	0	miss_rate_prot_i0 > 0.20
+Smoking	6157	why_stopped_smoking_f6157_0_0.multi_Prefer_not_to_answer	binary	0.7555	0	non-response indicator (one-hot); not an informative exposure
+Smoking	6158	why_reduced_smoking_f6158_0_0.multi_Do_not_know	binary	0.9663	0	non-response indicator (one-hot); not an informative exposure
+Smoking	6158	why_reduced_smoking_f6158_0_0.multi_Doctor.s_advice	binary	0.9663	0	miss_rate_prot_i0 > 0.20
+Smoking	6158	why_reduced_smoking_f6158_0_0.multi_Financial_reasons	binary	0.9663	0	miss_rate_prot_i0 > 0.20
+Smoking	6158	why_reduced_smoking_f6158_0_0.multi_Health_precaution	binary	0.9663	0	miss_rate_prot_i0 > 0.20
+Smoking	6158	why_reduced_smoking_f6158_0_0.multi_Illness_or_ill_health	binary	0.9663	0	miss_rate_prot_i0 > 0.20
+Smoking	6158	why_reduced_smoking_f6158_0_0.multi_None_of_the_above	binary	0.9663	0	miss_rate_prot_i0 > 0.20
+Smoking	6158	why_reduced_smoking_f6158_0_0.multi_Prefer_not_to_answer	binary	0.9663	0	non-response indicator (one-hot); not an informative exposure
+Smoking	6183	number_of_cigarettes_previously_smoked_daily_current_cigar_pipe_smokers_f6183_0_0	continuous	0.9966	0	miss_rate_prot_i0 > 0.20
+Smoking	6194	age_stopped_smoking_cigarettes_current_cigar_pipe_or_previous_cigarette_smoker_f6194_0_0	continuous	0.9968	0	miss_rate_prot_i0 > 0.20
+Smoking	10115	why_stopped_smoking_pilot_f10115_0_0_Do_not_know	binary	0.9988	0	non-response indicator (one-hot); not an informative exposure
+Smoking	10115	why_stopped_smoking_pilot_f10115_0_0_Financial_reasons	binary	0.9988	0	miss_rate_prot_i0 > 0.20
+Smoking	10115	why_stopped_smoking_pilot_f10115_0_0_Illness	binary	0.9988	0	miss_rate_prot_i0 > 0.20
+Smoking	10115	why_stopped_smoking_pilot_f10115_0_0_Other_reason	binary	0.9988	0	miss_rate_prot_i0 > 0.20
+Smoking	10115	why_stopped_smoking_pilot_f10115_0_0_Prefer_not_to_answer	binary	0.9988	0	non-response indicator (one-hot); not an informative exposure
+Smoking	10827	ever_stopped_smoking_for_6_plus_months_pilot_f10827_0_0_Do_not_know	binary	0.9988	0	non-response indicator (one-hot); not an informative exposure
+Smoking	10827	ever_stopped_smoking_for_6_plus_months_pilot_f10827_0_0_No	binary	0.9988	0	miss_rate_prot_i0 > 0.20
+Smoking	10827	ever_stopped_smoking_for_6_plus_months_pilot_f10827_0_0_Yes	binary	0.9988	0	miss_rate_prot_i0 > 0.20
+Smoking	10895	light_smokers_at_least_100_smokes_in_lifetime_pilot_f10895_0_0	binary	0.9989	0	miss_rate_prot_i0 > 0.20
+Smoking	20116	smoking_status_f20116_0_0_Current	binary	0	1	
+Smoking	20116	smoking_status_f20116_0_0_Never	binary	0	1	
+Smoking	20116	smoking_status_f20116_0_0_Prefer_not_to_answer	binary	0	0	non-response indicator (one-hot); not an informative exposure
+Smoking	20116	smoking_status_f20116_0_0_Previous	binary	0	1	
+Smoking	20160	ever_smoked_f20160_0_0	binary	0.0037	1	
+Smoking	20161	pack_years_of_smoking_f20161_0_0	continuous	0.0036	1	
+Smoking	20162	pack_years_adult_smoking_as_proportion_of_life_span_exposed_to_smoking_f20162_0_0	continuous	0.6951	0	miss_rate_prot_i0 > 0.20
+Sun_Exposure	1050	time_spend_outdoors_in_summer_f1050_0_0	continuous	0.0637	1	
+Sun_Exposure	1060	time_spent_outdoors_in_winter_f1060_0_0	continuous	0.0635	1	
+Sun_Exposure	1727	ease_of_skin_tanning_f1727_0_0	ordinal	0.0366	1	
+Sun_Exposure	1737	childhood_sunburn_occasions_f1737_0_0	continuous	0.2491	0	miss_rate_prot_i0 > 0.20
+Sun_Exposure	2267	use_of_sun_uv_protection_f2267_0_0	ordinal	0.0073	1	
+Sun_Exposure	2277	frequency_of_solarium_sunlamp_use_f2277_0_0	continuous	0.0171	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Folic_acid_or_Folate_.Vit_B9.	binary	0	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Multivitamins_..._minerals	binary	0	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_None_of_the_above	binary	0	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Prefer_not_to_answer	binary	0	0	non-response indicator (one-hot); not an informative exposure
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_A	binary	0	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_B	binary	0	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_C	binary	0	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_D	binary	0	1	
+Vitamins	6155	vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_E	binary	0	1	
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_Calcium	binary	0	1	
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_Fish_oil_.including_cod_liver_oil.	binary	0	1	
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_Glucosamine	binary	0	1	
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_Iron	binary	0	1	
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_None_of_the_above	binary	0	1	
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_Prefer_not_to_answer	binary	0	0	non-response indicator (one-hot); not an informative exposure
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_Selenium	binary	0	1	
+Vitamins	6179	mineral_and_other_dietary_supplements_f6179_0_0.multi_Zinc	binary	0	1	

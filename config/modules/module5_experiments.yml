@@ -1,0 +1,112 @@
+# HEAP Module 5 Experiment Configurations (Mendelian Randomization)
+# ============================================================
+# Module 5 runs bidirectional MR across three node types:
+#   E = exposure, P = protein, D = disease
+#
+# Edge types: EP, ED, PD, PE, DE, DP
+#
+# Each experiment defines a named MR analysis with its data sources,
+# thresholds, and output target. Multiple data sources are supported
+# (UKB pQTL, deCODE pQTL, FinnGen disease GWAS, UKB exposure GWAS).
+#
+# TWO PROTEIN-INSTRUMENT ARMS (run the SAME triad/edge lists from
+# global_edges/, differ only in the protein GWAS source):
+#
+#   * Split-sample UKB (MR_UKB_primary) -- protein instruments from the UKB
+#     Olink proteomics cohort pQTLs (already given). The exposure GWAS is
+#     trained on UKB individuals WITHOUT proteomics, so exposure and protein
+#     instruments come from non-overlapping UKB subsamples (two-sample valid).
+#     Disease outcomes are FinnGen (external). Runner: Module5.R.
+#
+#   * deCODE SomaScan (MR_deCODE_replication) -- protein instruments from the
+#     fully external deCODE SomaScan pQTLs (zero UKB overlap). Exposure
+#     instruments still come from the UKB non-proteomic exposure GWAS; disease
+#     outcomes are FinnGen. Runner: Module5_deCODE.R.
+#
+# The `runner` field tells the SLURM launcher which R script to dispatch.
+#
+# Adding a new experiment:
+#   1. Add an entry with a unique experiment_name.
+#   2. Specify which edge_types to run and the `runner` script.
+#   3. Set data_sources (protein_gwas_source, disease_gwas_source).
+#   4. Run generate_module5_manifest() to create the manifest TSV.
+# ============================================================
+
+version: "1.0"
+
+defaults:
+  p_threshold: 5.0e-8
+  f_statistic_min: 10
+  clump_r2: 0.001
+  clump_kb: 10000
+  cis_window_bp: 1000000
+  n_chunks: 5000
+  output_subdir: mr_edges
+
+experiments:
+
+  # ----------------------------------------------------------------
+  # PRIMARY MR ANALYSIS (UKB pQTL + FinnGen)
+  # ----------------------------------------------------------------
+
+  MR_UKB_primary:
+    description: "Split-sample UKB MR: UKB Olink (proteomics-cohort) pQTL instruments; exposure GWAS trained on non-proteomics UKB; FinnGen disease outcomes"
+    priority: main
+    status: ready
+    runner: Module5.R
+    edge_types: [EP, ED, PD, PE, DE, DP]
+    protein_gwas_source: ukb_pqtl
+    protein_gwas_dir: igloo_path("UKB", "pQTL")
+    disease_gwas_source: finngen
+    disease_gwas_dir: igloo_path("FinnGen", "SummaryStats")
+    exposure_gwas_source: ukb_regenie
+    # exposure_gwas_dir resolved at runtime from heap_project_output or scratch regenie output
+    p_threshold: 5.0e-8
+    f_statistic_min: 10
+    clump_r2: 0.001
+    clump_kb: 10000
+    cis_window_bp: 1000000
+    ld_ref: heap_ldref_prefix("EUR")  # IGLOO/LDref/EUR (legacy fallback in 00_paths.R)
+    pqtl_metadata: igloo_path("UKB", "pQTLmetadata", "olink_protein_map_3k_v1.tsv")
+    output_subdir: mr_edges
+
+  # ----------------------------------------------------------------
+  # deCODE pQTL REPLICATION
+  # ----------------------------------------------------------------
+
+  MR_deCODE_replication:
+    description: "External replication: deCODE SomaScan pQTL instruments; UKB non-proteomics exposure GWAS; FinnGen disease outcomes. Same triad/edge lists as MR_UKB_primary."
+    priority: secondary
+    status: ready
+    runner: Module5_deCODE.R
+    edge_types: [EP, ED, PD, PE, DE, DP]
+    protein_gwas_source: decode_pqtl
+    protein_gwas_dir: igloo_path("DECODE", "pQTL", "final_somascan_smp")
+    disease_gwas_source: finngen
+    exposure_gwas_source: ukb_regenie
+    pqtl_metadata: igloo_path("DECODE", "pQTLmetadata", "somascan_protein_map.tsv")
+    p_threshold: 5.0e-8
+    f_statistic_min: 10
+    clump_r2: 0.001
+    clump_kb: 10000
+    cis_window_bp: 1000000
+    output_subdir: mr_edges_decode
+
+  # ----------------------------------------------------------------
+  # SENSITIVITY: Relaxed instrument threshold
+  # ----------------------------------------------------------------
+
+  MR_UKB_relaxed_p:
+    description: "MR sensitivity with relaxed p-value threshold (5e-6); split-sample UKB arm"
+    priority: sensitivity
+    status: pending
+    runner: Module5.R
+    edge_types: [PD, DP]
+    protein_gwas_source: ukb_pqtl
+    disease_gwas_source: finngen
+    p_threshold: 5.0e-6
+    f_statistic_min: 10
+    clump_r2: 0.001
+    clump_kb: 10000
+    cis_window_bp: 1000000
+    output_subdir: mr_edges_relaxed

@@ -39,11 +39,20 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# pkgdown site
-docs/
+# pkgdown site -- DISABLED. The HEAP release publishes real documentation under
+# docs/ (REPRODUCIBILITY, DATA_ACCESS, ENVIRONMENT, MODULE_NUMBERING, ...).
+# This repo builds no pkgdown site, so the template rule would silently drop them.
+# docs/
 
 # translation temp files
 po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Curation staging kit -- never published
+.curation/
+
+# macOS junk
+.DS_Store
+._*

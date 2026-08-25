@@ -1,0 +1,383 @@
+# HEAP Module 3 Experiment Configurations
+# ============================================================
+# Each entry defines a named mediation experiment for Module 3.
+#
+# Module 3 reads upstream Module 1 mediation score files to perform
+# generalized mediation analysis against time-to-event disease outcomes.
+#
+# NAMING (2026-06-04 restructure): base = PRIMARY (all main figures); other
+# covariate sets are supplementary sensitivity layers built on base. Experiments
+# are named for their covariate set (descriptive scheme); the old Type1-7 scheme
+# is archived. Module 3 references an upstream Module 1 experiment by name via
+# upstream_module1_experiment (canonical M1_base_* names).
+#
+# covariate_set  -> a name in config/covariates/covariate_sets.yml
+# sample_filter  -> a name in config/samples/sample_filters.yml ("none" = full sample)
+#
+# Required upstream outputs (validated before run):
+#   primary_total              → G_raw, PXS_total
+#   partitioned_categories     → Gcis_raw, Gtrans_raw, PXS_<category>
+#   partitioned_grouped_categories → Gcis_raw, Gtrans_raw, PXSgrp_<group>
+#
+# If required score columns are absent from the upstream Module 1 output,
+# the run stops with a clear error naming the missing columns and the
+# Module 1 experiment that must be run first.
+#
+# Adding a new experiment:
+#   1. Add an entry with a unique experiment_name.
+#   2. Set upstream_module1_experiment to a name in module1_experiments.yml.
+#   3. Confirm the mediation_mode is compatible with upstream outputs.
+#   4. Run generate_module3_manifest() to create the manifest TSV.
+#   5. Submit with HEAPmodule3_manifest.sh.
+# ============================================================
+
+version: "2.0"
+
+defaults:
+  delta_sd_total: 1.0
+  min_cases_per_disease: 100
+  min_eid_overlap: 500
+  n_chunks: 400   # aligned with modules 1 & 2 (was 1000); ~7 proteins/job
+  disease_filter: all_available
+  sample_filter: none
+  output_subdir: module3
+
+experiments:
+
+  # ----------------------------------------------------------------
+  # MAIN EXPERIMENTS (priority: main, status: ready)
+  # ----------------------------------------------------------------
+
+  M3_base_lasso_primary:
+    description: "Aggregate G_raw vs PXS_total mediation — headline GEM statistic"
+    priority: main
+    status: ready
+    upstream_module1_experiment: M1_base_lasso
+    covariate_set: base
+    family: lasso
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_lasso_partitioned:
+    description: "Gcis/Gtrans + 13 PXS categories — conditional partitioned mediation"
+    priority: main
+    status: ready
+    upstream_module1_experiment: M1_base_lasso
+    covariate_set: base
+    family: lasso
+    mediation_mode: partitioned_categories
+    required_score_columns:
+      - Gcis_raw
+      - Gtrans_raw
+      - PXS_Alcohol
+      - PXS_Deprivation_Indices
+      - PXS_Diet_Weekly
+      - PXS_Exercise_Freq
+      - PXS_Exercise_MET
+      - PXS_Internet_Usage
+      - PXS_Residential_Air_Pollution
+      - PXS_Residential_Noise_Pollution
+      - PXS_Sexual_Factors
+      - PXS_Sleep
+      - PXS_Smoking
+      - PXS_Sun_Exposure
+      - PXS_Vitamins
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_clinical_lasso_primary:
+    description: "Aggregate mediation with full covariate adjustment"
+    priority: main
+    status: ready
+    upstream_module1_experiment: M1_base_clinical_lasso
+    covariate_set: base_clinical
+    family: lasso
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_clinical_lasso_partitioned:
+    description: "Partitioned mediation with full covariate adjustment"
+    priority: main
+    status: ready
+    upstream_module1_experiment: M1_base_clinical_lasso
+    covariate_set: base_clinical
+    family: lasso
+    mediation_mode: partitioned_categories
+    required_score_columns:
+      - Gcis_raw
+      - Gtrans_raw
+      - PXS_Alcohol
+      - PXS_Deprivation_Indices
+      - PXS_Diet_Weekly
+      - PXS_Exercise_Freq
+      - PXS_Exercise_MET
+      - PXS_Internet_Usage
+      - PXS_Residential_Air_Pollution
+      - PXS_Residential_Noise_Pollution
+      - PXS_Sexual_Factors
+      - PXS_Sleep
+      - PXS_Smoking
+      - PXS_Sun_Exposure
+      - PXS_Vitamins
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  # ----------------------------------------------------------------
+  # PARTITIONED SENSITIVITIES
+  #
+  # partitioned_categories under the remaining three specifications, so the
+  # per-category and cis/trans mediation results exist for the same five
+  # specifications reported everywhere else, not for base and base_clinical
+  # alone. Everything else on the site can already switch between five; these
+  # two views could not, and that was a gap in the data rather than a choice.
+  #
+  # Upstream verified before these were added: each of these M1 runs writes
+  # Gcis_raw, Gtrans_raw and all 13 PXS_<category> columns into
+  # score_partition_oof. primary_total needed only G_raw and PXS_total, so their
+  # presence could not be assumed from those runs having completed.
+  # ----------------------------------------------------------------
+
+  M3_base_bmi_lasso_partitioned:
+    description: "Partitioned mediation, base + BMI (isolated) adjustment."
+    priority: supplementary
+    status: ready
+    upstream_module1_experiment: M1_base_bmi_lasso
+    covariate_set: base_bmi
+    family: lasso
+    mediation_mode: partitioned_categories
+    required_score_columns:
+      - Gcis_raw
+      - Gtrans_raw
+      - PXS_Alcohol
+      - PXS_Deprivation_Indices
+      - PXS_Diet_Weekly
+      - PXS_Exercise_Freq
+      - PXS_Exercise_MET
+      - PXS_Internet_Usage
+      - PXS_Residential_Air_Pollution
+      - PXS_Residential_Noise_Pollution
+      - PXS_Sexual_Factors
+      - PXS_Sleep
+      - PXS_Smoking
+      - PXS_Sun_Exposure
+      - PXS_Vitamins
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_draw_lasso_partitioned:
+    description: "Partitioned mediation, base + blood-draw (fasting time, season) adjustment."
+    priority: supplementary
+    status: ready
+    upstream_module1_experiment: M1_base_draw_lasso
+    covariate_set: base_draw
+    family: lasso
+    mediation_mode: partitioned_categories
+    required_score_columns:
+      - Gcis_raw
+      - Gtrans_raw
+      - PXS_Alcohol
+      - PXS_Deprivation_Indices
+      - PXS_Diet_Weekly
+      - PXS_Exercise_Freq
+      - PXS_Exercise_MET
+      - PXS_Internet_Usage
+      - PXS_Residential_Air_Pollution
+      - PXS_Residential_Noise_Pollution
+      - PXS_Sexual_Factors
+      - PXS_Sleep
+      - PXS_Smoking
+      - PXS_Sun_Exposure
+      - PXS_Vitamins
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_exclprev_lasso_partitioned:
+    description: "Partitioned mediation, base adjustment on the healthy-at-baseline subset. A SAMPLE specification: covariate_set stays base and sample_filter does the work."
+    priority: supplementary
+    status: ready
+    upstream_module1_experiment: M1_base_exclprev_lasso
+    covariate_set: base
+    sample_filter: exclude_prevalent
+    family: lasso
+    mediation_mode: partitioned_categories
+    required_score_columns:
+      - Gcis_raw
+      - Gtrans_raw
+      - PXS_Alcohol
+      - PXS_Deprivation_Indices
+      - PXS_Diet_Weekly
+      - PXS_Exercise_Freq
+      - PXS_Exercise_MET
+      - PXS_Internet_Usage
+      - PXS_Residential_Air_Pollution
+      - PXS_Residential_Noise_Pollution
+      - PXS_Sexual_Factors
+      - PXS_Sleep
+      - PXS_Smoking
+      - PXS_Sun_Exposure
+      - PXS_Vitamins
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  # ----------------------------------------------------------------
+  # SUPPLEMENTARY EXPERIMENTS (single-layer adjustment sensitivities)
+  # ----------------------------------------------------------------
+
+  M3_base_bmi_lasso_primary:
+    description: "Supplementary. Aggregate mediation with base + BMI (isolated) adjustment."
+    priority: supplementary
+    status: ready
+    upstream_module1_experiment: M1_base_bmi_lasso
+    covariate_set: base_bmi
+    family: lasso
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_draw_lasso_primary:
+    description: "Supplementary. Aggregate mediation with base + fasting + season (blood-draw conditions) adjustment."
+    priority: supplementary
+    status: ready
+    upstream_module1_experiment: M1_base_draw_lasso
+    covariate_set: base_draw
+    family: lasso
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  # ----------------------------------------------------------------
+  # SECONDARY EXPERIMENTS
+  # ----------------------------------------------------------------
+
+  M3_base_lasso_grouped:
+    description: "Grouped category mediation (requires analysis_exposure_category_groups.tsv)"
+    priority: secondary
+    status: pending
+    upstream_module1_experiment: M1_base_lasso
+    covariate_set: base
+    family: lasso
+    mediation_mode: partitioned_grouped_categories
+    required_score_columns:
+      - Gcis_raw
+      - Gtrans_raw
+      # PXSgrp_<group> columns depend on analysis_exposure_category_groups.tsv
+      # generate_module3_manifest() will dynamically resolve these
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_ridge_primary:
+    description: "Aggregate mediation with ridge scores"
+    priority: secondary
+    status: pending
+    upstream_module1_experiment: M1_base_ridge
+    covariate_set: base
+    family: ridge
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_enet_primary:
+    description: "Aggregate mediation with enet scores"
+    priority: secondary
+    status: pending
+    upstream_module1_experiment: M1_base_enet
+    covariate_set: base
+    family: enet
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  # ----------------------------------------------------------------
+  # SUPPLEMENTARY EXPERIMENTS (reviewer prevalent-disease sensitivities)
+  # ----------------------------------------------------------------
+
+  M3_base_prevalent_lasso_primary:
+    description: "Supplementary (reviewer). Aggregate mediation with base + prevalent_major_disease adjustment (prevalent-disease confounding check)."
+    priority: supplementary
+    status: ready
+    upstream_module1_experiment: M1_base_prevalent_lasso
+    covariate_set: base_prevalent
+    family: lasso
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3
+
+  M3_base_exclprev_lasso_primary:
+    description: "Supplementary (reviewer). Aggregate mediation, base adjustment on the healthy-at-baseline subset (exclude prevalent major disease)."
+    priority: supplementary
+    status: ready
+    upstream_module1_experiment: M1_base_exclprev_lasso
+    covariate_set: base
+    sample_filter: exclude_prevalent
+    family: lasso
+    mediation_mode: primary_total
+    required_score_columns:
+      - G_raw
+      - PXS_total
+    delta_sd_total: 1.0
+    min_cases_per_disease: 100
+    min_eid_overlap: 500
+    disease_filter: all_available
+    output_subdir: module3

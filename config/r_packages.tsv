@@ -1,0 +1,47 @@
+package	repo	used_by	notes
+data.table	CRAN	all	core
+dplyr	CRAN	all	tidyverse
+tidyr	CRAN	all	tidyverse
+purrr	CRAN	all	tidyverse
+tibble	CRAN	all	tidyverse
+tidyverse	CRAN	loaders,viz	meta
+stringr	CRAN	loaders
+readxl	CRAN	support/intervention_compare	GLP1/HERITAGE xlsx
+readr	CRAN	loaders
+arrow	CRAN	loaders	parquet/feather (IGLOO RAW)
+qs	CRAN	enrichment,viz	fast serialize
+yaml	CRAN	workflow	manifests/run configs
+jsonlite	CRAN	viz/export	website JSON
+glmnet	CRAN	module1,module6	penalized regression
+survival	CRAN	module3,module6	coxph
+weights	CRAN	support/intervention_compare	wtd.cor
+psych	CRAN	support/intervention_compare	corr.test (legacy v1)
+fastDummies	CRAN	loaders	one-hot encoding
+ukbwranglr	CRAN	loaders	UKB field helpers
+furrr	CRAN	loaders	parallel
+future	CRAN	loaders	parallel
+future.apply	CRAN	loaders	parallel
+pbapply	CRAN	enrichment	progress
+ggplot2	CRAN	viz	plotting; PIN 3.5.x (4.0.0 removed check_linewidth -> breaks ggtree/enrichplot/clusterProfiler)
+ggrepel	CRAN	viz	labels
+ggpmisc	CRAN	viz	stat annotations
+ggforce	CRAN	viz (MR diagrams)
+ggcorrplot	CRAN	viz (cor matrices)	MISSING -> install
+ComplexHeatmap	Bioconductor	viz (enrichment/intervention heatmaps)
+circlize	CRAN	viz	heatmap colors
+enrichplot	Bioconductor	module4_enrichment	MISSING -> install
+clusterProfiler	Bioconductor	module4_enrichment	MISSING -> install (GSEA/ORA)
+ReactomePA	Bioconductor	module4_enrichment	MISSING -> install (pathway)
+org.Hs.eg.db	Bioconductor	module4_enrichment	MISSING -> install (annotation)
+DOSE	Bioconductor	module4_enrichment	MISSING -> install (disease ontology)
+biomaRt	Bioconductor	module4_enrichment/01_entrez_map	present
+KEGGREST	Bioconductor	module4_enrichment/00_build_genesets	present
+TwoSampleMR	GitHub:MRCIEU/TwoSampleMR	module5	MR
+genetics.binaRies	GitHub:MRCIEU/genetics.binaRies	module5	plink binary
+coloc	CRAN	support/coloc	colocalization
+pwr	CRAN	viz (power calc)	MISSING -> install
+simr	CRAN	viz (power calc)	MISSING -> install
+longpower	CRAN	viz (power calc)	MISSING -> install
+polycor	CRAN	viz	MISSING -> install
+plotly	CRAN	viz (interactive)
+htmlwidgets	CRAN	viz (interactive)

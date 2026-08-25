@@ -1,8 +1,0 @@
-RUN for each module an analy.R script to generate a R data structure needed for downstream visualizations.
-Each datastructure is utilized in the corresponding module to run and save visualizations.
-
-Modules:
-1. Variance Decomposition
-2. Gene-By-Environment Associations
-3. Mediation Analysis
-4. Validate using Interventions

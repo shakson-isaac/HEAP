@@ -1,0 +1,154 @@
+# HEAP Module 2 Experiment Configurations
+# ============================================================
+# Each entry is a named experiment for Module 2 univariate association testing.
+#
+# Model: P ~ C + Gcis + Gtrans + Gcis:E + Gtrans:E
+# Output per protein chunk: list(train, test) with statE, statGxE, statR2, statFblock
+#
+# covariate_set  -> a name in config/covariates/covariate_sets.yml
+# sample_filter  -> a name in config/samples/sample_filters.yml ("none" = full sample)
+# covar_variant  -> "" | sens_core | sens_extended (interaction sensitivities)
+#
+# NAMING (2026-06-04 restructure): base = PRIMARY (all main figures); other sets are
+# supplementary. base_ses is Module2-only (deprivation E->C remap). Old Type1-7
+# experiments are archived; see covariate_sets_v1_archive.yml and git-free archive.
+#
+# To add a new experiment:
+#   1. Add an entry below with a unique experiment_name.
+#   2. Run generate_module2_manifest("M2_...") to create the manifest.
+#   3. Submit with HEAPmodule2_manifest.sh.
+# ============================================================
+
+version: "2.0"
+
+defaults:
+  n_chunks: 400
+  output_subdir: module2
+  sample_filter: none
+  covar_variant: ""
+
+experiments:
+
+  # ----------------------------------------------------------------
+  # PRIMARY (main figures)
+  # ----------------------------------------------------------------
+
+  M2_base_main:
+    description: "PRIMARY. Univariate associations — base adjustment (age polys, sex, centre, 20 PCs)."
+    priority: main
+    status: ready
+    covariate_set: base
+    output_subdir: module2
+
+  # ----------------------------------------------------------------
+  # SUPPLEMENTARY: single-layer adjustment sensitivities (on base)
+  # ----------------------------------------------------------------
+
+  M2_base_clinical_main:
+    description: "Supplementary. base + BMI + fasting + season + 5 medication classes (maximal explicit adjustment)."
+    priority: supplementary
+    status: ready
+    covariate_set: base_clinical
+    output_subdir: module2
+
+  M2_base_bmi:
+    description: "Supplementary. base + BMI."
+    priority: supplementary
+    status: pending
+    covariate_set: base_bmi
+    output_subdir: module2
+
+  M2_base_draw:
+    description: "Supplementary. base + fasting time + assessment season (blood-draw conditions)."
+    priority: supplementary
+    status: pending
+    covariate_set: base_draw
+    output_subdir: module2
+
+  M2_base_ses:
+    description: "Supplementary (Module2 only). base + Multiple Deprivation Indices (England scores + household income) remapped from exposure to covariate (E_to_Covariate)."
+    priority: supplementary
+    status: pending
+    covariate_set: base_ses
+    output_subdir: module2
+
+  M2_base_prevalent:
+    description: "Supplementary (reviewer). base + prevalent_major_disease (0/1) — prevalent-disease confounding adjustment."
+    priority: supplementary
+    status: ready
+    covariate_set: base_prevalent
+    output_subdir: module2
+
+  # ----------------------------------------------------------------
+  # SUPPLEMENTARY: exclusion-axis sensitivity (reviewer)
+  # Restrict to participants with no prevalent major chronic disease at baseline.
+  # ----------------------------------------------------------------
+
+  M2_base_exclprev:
+    description: "Supplementary (reviewer). base adjustment on the healthy-at-baseline subset (exclude prevalent major disease)."
+    priority: supplementary
+    status: ready
+    covariate_set: base
+    sample_filter: exclude_prevalent
+    output_subdir: module2
+
+  M2_base_clinical_exclprev:
+    description: "Supplementary (reviewer). base_clinical adjustment on the healthy-at-baseline subset."
+    priority: supplementary
+    status: pending
+    covariate_set: base_clinical
+    sample_filter: exclude_prevalent
+    output_subdir: module2
+
+  # ----------------------------------------------------------------
+  # SENSITIVITY: interaction (effect-modification) analyses, on base
+  # E x covariate and G x covariate interaction terms.
+  # ----------------------------------------------------------------
+
+  M2_base_sens:
+    description: "Sensitivity: E x {age,sex,BMI,fasting} and G x {age,sex,BMI,fasting} interaction terms, base adjustment."
+    priority: sensitivity
+    status: pending
+    covariate_set: base
+    covar_variant: sens_core
+    output_subdir: module2_sens
+
+  M2_base_sens_ext:
+    description: "Extended sensitivity: E x all-base-covariates and G x all-base-covariates interaction terms, base adjustment."
+    priority: sensitivity
+    status: pending
+    covariate_set: base
+    covar_variant: sens_extended
+    output_subdir: module2_sens
+
+  # ----------------------------------------------------------------
+  # SENSITIVITY: separated interaction-term sensitivity at the ASSOCIATION level
+  # (mirrors Module-1 FigS13). Interaction covars = {age, sex}. The GxE F-tests
+  # (p_GxE_joint / p_GcisxE / p_GtrxE) are re-estimated with these terms kept in
+  # every reduced model, so robustness of the GxE signal to G x {age,sex} and
+  # E x {age,sex} can be isolated. Baseline = M2_base_main (no interaction terms).
+  # ----------------------------------------------------------------
+
+  M2_base_GxC:
+    description: "Sensitivity (FigS13 mirror, assoc level). base + G x {age,sex} interaction terms only — is GxE a gene x age/sex artifact?"
+    priority: sensitivity
+    status: ready
+    covariate_set: base
+    covar_variant: sens_GxC
+    output_subdir: module2_sens
+
+  M2_base_ExC:
+    description: "Sensitivity (FigS13 mirror, assoc level). base + E x {age,sex} interaction terms only — does age/sex moderation of exposures absorb GxE?"
+    priority: sensitivity
+    status: ready
+    covariate_set: base
+    covar_variant: sens_ExC
+    output_subdir: module2_sens
+
+  M2_base_GxC_ExC:
+    description: "Sensitivity (FigS13 mirror, assoc level). base + both G x {age,sex} and E x {age,sex} interaction terms."
+    priority: sensitivity
+    status: ready
+    covariate_set: base
+    covar_variant: sens_GxC_ExC
+    output_subdir: module2_sens

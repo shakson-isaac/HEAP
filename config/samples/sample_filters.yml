@@ -1,0 +1,43 @@
+# HEAP Sample Filter Definitions
+# ============================================================
+# Single source of truth for named SAMPLE RESTRICTIONS (the second analysis axis,
+# orthogonal to covariate adjustment). A covariate set decides what to ADJUST FOR;
+# a sample filter decides WHO IS IN the analysis sample.
+#
+# An experiment in a module_experiments.yml may reference one filter by name via a
+# `sample_filter:` key. Absent / null / "none" => use the full analysis sample.
+#
+# Application contract (implemented in module data-prep):
+#   keep rows where covars_df[[column]] is in keep_values.
+#   Rows with NA in `column` are dropped iff drop_na: true.
+#   The filter MUST be applied to the full covariate frame BEFORE the covariate set
+#   narrows columns (PXScovarSpec), because narrowing drops the filter column unless
+#   it happens to be in the active set.
+#
+# Usage in R:
+#   source("workflow/config_helpers.R")
+#   f <- load_sample_filter("exclude_prevalent")   # list(column, keep_values, ...)
+#   # or NULL for "none"
+# ============================================================
+
+version: "1.0"
+
+sample_filters:
+
+  # No restriction (explicit no-op; the default when sample_filter is unset).
+  none:
+    description: "Full analysis sample; no restriction."
+    column: null
+    keep_values: null
+    drop_na: false
+
+  # Reviewer prevalent-disease confounding check (exclusion axis).
+  # Restrict to participants with NO major chronic disease prevalent at baseline.
+  # Complements the base_prevalent covariate set (adjustment axis).
+  # Pair with: base (primary) and base_clinical, per the analysis plan.
+  exclude_prevalent:
+    description: "Healthy-at-baseline subset: drop participants with any prevalent major chronic disease at baseline (prevalent_major_disease == 1) and those with unknown status (NA)."
+    column: prevalent_major_disease
+    keep_values: [0]
+    drop_na: true
+    expr: "prevalent_major_disease == 0"

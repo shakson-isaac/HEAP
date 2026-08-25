@@ -1,0 +1,14 @@
+category	broad_group	broad_group_label	notes
+Alcohol	Lifestyle_Substance_Use	Lifestyle: Substance Use	Alcohol consumption patterns
+Smoking	Lifestyle_Substance_Use	Lifestyle: Substance Use	Tobacco smoking history and consumption
+Vitamins	Lifestyle_Substance_Use	Lifestyle: Substance Use	Dietary supplement use
+Diet_Weekly	Lifestyle_Diet_Activity	Lifestyle: Diet and Activity	Weekly dietary intake measures
+Exercise_Freq	Lifestyle_Diet_Activity	Lifestyle: Diet and Activity	Physical activity frequency measures
+Exercise_MET	Lifestyle_Diet_Activity	Lifestyle: Diet and Activity	IPAQ-derived metabolic equivalent scores
+Internet_Usage	Lifestyle_Behaviour	Lifestyle: Behavior and Screen Time	Digital device and internet usage
+Sleep	Lifestyle_Behaviour	Lifestyle: Behavior and Screen Time	Sleep duration, quality, and chronotype measures
+Sexual_Factors	Lifestyle_Behaviour	Lifestyle: Behavior and Screen Time	Sexual history and reproductive factors
+Sun_Exposure	Lifestyle_Behaviour	Lifestyle: Behavior and Screen Time	UV and sun exposure patterns
+Residential_Air_Pollution	Environment_Physical	Environmental: Physical Exposures	Ambient air pollutants (NO2, PM2.5, PM10, NOx)
+Residential_Noise_Pollution	Environment_Physical	Environmental: Physical Exposures	Ambient noise (daytime, evening, night)
+Deprivation_Indices	Environment_Socioeconomic	Environmental: Socioeconomic	Area-level deprivation scores (England IMD domains)

@@ -1,0 +1,400 @@
+variable	category	include	short_label	source
+alcohol_intake_frequency_f1558_0_0	Alcohol	1	Alcohol freq.	curated
+average_weekly_red_wine_intake_f1568_0_0	Alcohol	0	Average weekly red wine	auto
+average_weekly_champagne_plus_white_wine_intake_f1578_0_0	Alcohol	0	Average weekly champagne	auto
+average_weekly_beer_plus_cider_intake_f1588_0_0	Alcohol	0	Average weekly beer plus	auto
+average_weekly_spirits_intake_f1598_0_0	Alcohol	0	Average weekly spirits	auto
+average_weekly_fortified_wine_intake_f1608_0_0	Alcohol	0	Average weekly fortified	auto
+alcohol_usually_taken_with_meals_f1618_0_0_Do_not_know	Alcohol	0	Alcohol usually taken with: unknown	auto
+alcohol_usually_taken_with_meals_f1618_0_0_It_varies	Alcohol	0	Alcohol usually taken with: It varies	auto
+alcohol_usually_taken_with_meals_f1618_0_0_No	Alcohol	0	Alcohol usually taken with: No	auto
+alcohol_usually_taken_with_meals_f1618_0_0_Prefer_not_to_answer	Alcohol	0	Alcohol usually taken with: PNA	auto
+alcohol_usually_taken_with_meals_f1618_0_0_Yes	Alcohol	0	Alcohol usually taken with: Yes	auto
+alcohol_intake_versus_10_years_previously_f1628_0_0	Alcohol	1	Alcohol vs 10y ago	curated
+reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Do_not_know	Alcohol	0	Reason for reducing amount: unknown	auto
+reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Doctor.s_advice	Alcohol	0	Reason for reducing amount: Doctor s advice	auto
+reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Financial_reasons	Alcohol	0	Reason for reducing amount: Financial reasons	auto
+reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Health_precaution	Alcohol	0	Reason for reducing amount: Health precaution	auto
+reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Illness_or_ill_health	Alcohol	0	Reason for reducing amount: Illness or ill	auto
+reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Other_reason	Alcohol	0	Reason for reducing amount: Other reason	auto
+reason_for_reducing_amount_of_alcohol_drunk_f2664_0_0_Prefer_not_to_answer	Alcohol	0	Reason for reducing amount: PNA	auto
+former_alcohol_drinker_f3731_0_0	Alcohol	0	Former alcohol drinker	auto
+former_alcohol_drinker_f3731_0_0_No	Alcohol	0	Former alcohol drinker: No	auto
+former_alcohol_drinker_f3731_0_0_Prefer_not_to_answer	Alcohol	0	Former alcohol drinker: PNA	auto
+former_alcohol_drinker_f3731_0_0_Yes	Alcohol	0	Former alcohol drinker: Yes	auto
+reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Do_not_know	Alcohol	0	Reason former drinker: unknown	auto
+reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Doctor.s_advice	Alcohol	0	Reason former drinker: Doctor s advice	auto
+reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Financial_reasons	Alcohol	0	Reason former drinker: Financial reasons	auto
+reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Health_precaution	Alcohol	0	Reason former drinker: Health precaution	auto
+reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Illness_or_ill_health	Alcohol	0	Reason former drinker: Illness or ill	auto
+reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Other_reason	Alcohol	0	Reason former drinker: Other reason	auto
+reason_former_drinker_stopped_drinking_alcohol_f3859_0_0_Prefer_not_to_answer	Alcohol	0	Reason former drinker: PNA	auto
+average_monthly_red_wine_intake_f4407_0_0	Alcohol	0	Average monthly red wine	auto
+average_monthly_champagne_plus_white_wine_intake_f4418_0_0	Alcohol	0	Average monthly champagne	auto
+average_monthly_beer_plus_cider_intake_f4429_0_0	Alcohol	0	Average monthly beer plus	auto
+average_monthly_spirits_intake_f4440_0_0	Alcohol	0	Average monthly spirits	auto
+average_monthly_fortified_wine_intake_f4451_0_0	Alcohol	0	Average monthly fortified	auto
+average_monthly_intake_of_other_alcoholic_drinks_f4462_0_0	Alcohol	0	Average monthly intake of	auto
+average_weekly_intake_of_other_alcoholic_drinks_f5364_0_0	Alcohol	0	Average weekly intake of	auto
+reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Do_not_know	Alcohol	0	Reason for reducing amount: unknown	auto
+reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Financial_reasons	Alcohol	0	Reason for reducing amount: Financial reasons	auto
+reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Illness	Alcohol	0	Reason for reducing amount: Illness	auto
+reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Other_reason	Alcohol	0	Reason for reducing amount: Other reason	auto
+reason_for_reducing_amount_of_alcohol_drunk_pilot_f10818_0_0_Prefer_not_to_answer	Alcohol	0	Reason for reducing amount: PNA	auto
+reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Do_not_know	Alcohol	0	Reason former drinker: unknown	auto
+reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Financial_reasons	Alcohol	0	Reason former drinker: Financial reasons	auto
+reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Illness	Alcohol	0	Reason former drinker: Illness	auto
+reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Other_reason	Alcohol	0	Reason former drinker: Other reason	auto
+reason_former_drinker_stopped_drinking_alcohol_pilot_f10853_0_0_Prefer_not_to_answer	Alcohol	0	Reason former drinker: PNA	auto
+alcohol_drinker_status_f20117_0_0_Current	Alcohol	1	Alcohol status: Current	curated
+alcohol_drinker_status_f20117_0_0_Never	Alcohol	1	Alcohol status: Never	curated
+alcohol_drinker_status_f20117_0_0_Prefer_not_to_answer	Alcohol	0	Alcohol status: PNA	curated
+alcohol_drinker_status_f20117_0_0_Previous	Alcohol	1	Alcohol status: Previous	curated
+average_total_household_income_before_tax_f738_0_0	Deprivation_Indices	1	Household income	curated
+index_of_multiple_deprivation_england_f26410_0_0	Deprivation_Indices	1	IMD (overall)	curated
+income_score_england_f26411_0_0	Deprivation_Indices	1	Income score	curated
+employment_score_england_f26412_0_0	Deprivation_Indices	1	Employment score	curated
+health_score_england_f26413_0_0	Deprivation_Indices	1	Health score	curated
+education_score_england_f26414_0_0	Deprivation_Indices	1	Education score	curated
+housing_score_england_f26415_0_0	Deprivation_Indices	1	Housing score	curated
+crime_score_england_f26416_0_0	Deprivation_Indices	1	Crime score	curated
+living_environment_score_england_f26417_0_0	Deprivation_Indices	1	Living env. score	curated
+income_score_wales_f26418_0_0	Deprivation_Indices	0	Income score wales	auto
+employment_score_wales_f26419_0_0	Deprivation_Indices	0	Employment score wales	auto
+health_score_wales_f26420_0_0	Deprivation_Indices	0	Health score wales	auto
+education_score_wales_f26421_0_0	Deprivation_Indices	0	Education score wales	auto
+access_to_services_score_wales_f26422_0_0	Deprivation_Indices	0	Access to services score	auto
+housing_score_wales_f26423_0_0	Deprivation_Indices	0	Housing score wales	auto
+physical_environment_score_wales_f26424_0_0	Deprivation_Indices	0	Physical environment score	auto
+community_safety_score_wales_f26425_0_0	Deprivation_Indices	0	Community safety score	auto
+index_of_multiple_deprivation_wales_f26426_0_0	Deprivation_Indices	0	Index of multiple	auto
+index_of_multiple_deprivation_scotland_f26427_0_0	Deprivation_Indices	0	Index of multiple	auto
+income_score_scotland_f26428_0_0	Deprivation_Indices	0	Income score scotland	auto
+employment_score_scotland_f26429_0_0	Deprivation_Indices	0	Employment score scotland	auto
+health_score_scotland_f26430_0_0	Deprivation_Indices	0	Health score scotland	auto
+education_score_scotland_f26431_0_0	Deprivation_Indices	0	Education score scotland	auto
+housing_score_scotland_f26432_0_0	Deprivation_Indices	0	Housing score scotland	auto
+access_to_services_score_scotland_f26433_0_0	Deprivation_Indices	0	Access to services score	auto
+crime_score_scotland_f26434_0_0	Deprivation_Indices	0	Crime score scotland	auto
+cooked_vegetable_intake_f1289_0_0	Diet_Weekly	1	Cooked vegetable intake	auto
+salad_raw_vegetable_intake_f1299_0_0	Diet_Weekly	1	Salad raw vegetable intake	auto
+fresh_fruit_intake_f1309_0_0	Diet_Weekly	1	Fresh fruit intake	auto
+dried_fruit_intake_f1319_0_0	Diet_Weekly	1	Dried fruit intake	auto
+oily_fish_intake_f1329_0_0	Diet_Weekly	1	Oily fish	curated
+non_oily_fish_intake_f1339_0_0	Diet_Weekly	1	Non-oily fish	curated
+processed_meat_intake_f1349_0_0	Diet_Weekly	1	Processed meat	curated
+poultry_intake_f1359_0_0	Diet_Weekly	1	Poultry	curated
+beef_intake_f1369_0_0	Diet_Weekly	1	Beef	curated
+lamb_mutton_intake_f1379_0_0	Diet_Weekly	1	Lamb/mutton	curated
+pork_intake_f1389_0_0	Diet_Weekly	1	Pork	curated
+cheese_intake_f1408_0_0	Diet_Weekly	1	Cheese	curated
+milk_type_used_f1418_0_0_Do_not_know	Diet_Weekly	0	Milk type used: unknown	auto
+milk_type_used_f1418_0_0_Full_cream	Diet_Weekly	1	Milk type used: Full cream	auto
+milk_type_used_f1418_0_0_Never.rarely_have_milk	Diet_Weekly	1	Milk type used: Never rarely have	auto
+milk_type_used_f1418_0_0_Other_type_of_milk	Diet_Weekly	1	Milk type used: Other type of milk	auto
+milk_type_used_f1418_0_0_Prefer_not_to_answer	Diet_Weekly	0	Milk type used: PNA	auto
+milk_type_used_f1418_0_0_Semi.skimmed	Diet_Weekly	1	Milk type used: Semi skimmed	auto
+milk_type_used_f1418_0_0_Skimmed	Diet_Weekly	1	Milk type used: Skimmed	auto
+milk_type_used_f1418_0_0_Soya	Diet_Weekly	1	Milk type used: Soya	auto
+spread_type_f1428_0_0_Butter.spreadable_butter	Diet_Weekly	1	Spread type: Butter spreadable	auto
+spread_type_f1428_0_0_Do_not_know	Diet_Weekly	0	Spread type: unknown	auto
+spread_type_f1428_0_0_Flora_Pro.Active.Benecol	Diet_Weekly	1	Spread type: Flora Pro Active	auto
+spread_type_f1428_0_0_Never.rarely_use_spread	Diet_Weekly	1	Spread type: Never rarely use	auto
+spread_type_f1428_0_0_Other_type_of_spread.margarine	Diet_Weekly	1	Spread type: Other type of spread	auto
+spread_type_f1428_0_0_Prefer_not_to_answer	Diet_Weekly	0	Spread type: PNA	auto
+bread_intake_f1438_0_0	Diet_Weekly	1	Bread	curated
+bread_type_f1448_0_0_Brown	Diet_Weekly	1	Bread: Brown	curated
+bread_type_f1448_0_0_Do_not_know	Diet_Weekly	0	Bread: unknown	curated
+bread_type_f1448_0_0_Other_type_of_bread	Diet_Weekly	1	Bread: other	curated
+bread_type_f1448_0_0_Prefer_not_to_answer	Diet_Weekly	0	Bread: PNA	curated
+bread_type_f1448_0_0_White	Diet_Weekly	1	Bread: White	curated
+bread_type_f1448_0_0_Wholemeal_or_wholegrain	Diet_Weekly	1	Bread: wholemeal	curated
+cereal_intake_f1458_0_0	Diet_Weekly	1	Cereal	curated
+cereal_type_f1468_0_0_Biscuit_cereal_.e.g._Weetabix.	Diet_Weekly	1	Cereal type: Biscuit cereal	auto
+cereal_type_f1468_0_0_Bran_cereal_.e.g._All_Bran._Branflakes.	Diet_Weekly	1	Cereal type: Bran cereal	auto
+cereal_type_f1468_0_0_Do_not_know	Diet_Weekly	0	Cereal type: unknown	auto
+cereal_type_f1468_0_0_Muesli	Diet_Weekly	1	Cereal type: Muesli	auto
+cereal_type_f1468_0_0_Oat_cereal_.e.g._Ready_Brek._porridge.	Diet_Weekly	1	Cereal type: Oat cereal	auto
+cereal_type_f1468_0_0_Other_.e.g._Cornflakes._Frosties.	Diet_Weekly	1	Cereal type: Other	auto
+cereal_type_f1468_0_0_Prefer_not_to_answer	Diet_Weekly	0	Cereal type: PNA	auto
+salt_added_to_food_f1478_0_0	Diet_Weekly	1	Added salt	curated
+tea_intake_f1488_0_0	Diet_Weekly	1	Tea	curated
+coffee_intake_f1498_0_0	Diet_Weekly	1	Coffee	curated
+coffee_type_f1508_0_0_Decaffeinated_coffee_.any_type.	Diet_Weekly	0	Coffee type: Decaffeinated coffee	auto
+coffee_type_f1508_0_0_Do_not_know	Diet_Weekly	0	Coffee type: unknown	auto
+coffee_type_f1508_0_0_Ground_coffee_.include_espresso._filter_etc.	Diet_Weekly	0	Coffee type: Ground coffee	auto
+coffee_type_f1508_0_0_Instant_coffee	Diet_Weekly	0	Coffee type: Instant coffee	auto
+coffee_type_f1508_0_0_Other_type_of_coffee	Diet_Weekly	0	Coffee type: Other type of coffee	auto
+coffee_type_f1508_0_0_Prefer_not_to_answer	Diet_Weekly	0	Coffee type: PNA	auto
+hot_drink_temperature_f1518_0_0	Diet_Weekly	1	Hot drink temp.	curated
+water_intake_f1528_0_0	Diet_Weekly	1	Water	curated
+major_dietary_changes_in_the_last_5_years_f1538_0_0_No	Diet_Weekly	1	Diet change (5y): No	curated
+major_dietary_changes_in_the_last_5_years_f1538_0_0_Prefer_not_to_answer	Diet_Weekly	0	Diet change (5y): PNA	curated
+major_dietary_changes_in_the_last_5_years_f1538_0_0_Yes._because_of_illness	Diet_Weekly	1	Diet change (5y): Illness	curated
+major_dietary_changes_in_the_last_5_years_f1538_0_0_Yes._because_of_other_reasons	Diet_Weekly	1	Diet change (5y): Other reasons	curated
+variation_in_diet_f1548_0_0	Diet_Weekly	1	Diet variation	curated
+non_butter_spread_type_details_f2654_0_0_Do_not_know	Diet_Weekly	0	Non butter spread type: unknown	auto
+non_butter_spread_type_details_f2654_0_0_Flora_Pro.Active_or_Benecol	Diet_Weekly	0	Non butter spread type: Flora Pro Active or	auto
+non_butter_spread_type_details_f2654_0_0_Hard_.block._margarine	Diet_Weekly	0	Non butter spread type: Hard block margarine	auto
+non_butter_spread_type_details_f2654_0_0_Olive_oil_based_spread_.eg._Bertolli.	Diet_Weekly	0	Non butter spread type: Olive oil based	auto
+non_butter_spread_type_details_f2654_0_0_Other_low_or_reduced_fat_spread	Diet_Weekly	0	Non butter spread type: Other low or reduced	auto
+non_butter_spread_type_details_f2654_0_0_Other_type_of_spread.margarine	Diet_Weekly	0	Non butter spread type: Other type of spread	auto
+non_butter_spread_type_details_f2654_0_0_Polyunsaturated.sunflower_oil_based_spread_.eg._Flora.	Diet_Weekly	0	Non butter spread type: Polyunsaturated	auto
+non_butter_spread_type_details_f2654_0_0_Prefer_not_to_answer	Diet_Weekly	0	Non butter spread type: PNA	auto
+non_butter_spread_type_details_f2654_0_0_Soft_.tub._margarine	Diet_Weekly	0	Non butter spread type: Soft tub margarine	auto
+age_when_last_ate_meat_f3680_0_0	Diet_Weekly	0	Age when last ate meat	auto
+never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Dairy_products	Diet_Weekly	1	Never eats: Dairy products	curated
+never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Eggs_or_foods_containing_eggs	Diet_Weekly	1	Never eats: Eggs or foods	curated
+never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_I_eat_all_of_the_above	Diet_Weekly	1	Never eats: eats all	curated
+never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Prefer_not_to_answer	Diet_Weekly	0	Never eats: PNA	curated
+never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Sugar_or_foods.drinks_containing_sugar	Diet_Weekly	1	Never eats: Sugar or foods	curated
+never_eat_eggs_dairy_wheat_sugar_f6144_0_0.multi_Wheat_products	Diet_Weekly	1	Never eats: Wheat products	curated
+spread_type_pilot_f10767_0_0_Butter.spreadable_butter	Diet_Weekly	0	Spread type pilot: Butter spreadable	auto
+spread_type_pilot_f10767_0_0_Do_not_know	Diet_Weekly	0	Spread type pilot: unknown	auto
+spread_type_pilot_f10767_0_0_Low_or_reduced_fat_spread	Diet_Weekly	0	Spread type pilot: Low or reduced fat	auto
+spread_type_pilot_f10767_0_0_Margarine	Diet_Weekly	0	Spread type pilot: Margarine	auto
+spread_type_pilot_f10767_0_0_Never.rarely_use_spread	Diet_Weekly	0	Spread type pilot: Never rarely use	auto
+spread_type_pilot_f10767_0_0_Olive_oil_based_spread	Diet_Weekly	0	Spread type pilot: Olive oil based	auto
+spread_type_pilot_f10767_0_0_Other_type_of_spread	Diet_Weekly	0	Spread type pilot: Other type of spread	auto
+spread_type_pilot_f10767_0_0_Prefer_not_to_answer	Diet_Weekly	0	Spread type pilot: PNA	auto
+bread_type_intake_pilot_f10776_0_0_Brown	Diet_Weekly	0	Bread type intake pilot: Brown	auto
+bread_type_intake_pilot_f10776_0_0_Do_not_know	Diet_Weekly	0	Bread type intake pilot: unknown	auto
+bread_type_intake_pilot_f10776_0_0_Never.rarely_eat_bread	Diet_Weekly	0	Bread type intake pilot: Never rarely eat	auto
+bread_type_intake_pilot_f10776_0_0_Other_type_of_bread	Diet_Weekly	0	Bread type intake pilot: other	auto
+bread_type_intake_pilot_f10776_0_0_Prefer_not_to_answer	Diet_Weekly	0	Bread type intake pilot: PNA	auto
+bread_type_intake_pilot_f10776_0_0_White	Diet_Weekly	0	Bread type intake pilot: White	auto
+bread_type_intake_pilot_f10776_0_0_Wholemeal_or_wholegrain	Diet_Weekly	0	Bread type intake pilot: wholemeal	auto
+never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Dairy_products	Diet_Weekly	0	Never eat eggs dairy wheat: Dairy products	auto
+never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Eggs	Diet_Weekly	0	Never eat eggs dairy wheat: Eggs	auto
+never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_I_eat_all_of_the_above	Diet_Weekly	0	Never eat eggs dairy wheat: eats all	auto
+never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Prefer_not_to_answer	Diet_Weekly	0	Never eat eggs dairy wheat: PNA	auto
+never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Sugar	Diet_Weekly	0	Never eat eggs dairy wheat: Sugar	auto
+never_eat_eggs_dairy_wheat_sugar_pilot_f10855_0_0.multi_Wheat_products	Diet_Weekly	0	Never eat eggs dairy wheat: Wheat products	auto
+variation_in_diet_pilot_f10912_0_0	Diet_Weekly	0	Variation in diet pilot	auto
+number_of_days_week_walked_10_plus_minutes_f864_0_0	Exercise_Freq	1	Days/wk walked	curated
+duration_of_walks_f874_0_0	Exercise_Freq	1	Walk duration	curated
+number_of_days_week_of_moderate_physical_activity_10_plus_minutes_f884_0_0	Exercise_Freq	1	Days/wk mod. activity	curated
+duration_of_moderate_activity_f894_0_0	Exercise_Freq	0	Mod. activity duration	curated
+number_of_days_week_of_vigorous_physical_activity_10_plus_minutes_f904_0_0	Exercise_Freq	1	Days/wk vig. activity	curated
+duration_of_vigorous_activity_f914_0_0	Exercise_Freq	0	Vig. activity duration	curated
+usual_walking_pace_f924_0_0	Exercise_Freq	1	Walking pace	curated
+frequency_of_stair_climbing_in_last_4_weeks_f943_0_0	Exercise_Freq	1	Stair climbing freq.	curated
+frequency_of_walking_for_pleasure_in_last_4_weeks_f971_0_0	Exercise_Freq	0	Freq. of walking for	auto
+duration_walking_for_pleasure_f981_0_0	Exercise_Freq	0	Duration walking for	auto
+frequency_of_strenuous_sports_in_last_4_weeks_f991_0_0	Exercise_Freq	0	Freq. of strenuous sports	auto
+duration_of_strenuous_sports_f1001_0_0	Exercise_Freq	0	Duration of strenuous	auto
+frequency_of_light_diy_in_last_4_weeks_f1011_0_0	Exercise_Freq	0	Freq. of light diy	auto
+duration_of_light_diy_f1021_0_0	Exercise_Freq	0	Duration of light diy	auto
+time_spent_watching_television_tv_f1070_0_0	Exercise_Freq	1	TV time	curated
+time_spent_using_computer_f1080_0_0	Exercise_Freq	1	Computer time	curated
+time_spent_driving_f1090_0_0	Exercise_Freq	1	Driving time	curated
+drive_faster_than_motorway_speed_limit_f1100_0_0_Do_not_drive_on_the_motorway	Exercise_Freq	1	Speeds on motorway: Do not drive on the	curated
+drive_faster_than_motorway_speed_limit_f1100_0_0_Do_not_know	Exercise_Freq	0	Speeds on motorway: unknown	curated
+drive_faster_than_motorway_speed_limit_f1100_0_0_Most_of_the_time	Exercise_Freq	1	Speeds on motorway: Most of the time	curated
+drive_faster_than_motorway_speed_limit_f1100_0_0_Never.rarely	Exercise_Freq	1	Speeds on motorway: Never rarely	curated
+drive_faster_than_motorway_speed_limit_f1100_0_0_Often	Exercise_Freq	1	Speeds on motorway: Often	curated
+drive_faster_than_motorway_speed_limit_f1100_0_0_Prefer_not_to_answer	Exercise_Freq	0	Speeds on motorway: PNA	curated
+drive_faster_than_motorway_speed_limit_f1100_0_0_Sometimes	Exercise_Freq	1	Speeds on motorway: Sometimes	curated
+frequency_of_heavy_diy_in_last_4_weeks_f2624_0_0	Exercise_Freq	0	Freq. of heavy diy	auto
+duration_of_heavy_diy_f2634_0_0	Exercise_Freq	0	Duration of heavy diy	auto
+frequency_of_other_exercises_in_last_4_weeks_f3637_0_0	Exercise_Freq	0	Freq. of other exercises	auto
+duration_of_other_exercises_f3647_0_0	Exercise_Freq	0	Duration of other	auto
+types_of_transport_used_excluding_work_f6162_0_0.multi_Car.motor_vehicle	Exercise_Freq	1	Transport type: Car motor vehicle	curated
+types_of_transport_used_excluding_work_f6162_0_0.multi_Cycle	Exercise_Freq	1	Transport type: Cycle	curated
+types_of_transport_used_excluding_work_f6162_0_0.multi_None_of_the_above	Exercise_Freq	1	Transport type: none	curated
+types_of_transport_used_excluding_work_f6162_0_0.multi_Prefer_not_to_answer	Exercise_Freq	0	Transport type: PNA	curated
+types_of_transport_used_excluding_work_f6162_0_0.multi_Public_transport	Exercise_Freq	1	Transport type: Public transport	curated
+types_of_transport_used_excluding_work_f6162_0_0.multi_Walk	Exercise_Freq	1	Transport type: Walk	curated
+types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Heavy_DIY_.eg._weeding._lawn_mowing._carpentry._digging.	Exercise_Freq	1	Activity: heavy DIY	curated
+types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Light_DIY_.eg._pruning._watering_the_lawn.	Exercise_Freq	1	Activity: light DIY	curated
+types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_None_of_the_above	Exercise_Freq	1	Activity: none	curated
+types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Other_exercises_.eg._swimming._cycling._keep_fit._bowling.	Exercise_Freq	1	Activity: recreational exercise	curated
+types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Prefer_not_to_answer	Exercise_Freq	0	Activity type: PNA	curated
+types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Strenuous_sports	Exercise_Freq	1	Activity: strenuous sport	curated
+types_of_physical_activity_in_last_4_weeks_f6164_0_0.multi_Walking_for_pleasure_.not_as_a_means_of_transport.	Exercise_Freq	1	Activity: leisure walking	curated
+duration_of_walks_pilot_f10953_0_0	Exercise_Freq	0	Duration of walks pilot	auto
+duration_of_moderate_physical_activity_pilot_f10962_0_0	Exercise_Freq	0	Duration of moderate	auto
+duration_of_vigorous_physical_activity_pilot_f10971_0_0	Exercise_Freq	0	Duration of vigorous	auto
+ipaq_activity_group_f22032_0_0	Exercise_MET	1	IPAQ activity group	curated
+summed_days_activity_f22033_0_0	Exercise_MET	1	Active days (summed)	curated
+summed_minutes_activity_f22034_0_0	Exercise_MET	1	Summed minutes activity	auto
+at_or_above_moderate_vigorous_recommendation_f22035_0_0	Exercise_MET	1	Meets activity rec.	curated
+at_or_above_moderate_vigorous_walking_recommendation_f22036_0_0	Exercise_MET	1	Meets activity rec. (+walk)	curated
+met_minutes_per_week_for_walking_f22037_0_0	Exercise_MET	1	MET-min/wk: walking	curated
+met_minutes_per_week_for_moderate_activity_f22038_0_0	Exercise_MET	1	MET-min/wk: moderate	curated
+met_minutes_per_week_for_vigorous_activity_f22039_0_0	Exercise_MET	1	MET-min/wk: vigorous	curated
+summed_met_minutes_per_week_for_all_activity_f22040_0_0	Exercise_MET	1	MET-min/wk: total	curated
+length_of_mobile_phone_use_f1110_0_0	Internet_Usage	1	Mobile use (years)	curated
+weekly_usage_of_mobile_phone_in_last_3_months_f1120_0_0	Internet_Usage	1	Mobile use/wk	curated
+hands_free_device_speakerphone_use_with_mobile_phone_in_last_3_month_f1130_0_0	Internet_Usage	1	Hands-free use	curated
+difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Do_not_know	Internet_Usage	0	Mobile use change: unknown	curated
+difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_I_didn.t_use_a_mobile_phone_two_years_ago	Internet_Usage	1	Mobile use: none 2y ago	curated
+difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_No	Internet_Usage	1	Mobile use change: No	curated
+difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Prefer_not_to_answer	Internet_Usage	0	Mobile use change: PNA	curated
+difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Yes._use_is_now_less_frequent	Internet_Usage	1	Mobile use change: Yes use is now less	curated
+difference_in_mobile_phone_use_compared_to_two_years_previously_f1140_0_0_Yes._use_is_now_more_frequent	Internet_Usage	1	Mobile use change: Yes use is now more	curated
+usual_side_of_head_for_mobile_phone_use_f1150_0_0_Do_not_know	Internet_Usage	0	Phone side of head: unknown	curated
+usual_side_of_head_for_mobile_phone_use_f1150_0_0_Equally_left_and_right	Internet_Usage	1	Phone side of head: both sides	curated
+usual_side_of_head_for_mobile_phone_use_f1150_0_0_Left	Internet_Usage	1	Phone side of head: Left	curated
+usual_side_of_head_for_mobile_phone_use_f1150_0_0_Prefer_not_to_answer	Internet_Usage	0	Phone side of head: PNA	curated
+usual_side_of_head_for_mobile_phone_use_f1150_0_0_Right	Internet_Usage	1	Phone side of head: Right	curated
+plays_computer_games_f2237_0_0	Internet_Usage	1	Computer games	curated
+regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_Do_not_know	Internet_Usage	0	Regular use of hands free: unknown	auto
+regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_No	Internet_Usage	0	Regular use of hands free: No	auto
+regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_Prefer_not_to_answer	Internet_Usage	0	Regular use of hands free: PNA	auto
+regular_use_of_hands_free_device_speakerphone_with_mobile_phone_pilot_f10016_0_0_Yes	Internet_Usage	0	Regular use of hands free: Yes	auto
+internet_user_pilot_f10105_0_0_No	Internet_Usage	0	Internet user pilot: No	auto
+internet_user_pilot_f10105_0_0_Prefer_not_to_answer	Internet_Usage	0	Internet user pilot: PNA	auto
+internet_user_pilot_f10105_0_0_Yes	Internet_Usage	0	Internet user pilot: Yes	auto
+willing_to_be_contacted_by_email_pilot_f10114_0_0_No	Internet_Usage	0	Willing to be contacted by: No	auto
+willing_to_be_contacted_by_email_pilot_f10114_0_0_Prefer_not_to_answer	Internet_Usage	0	Willing to be contacted by: PNA	auto
+willing_to_be_contacted_by_email_pilot_f10114_0_0_Yes	Internet_Usage	0	Willing to be contacted by: Yes	auto
+time_using_mobile_phone_in_last_3_months_pilot_f10749_0_0	Internet_Usage	0	Time using mobile phone in	auto
+difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Do_not_know	Internet_Usage	0	Difference in mobile phone: unknown	auto
+difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_I_didn.t_use_a_mobile_phone_one_year_ago	Internet_Usage	0	Mobile use: none 1y ago	curated
+difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_No	Internet_Usage	0	Difference in mobile phone: No	auto
+difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Prefer_not_to_answer	Internet_Usage	0	Difference in mobile phone: PNA	auto
+difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Yes._use_is_now_less_frequent	Internet_Usage	0	Difference in mobile phone: Yes use is now less	auto
+difference_in_mobile_phone_use_compared_to_one_year_previously_pilot_f10886_0_0_Yes._use_is_now_more_frequent	Internet_Usage	0	Difference in mobile phone: Yes use is now more	auto
+nitrogen_dioxide_air_pollution._2010_f24003_0_0	Residential_Air_Pollution	0	NO2 (2010)	curated
+nitrogen_oxides_air_pollution._2010_f24004_0_0	Residential_Air_Pollution	1	NOx (2010)	curated
+particulate_matter_air_pollution_pm10._2010_f24005_0_0	Residential_Air_Pollution	1	PM10 (2010)	curated
+particulate_matter_air_pollution_pm2_5._2010_f24006_0_0	Residential_Air_Pollution	0	PM2.5 (2010)	curated
+particulate_matter_air_pollution_pm2_5_absorbance._2010_f24007_0_0	Residential_Air_Pollution	1	PM2.5 absorbance	curated
+particulate_matter_air_pollution_2_5_10um._2010_f24008_0_0	Residential_Air_Pollution	1	PM2.5-10 (coarse)	curated
+traffic_intensity_on_the_nearest_road_f24009_0_0	Residential_Air_Pollution	1	Traffic: nearest road	curated
+traffic_intensity_on_the_nearest_major_road_f24011_0_0	Residential_Air_Pollution	1	Traffic: nearest major road	curated
+total_traffic_load_on_major_roads_f24013_0_0	Residential_Air_Pollution	1	Traffic load: major roads	curated
+sum_of_road_length_of_major_roads_within_100m_f24015_0_0	Residential_Air_Pollution	1	Road length <=100m	curated
+nitrogen_dioxide_air_pollution._2005_f24016_0_0	Residential_Air_Pollution	0	NO2 (2005)	curated
+nitrogen_dioxide_air_pollution._2006_f24017_0_0	Residential_Air_Pollution	0	NO2 (2006)	curated
+nitrogen_dioxide_air_pollution._2007_f24018_0_0	Residential_Air_Pollution	0	NO2 (2007)	curated
+particulate_matter_air_pollution_pm10._2007_f24019_0_0	Residential_Air_Pollution	1	PM10 (2007)	curated
+no2_mean	Residential_Air_Pollution	1	NO2 (mean)	curated
+pm2_5_mean	Residential_Air_Pollution	1	PM2.5 (mean)	curated
+average_daytime_sound_level_of_noise_pollution_f24020_0_0	Residential_Noise_Pollution	1	Average daytime sound	auto
+average_evening_sound_level_of_noise_pollution_f24021_0_0	Residential_Noise_Pollution	1	Average evening sound	auto
+average_night_time_sound_level_of_noise_pollution_f24022_0_0	Residential_Noise_Pollution	1	Average night time sound	auto
+answered_sexual_history_questions_f2129_0_0	Sexual_Factors	1	Answered sexual history	auto
+age_first_had_sexual_intercourse_f2139_0_0	Sexual_Factors	1	Age first had sexual	auto
+lifetime_number_of_sexual_partners_f2149_0_0	Sexual_Factors	1	Lifetime sexual partners	auto
+ever_had_same_sex_intercourse_f2159_0_0_No	Sexual_Factors	1	Ever had same sex: No	auto
+ever_had_same_sex_intercourse_f2159_0_0_Prefer_not_to_answer	Sexual_Factors	0	Ever had same sex: PNA	auto
+ever_had_same_sex_intercourse_f2159_0_0_Yes	Sexual_Factors	1	Ever had same sex: Yes	auto
+lifetime_number_of_same_sex_sexual_partners_f3669_0_0	Sexual_Factors	0	Lifetime same sex sexual	auto
+sleep_duration_f1160_0_0	Sleep	1	Sleep duration	curated
+getting_up_in_morning_f1170_0_0	Sleep	1	Getting up ease	curated
+morning_evening_person_chronotype_f1180_0_0_Definitely_evening	Sleep	0	Chronotype: Definitely evening	curated
+morning_evening_person_chronotype_f1180_0_0_Definitely_morning	Sleep	1	Chronotype: Definitely morning	curated
+morning_evening_person_chronotype_f1180_0_0_More_evening	Sleep	1	Chronotype: More evening	curated
+morning_evening_person_chronotype_f1180_0_0_More_morning	Sleep	1	Chronotype: More morning	curated
+nap_during_day_f1190_0_0	Sleep	1	Daytime napping	curated
+sleeplessness_insomnia_f1200_0_0	Sleep	1	Insomnia	curated
+snoring_f1210_0_0_Do_not_know	Sleep	0	Snoring: unknown	curated
+snoring_f1210_0_0_No	Sleep	1	Snoring: No	curated
+snoring_f1210_0_0_Prefer_not_to_answer	Sleep	0	Snoring: PNA	curated
+snoring_f1210_0_0_Yes	Sleep	1	Snoring: Yes	curated
+daytime_dozing_sleeping_f1220_0_0	Sleep	1	Daytime dozing	curated
+current_tobacco_smoking_f1239_0_0_No	Smoking	1	Current smoking: No	curated
+current_tobacco_smoking_f1239_0_0_Only_occasionally	Smoking	1	Current smoking: occasional	curated
+current_tobacco_smoking_f1239_0_0_Prefer_not_to_answer	Smoking	0	Current smoking: PNA	curated
+current_tobacco_smoking_f1239_0_0_Yes._on_most_or_all_days	Smoking	1	Current smoking: most days	curated
+past_tobacco_smoking_f1249_0_0	Smoking	1	Past smoking	curated
+smoking_smokers_in_household_f1259_0_0_No	Smoking	1	Smokers in hh: No	curated
+smoking_smokers_in_household_f1259_0_0_Prefer_not_to_answer	Smoking	0	Smokers in hh: PNA	curated
+smoking_smokers_in_household_f1259_0_0_Yes._more_than_one_household_member_smokes	Smoking	1	Smokers in hh: >1 member	curated
+smoking_smokers_in_household_f1259_0_0_Yes._one_household_member_smokes	Smoking	1	Smokers in hh: 1 member	curated
+exposure_to_tobacco_smoke_at_home_f1269_0_0	Smoking	1	Smoke at home	curated
+exposure_to_tobacco_smoke_outside_home_f1279_0_0	Smoking	1	Smoke outside home	curated
+light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_Do_not_know	Smoking	0	Light smokers at least 100: unknown	auto
+light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_No	Smoking	0	Light smokers at least 100: No	auto
+light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_Prefer_not_to_answer	Smoking	0	Light smokers at least 100: PNA	auto
+light_smokers_at_least_100_smokes_in_lifetime_f2644_0_0_Yes	Smoking	0	Light smokers at least 100: Yes	auto
+age_started_smoking_in_former_smokers_f2867_0_0	Smoking	0	Age started smoking in	auto
+type_of_tobacco_previously_smoked_f2877_0_0_Cigars_or_pipes	Smoking	0	Type of tobacco previously: Cigars or pipes	auto
+type_of_tobacco_previously_smoked_f2877_0_0_Hand.rolled_cigarettes	Smoking	0	Type of tobacco previously: Hand rolled	auto
+type_of_tobacco_previously_smoked_f2877_0_0_Manufactured_cigarettes	Smoking	0	Type of tobacco previously: Manufactured	auto
+type_of_tobacco_previously_smoked_f2877_0_0_None_of_the_above	Smoking	0	Type of tobacco previously: none	auto
+type_of_tobacco_previously_smoked_f2877_0_0_Prefer_not_to_answer	Smoking	0	Type of tobacco previously: PNA	auto
+number_of_cigarettes_previously_smoked_daily_f2887_0_0	Smoking	0	Cigarettes previously	auto
+age_stopped_smoking_f2897_0_0	Smoking	0	Age stopped smoking	auto
+ever_stopped_smoking_for_6_plus_months_f2907_0_0_Do_not_know	Smoking	0	Ever stopped smoking for 6: unknown	auto
+ever_stopped_smoking_for_6_plus_months_f2907_0_0_No	Smoking	0	Ever stopped smoking for 6: No	auto
+ever_stopped_smoking_for_6_plus_months_f2907_0_0_Prefer_not_to_answer	Smoking	0	Ever stopped smoking for 6: PNA	auto
+ever_stopped_smoking_for_6_plus_months_f2907_0_0_Yes	Smoking	0	Ever stopped smoking for 6: Yes	auto
+number_of_unsuccessful_stop_smoking_attempts_f2926_0_0	Smoking	0	Unsuccessful stop smoking	auto
+likelihood_of_resuming_smoking_f2936_0_0	Smoking	0	Likelihood of resuming	auto
+age_started_smoking_in_current_smokers_f3436_0_0	Smoking	0	Age started smoking in	auto
+type_of_tobacco_currently_smoked_f3446_0_0_Cigars_or_pipes	Smoking	0	Type of tobacco currently: Cigars or pipes	auto
+type_of_tobacco_currently_smoked_f3446_0_0_Hand.rolled_cigarettes	Smoking	0	Type of tobacco currently: Hand rolled	auto
+type_of_tobacco_currently_smoked_f3446_0_0_Manufactured_cigarettes	Smoking	0	Type of tobacco currently: Manufactured	auto
+type_of_tobacco_currently_smoked_f3446_0_0_None_of_the_above	Smoking	0	Type of tobacco currently: none	auto
+type_of_tobacco_currently_smoked_f3446_0_0_Prefer_not_to_answer	Smoking	0	Type of tobacco currently: PNA	auto
+number_of_cigarettes_currently_smoked_daily_current_cigarette_smokers_f3456_0_0	Smoking	0	Cigarettes currently	auto
+time_from_waking_to_first_cigarette_f3466_0_0	Smoking	0	Time from waking to first	auto
+difficulty_not_smoking_for_1_day_f3476_0_0	Smoking	0	Difficulty not smoking for	auto
+ever_tried_to_stop_smoking_f3486_0_0_No	Smoking	0	Ever tried to stop smoking: No	auto
+ever_tried_to_stop_smoking_f3486_0_0_Prefer_not_to_answer	Smoking	0	Ever tried to stop smoking: PNA	auto
+ever_tried_to_stop_smoking_f3486_0_0_Yes._tried_and_stopped_for_at_least_6_months	Smoking	0	Ever tried to stop smoking: Yes tried and	auto
+ever_tried_to_stop_smoking_f3486_0_0_Yes._tried_but_was_not_able_to_stop_or_stopped_for_less_than_6_months	Smoking	0	Ever tried to stop smoking: Yes tried but was	auto
+wants_to_stop_smoking_f3496_0_0	Smoking	0	Wants to stop smoking	auto
+smoking_compared_to_10_years_previous_f3506_0_0	Smoking	0	Smoking compared to 10	auto
+previously_smoked_cigarettes_on_most_all_days_f5959_0_0	Smoking	0	Previously smoked	auto
+previously_smoked_cigarettes_on_most_all_days_f5959_0_0_No	Smoking	0	Previously smoked: No	auto
+previously_smoked_cigarettes_on_most_all_days_f5959_0_0_Prefer_not_to_answer	Smoking	0	Previously smoked: PNA	auto
+previously_smoked_cigarettes_on_most_all_days_f5959_0_0_Yes	Smoking	0	Previously smoked: Yes	auto
+why_stopped_smoking_f6157_0_0.multi_Do_not_know	Smoking	0	Why stopped smoking: unknown	auto
+why_stopped_smoking_f6157_0_0.multi_Doctor.s_advice	Smoking	0	Why stopped smoking: Doctor s advice	auto
+why_stopped_smoking_f6157_0_0.multi_Financial_reasons	Smoking	0	Why stopped smoking: Financial reasons	auto
+why_stopped_smoking_f6157_0_0.multi_Health_precaution	Smoking	0	Why stopped smoking: Health precaution	auto
+why_stopped_smoking_f6157_0_0.multi_Illness_or_ill_health	Smoking	0	Why stopped smoking: Illness or ill	auto
+why_stopped_smoking_f6157_0_0.multi_None_of_the_above	Smoking	0	Why stopped smoking: none	auto
+why_stopped_smoking_f6157_0_0.multi_Prefer_not_to_answer	Smoking	0	Why stopped smoking: PNA	auto
+why_reduced_smoking_f6158_0_0.multi_Do_not_know	Smoking	0	Why reduced smoking: unknown	auto
+why_reduced_smoking_f6158_0_0.multi_Doctor.s_advice	Smoking	0	Why reduced smoking: Doctor s advice	auto
+why_reduced_smoking_f6158_0_0.multi_Financial_reasons	Smoking	0	Why reduced smoking: Financial reasons	auto
+why_reduced_smoking_f6158_0_0.multi_Health_precaution	Smoking	0	Why reduced smoking: Health precaution	auto
+why_reduced_smoking_f6158_0_0.multi_Illness_or_ill_health	Smoking	0	Why reduced smoking: Illness or ill	auto
+why_reduced_smoking_f6158_0_0.multi_None_of_the_above	Smoking	0	Why reduced smoking: none	auto
+why_reduced_smoking_f6158_0_0.multi_Prefer_not_to_answer	Smoking	0	Why reduced smoking: PNA	auto
+number_of_cigarettes_previously_smoked_daily_current_cigar_pipe_smokers_f6183_0_0	Smoking	0	Cigarettes previously	auto
+age_stopped_smoking_cigarettes_current_cigar_pipe_or_previous_cigarette_smoker_f6194_0_0	Smoking	0	Age stopped smoking	auto
+why_stopped_smoking_pilot_f10115_0_0_Do_not_know	Smoking	0	Why stopped smoking pilot: unknown	auto
+why_stopped_smoking_pilot_f10115_0_0_Financial_reasons	Smoking	0	Why stopped smoking pilot: Financial reasons	auto
+why_stopped_smoking_pilot_f10115_0_0_Illness	Smoking	0	Why stopped smoking pilot: Illness	auto
+why_stopped_smoking_pilot_f10115_0_0_Other_reason	Smoking	0	Why stopped smoking pilot: Other reason	auto
+why_stopped_smoking_pilot_f10115_0_0_Prefer_not_to_answer	Smoking	0	Why stopped smoking pilot: PNA	auto
+ever_stopped_smoking_for_6_plus_months_pilot_f10827_0_0_Do_not_know	Smoking	0	Ever stopped smoking for 6: unknown	auto
+ever_stopped_smoking_for_6_plus_months_pilot_f10827_0_0_No	Smoking	0	Ever stopped smoking for 6: No	auto
+ever_stopped_smoking_for_6_plus_months_pilot_f10827_0_0_Yes	Smoking	0	Ever stopped smoking for 6: Yes	auto
+light_smokers_at_least_100_smokes_in_lifetime_pilot_f10895_0_0	Smoking	0	Light smokers at least 100	auto
+smoking_status_f20116_0_0_Current	Smoking	1	Smoking status: Current	curated
+smoking_status_f20116_0_0_Never	Smoking	1	Smoking status: Never	curated
+smoking_status_f20116_0_0_Prefer_not_to_answer	Smoking	0	Smoking status: PNA	curated
+smoking_status_f20116_0_0_Previous	Smoking	1	Smoking status: Previous	curated
+ever_smoked_f20160_0_0	Smoking	1	Ever smoked	curated
+pack_years_of_smoking_f20161_0_0	Smoking	1	Pack-years smoking	curated
+pack_years_adult_smoking_as_proportion_of_life_span_exposed_to_smoking_f20162_0_0	Smoking	0	Pack years adult smoking	auto
+time_spend_outdoors_in_summer_f1050_0_0	Sun_Exposure	1	Time outdoors (summer)	curated
+time_spent_outdoors_in_winter_f1060_0_0	Sun_Exposure	1	Time outdoors (winter)	curated
+ease_of_skin_tanning_f1727_0_0	Sun_Exposure	1	Skin tanning ease	curated
+childhood_sunburn_occasions_f1737_0_0	Sun_Exposure	0	Childhood sunburn	auto
+use_of_sun_uv_protection_f2267_0_0	Sun_Exposure	1	Sun/UV protection	curated
+frequency_of_solarium_sunlamp_use_f2277_0_0	Sun_Exposure	1	Solarium use	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Folic_acid_or_Folate_.Vit_B9.	Vitamins	1	Vitamin suppl.: Folic acid or Folate	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Multivitamins_..._minerals	Vitamins	1	Vitamin suppl.: Multivitamins	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_None_of_the_above	Vitamins	1	Vitamin suppl.: none	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Prefer_not_to_answer	Vitamins	0	Vitamin suppl.: PNA	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_A	Vitamins	1	Vitamin suppl.: Vitamin A	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_B	Vitamins	1	Vitamin suppl.: Vitamin B	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_C	Vitamins	1	Vitamin suppl.: Vitamin C	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_D	Vitamins	1	Vitamin suppl.: Vitamin D	curated
+vitamin_and_mineral_supplements_f6155_0_0.multi_Vitamin_E	Vitamins	1	Vitamin suppl.: Vitamin E	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_Calcium	Vitamins	1	Mineral suppl.: Calcium	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_Fish_oil_.including_cod_liver_oil.	Vitamins	1	Mineral suppl.: Fish oil including	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_Glucosamine	Vitamins	1	Mineral suppl.: Glucosamine	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_Iron	Vitamins	1	Mineral suppl.: Iron	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_None_of_the_above	Vitamins	1	Mineral suppl.: none	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_Prefer_not_to_answer	Vitamins	0	Mineral suppl.: PNA	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_Selenium	Vitamins	1	Mineral suppl.: Selenium	curated
+mineral_and_other_dietary_supplements_f6179_0_0.multi_Zinc	Vitamins	1	Mineral suppl.: Zinc	curated

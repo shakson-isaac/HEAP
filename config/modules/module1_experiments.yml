@@ -1,0 +1,248 @@
+# HEAP Module 1 Experiment Configurations
+# ============================================================
+# Each entry defines a named experiment for Module 1 variance
+# decomposition and score construction.
+#
+# Core estimand (all experiments):
+#   Fit: P ~ C + Gcis + Gtrans + E + Gcis:E + Gtrans:E
+#   Derive OOF component scores: C_score, Gcis_score, Gtrans_score,
+#     G_score, PXS_total, GIS_total, PXS_<category>, GIS_<category>
+#   Unique held-out R2 by score-level conditional drop.
+#
+# NAMING (2026-06-04 restructure): base = PRIMARY (all main figures); other sets are
+# supplementary sensitivity layers built ON TOP of base. The old Type1-7 experiments
+# are archived (see covariate_sets_v1_archive.yml). NOTE: base drops BMI + fasting
+# from the old Type3, so base != Type3.
+#
+# covariate_set  -> a name in config/covariates/covariate_sets.yml
+# sample_filter  -> a name in config/samples/sample_filters.yml ("none" = full sample)
+#
+# Adding a new experiment:
+#   1. Add an entry with a unique experiment_name.
+#   2. Set covariate_set to a name defined in config/covariates/covariate_sets.yml.
+#   3. Run generate_module1_manifest() to create the manifest TSV.
+#   4. Submit with HEAPmodule1_manifest.sh.
+#
+# Cross-references:
+#   - Upstream of: Module 3 (mediation_scores output required by Module3)
+#   - Covariate sets: config/covariates/covariate_sets.yml
+#   - Sample filters: config/samples/sample_filters.yml
+#   - Protein list: config/protein_sets/omicspred_proteins.txt
+# ============================================================
+
+version: "2.0"
+
+defaults:
+  seed: 123
+  kfold: 5
+  glmnet_inner_kfold: 5
+  miss_rate: 0.20
+  decomposition_mode: score_partition
+  sample_filter: none
+  run_genetic_subblocks: true
+  run_exposure_categories: true
+  run_gxe_categories: true
+  run_gxc_sensitivity: false
+  run_exc_sensitivity: false
+  gxc_covars:
+    - age_when_attended_assessment_centre_f21003_0_0
+    - sex_f31_0_0
+  exc_covars:
+    - age_when_attended_assessment_centre_f21003_0_0
+    - sex_f31_0_0
+  protein_set: omicspred_2704
+  n_chunks: 400
+  output_subdir: module1_predictive_r2_score_partition
+
+experiments:
+
+  # ----------------------------------------------------------------
+  # MAIN EXPERIMENTS (priority: main, status: ready)
+  # ----------------------------------------------------------------
+
+  M1_base_lasso:
+    description: "PRIMARY R2 decomposition — base adjustment (age polys, sex, centre, 20 PCs), lasso"
+    priority: main
+    status: ready
+    covariate_set: base
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  M1_base_clinical_lasso:
+    description: "Supplementary R2 decomposition — base + BMI + fasting + season + 5 medication classes (maximal explicit adjustment), lasso"
+    priority: main
+    status: ready
+    covariate_set: base_clinical
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  # ----------------------------------------------------------------
+  # SUPPLEMENTARY EXPERIMENTS (single-layer adjustment sensitivities)
+  # ----------------------------------------------------------------
+
+  M1_base_bmi_lasso:
+    description: "Supplementary R2 decomposition — base + BMI (isolated), lasso"
+    priority: supplementary
+    status: ready
+    covariate_set: base_bmi
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  M1_base_draw_lasso:
+    description: "Supplementary R2 decomposition — base + fasting time + season (blood-draw conditions), lasso"
+    priority: supplementary
+    status: ready
+    covariate_set: base_draw
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  # ----------------------------------------------------------------
+  # SUPPLEMENTARY EXPERIMENTS (reviewer prevalent-disease checks)
+  # ----------------------------------------------------------------
+
+  M1_base_prevalent_lasso:
+    description: "Supplementary (reviewer). base + prevalent_major_disease (0/1) — prevalent-disease confounding adjustment, lasso"
+    priority: supplementary
+    status: pending
+    covariate_set: base_prevalent
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  M1_base_exclprev_lasso:
+    description: "Supplementary (reviewer exclusion). base adjustment on the healthy-at-baseline subset (exclude prevalent major disease), lasso"
+    priority: supplementary
+    status: pending
+    covariate_set: base
+    sample_filter: exclude_prevalent
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  M1_base_clinical_exclprev_lasso:
+    description: "Supplementary (reviewer exclusion). base_clinical adjustment on the healthy-at-baseline subset, lasso"
+    priority: supplementary
+    status: pending
+    covariate_set: base_clinical
+    sample_filter: exclude_prevalent
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  # ----------------------------------------------------------------
+  # SECONDARY EXPERIMENTS (model-family robustness)
+  # ----------------------------------------------------------------
+
+  M1_base_ridge:
+    description: "Ridge regression — model family robustness check"
+    priority: secondary
+    status: pending
+    covariate_set: base
+    family: ridge
+    alpha_grid: [0.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  M1_base_enet:
+    description: "Elastic net — model family robustness check"
+    priority: secondary
+    status: pending
+    covariate_set: base
+    family: enet
+    alpha_grid: [0.1, 0.3, 0.5, 0.7, 0.9]
+    # 2026-08-12: the category-level decompositions were previously disabled here
+    # "to manage runtime" -- enet searches 5 alphas where ridge searches 1, and the
+    # run took 8h of an 11h55m short-partition limit even without them. The cost of
+    # that choice was that the fine deposit shipped 10 specifications while the
+    # coarse one shipped 11, with elastic net the only estimator missing at fine
+    # granularity. Re-enabled and rerun on the medium partition with a 3-day limit.
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    output_subdir: module1_predictive_r2_score_partition
+
+  # ----------------------------------------------------------------
+  # SENSITIVITY EXPERIMENTS (interaction terms)
+  # ~13 min/protein vs ~5 min base; submit separately with larger walltime
+  # ----------------------------------------------------------------
+
+  M1_base_lasso_GxC:
+    description: "G x {age,sex} interaction terms — sensitivity for gene-covariate interaction"
+    priority: sensitivity
+    status: pending
+    covariate_set: base
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    run_gxc_sensitivity: true
+    run_exc_sensitivity: false
+    gxc_covars:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+    output_subdir: module1_predictive_r2_score_partition
+
+  M1_base_lasso_ExC:
+    description: "E x {age,sex} interaction terms — sensitivity for exposure-covariate interaction"
+    priority: sensitivity
+    status: pending
+    covariate_set: base
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    run_gxc_sensitivity: false
+    run_exc_sensitivity: true
+    exc_covars:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+    output_subdir: module1_predictive_r2_score_partition
+
+  M1_base_lasso_GxC_ExC:
+    description: "Full G x C and E x C sensitivity"
+    priority: sensitivity
+    status: pending
+    covariate_set: base
+    family: lasso
+    alpha_grid: [1.0]
+    run_genetic_subblocks: true
+    run_exposure_categories: true
+    run_gxe_categories: true
+    run_gxc_sensitivity: true
+    run_exc_sensitivity: true
+    gxc_covars:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+    exc_covars:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+    output_subdir: module1_predictive_r2_score_partition

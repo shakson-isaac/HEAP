@@ -1,0 +1,188 @@
+# HEAP Population Architecture Experiment Configurations
+# ============================================================
+# Defines named experiments for GREML/HE-regression variance
+# component analyses of the proteome.
+#
+# These parameters are especially reviewer-facing:
+#   - GRM relatedness cutoff
+#   - Genetic partition (total / cis / trans)
+#   - Exposure kernel type
+#   - Variance component method (GREML / HE-regression)
+#   - Sample inclusion set (ancestry filter)
+#
+# By recording each choice here, the analysis is fully reproducible
+# from a single experiment name + manifest row.
+#
+# Output paths use heap_project_output("population_architecture", experiment_name).
+#
+# Adding a new experiment:
+#   1. Add an entry with a unique experiment_name.
+#   2. Specify all reviewer-facing parameters explicitly.
+#   3. Run generate_population_architecture_manifest() to create the manifest.
+#   4. Submit with the population architecture Slurm script.
+#
+# RUN PROVENANCE (2026-07-04): the executed primary GREML used grm_cutoff 0.025
+# (the launcher's fallback default; output at base/grm_cutoff_0p025/, 2,918 proteins,
+# 2,238 converged). The G/E/GxE variance components are jointly fit in that single
+# multi-kernel run. Config values below were corrected 0.05 -> 0.025 to match; the
+# 0.05/0.10 sensitivity entries are looser-cutoff robustness checks (not yet run).
+# ============================================================
+
+version: "2.0"
+
+defaults:
+  method: greml
+  grm_cutoff: 0.025
+  genetic_partition: total
+  exposure_kernel: linear
+  sample_inclusion: unrelated_european
+  min_protein_n: 2000
+  block_size: 500
+  threads: 8
+  plink_memory_mb: 96000
+  exposure_imputation: mean
+  exposure_missing_rate_max: 0.20
+  output_subdir: population_architecture
+
+experiments:
+
+  # ----------------------------------------------------------------
+  # PRIMARY GREML ANALYSES
+  # ----------------------------------------------------------------
+
+  PopArch_base_greml_total:
+    description: "Total genetic variance (h2) by GREML — base covariates, GRM cutoff 0.025"
+    priority: main
+    status: ready
+    covariate_set: base
+    method: greml
+    grm_cutoff: 0.025
+    genetic_partition: total
+    exposure_kernel: linear
+    sample_inclusion: unrelated_european
+    protein_set: omicspred_2704
+    exposure_set: all_included
+    min_protein_n: 2000
+    threads: 8
+    plink_memory_mb: 96000
+    output_subdir: population_architecture
+
+  PopArch_base_greml_cistrans:
+    description: "Cis + trans genetic variance partition by GREML — base, GRM 0.025"
+    priority: main
+    status: ready
+    covariate_set: base
+    method: greml
+    grm_cutoff: 0.025
+    genetic_partition: cis_trans
+    cis_window_bp: 1000000
+    exposure_kernel: linear
+    sample_inclusion: unrelated_european
+    protein_set: omicspred_2704
+    exposure_set: all_included
+    min_protein_n: 2000
+    threads: 8
+    plink_memory_mb: 96000
+    output_subdir: population_architecture
+
+  PopArch_base_clinical_greml_total:
+    # Not yet run (no base_clinical output on disk as of 2026-07-04; only the base
+    # spec was executed). The manuscript makes no clinical-adjusted GREML claim.
+    description: "Total genetic variance by GREML — full covariate adjustment (base_clinical)"
+    priority: main
+    status: pending
+    covariate_set: base_clinical
+    method: greml
+    grm_cutoff: 0.025
+    genetic_partition: total
+    exposure_kernel: linear
+    sample_inclusion: unrelated_european
+    protein_set: omicspred_2704
+    exposure_set: all_included
+    min_protein_n: 2000
+    threads: 8
+    plink_memory_mb: 96000
+    output_subdir: population_architecture
+
+  # ----------------------------------------------------------------
+  # GxE VARIANCE COMPONENTS
+  # ----------------------------------------------------------------
+
+  PopArch_base_greml_gxe_linear:
+    # NOTE: the G x E variance component is estimated *within* the primary multi-kernel
+    # REML run (method GCTA_multi_kernel_REML_primary jointly fits variance_G/E/GxE),
+    # NOT as a separate job. Executed at GRM cutoff 0.025 like the rest of the primary
+    # analysis; 2,238/2,918 proteins converged (2026-06-04 run under base/grm_cutoff_0p025).
+    description: "G x E variance decomposition — linear exposure kernel, GREML (fit in the primary multi-kernel run)"
+    priority: secondary
+    status: ready
+    covariate_set: base
+    method: greml
+    grm_cutoff: 0.025
+    genetic_partition: total
+    exposure_kernel: linear
+    gxe_mode: gxe_variance_components
+    sample_inclusion: unrelated_european
+    protein_set: omicspred_2704
+    exposure_set: all_included
+    min_protein_n: 2000
+    threads: 8
+    output_subdir: population_architecture
+
+  # ----------------------------------------------------------------
+  # GRM CUTOFF SENSITIVITY
+  # Primary analysis ran at 0.025 (see PopArch_base_greml_total); these bracket it
+  # with looser cutoffs to test robustness of h2 to residual relatedness.
+  # ----------------------------------------------------------------
+
+  PopArch_base_greml_grm05:
+    description: "GRM cutoff sensitivity — looser cutoff (0.05)"
+    priority: sensitivity
+    status: pending
+    covariate_set: base
+    method: greml
+    grm_cutoff: 0.05
+    genetic_partition: total
+    exposure_kernel: linear
+    sample_inclusion: unrelated_european
+    protein_set: omicspred_2704
+    exposure_set: all_included
+    min_protein_n: 2000
+    threads: 8
+    output_subdir: population_architecture
+
+  PopArch_base_greml_grm10:
+    description: "GRM cutoff sensitivity — looser cutoff (0.10)"
+    priority: sensitivity
+    status: pending
+    covariate_set: base
+    method: greml
+    grm_cutoff: 0.10
+    genetic_partition: total
+    exposure_kernel: linear
+    sample_inclusion: unrelated_european
+    protein_set: omicspred_2704
+    exposure_set: all_included
+    min_protein_n: 2000
+    threads: 8
+    output_subdir: population_architecture
+
+  # ----------------------------------------------------------------
+  # HE-REGRESSION (fast large-sample alternative to GREML)
+  # ----------------------------------------------------------------
+
+  PopArch_base_he_total:
+    description: "Total genetic variance by HE-regression (fast alternative to GREML)"
+    priority: secondary
+    status: pending
+    covariate_set: base
+    method: he_regression
+    grm_cutoff: 0.025
+    genetic_partition: total
+    exposure_kernel: linear
+    sample_inclusion: unrelated_european
+    protein_set: omicspred_2704
+    exposure_set: all_included
+    min_protein_n: 2000
+    threads: 8
+    output_subdir: population_architecture

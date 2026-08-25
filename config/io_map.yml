@@ -1,0 +1,223 @@
+# NOTE ON SCOPE: this map describes the complete HEAP pipeline. Some stages it
+# references -- figure generation and the Module 1-6 job wrappers -- are not
+# part of this code release. See "Release scope" in README.md.
+
+# HEAP I/O Map
+# ============================================================
+# Single reference for where each module/stage READS and WRITES, plus a
+# completion-check rule per stage. Intended to drive a progress-tracking script:
+# enumerate the expected jobs (job_source), then check which per_task_output
+# files exist to compute % complete across users.
+#
+# Path tokens (resolve before use):
+#   IGLOO    = /n/groups/patel/IGLOO
+#   HEAP     = /n/groups/patel/shakson_ukb/HEAP            (code repo; $HEAP_ROOT)
+#   OUT      = ${IGLOO}/UKB/HEAP/output                    (heap_project_output() base)
+#   MANIFEST = ${IGLOO}/UKB/HEAP/manifests                 (heap_manifest() base)
+#   HEAP_RDS = ${IGLOO}/UKB/HEAP/intermediate/HEAP.rds     (heap_loader_rds)
+#
+# Two orchestration styles:
+#   manifest  (modules 1,2,3,5): heap_manifest(<m>)/<experiment>.tsv; each row = one
+#             array task (array_index). Outputs live under OUT/<output_subdir>/<experiment>/...
+#             so the experiment NAME (e.g. M2_base_exclprev) is the organizing key and
+#             already encodes the config dims (covariate_set / family / sample_filter).
+#   list      (module6, population_architecture, gwas_regenie): a flat list file indexed
+#             by the SLURM array task id; outputs keyed by covariate_set / SPEC / exposure.
+#
+# Covariate scheme: `base` is the primary (main figures). Everything else
+# (base_bmi, base_draw, base_clinical, base_ses, base_prevalent) and the
+# exclude_prevalent sample filter are SUPPLEMENTARY/sensitivity. For manifest
+# modules these are separate experiments (separate output dirs); see config/modules/.
+
+version: "1.0"
+
+shared:
+  binaries:                                  # resolved under ${IGLOO}; override via HEAP_IGLOO_ROOT
+    regenie: ${IGLOO}/envs/regenie_env/bin/regenie
+    gcta:    ${IGLOO}/GCTA/gcta64
+    bgenix:  ${IGLOO}/bin/bgenix
+    plink2:  ${IGLOO}/UKB/gwas/plink2
+  r_library: ${IGLOO}/Rlib/<Rversion>        # via HEAP_RLIB; prepended to .libPaths() by workflow/00_paths.R
+  loader_rds: ${HEAP_RDS}
+  covariate_sets: config/covariates/covariate_sets.yml
+  sample_filters: config/samples/sample_filters.yml
+  exposure_set: config/exposure_sets/analysis_exposures.tsv   # include==1 -> 172 (single source of truth)
+
+# ============================================================
+# RUN ORDER / DEPENDENCY DAG
+#   foundation  -> everything reads HEAP.rds (build it once).
+#   independent -> needs only HEAP.rds (+ static genotype/portability inputs); run in
+#                  any order, in parallel, by different users.
+#   dependent   -> needs another stage's OUTPUT first (run upstream, then downstream).
+# A progress agent should gate "dependent" stages on the upstream completion_check.
+# ============================================================
+run_order:
+  foundation:
+    HEAP_loader: "slurm/loaders/run_HEAP_loader.sh -> HEAP.rds  (single input for all modules)"
+
+  independent:            # need only HEAP.rds (+ static inputs); no cross-module deps
+    - module1             # variance decomposition
+    - module2             # univariate associations
+    - population_architecture   # GREML (self-contained 3-stage chain)
+    - gwas_regenie        # exposure GWAS (run prepare_gwas_exposures.R first)
+    - module6             # longitudinal PES (run Module6_config.R first)
+
+  dependent:
+    module3:
+      depends_on: [module1]
+      why: "reads module1 mediation_scores; covariate_set + family must match the upstream M1 experiment (e.g. M3_base_lasso_primary <- M1_base_lasso)"
+    module5:              # MR (outside the covariate restructure)
+      depends_on: [gwas_regenie]
+      why: "reads exposure GWAS summary stats from OUT/gwas/regenie_step2/<exposure>/"
+    ldsc:                 # LD Score Regression (heritability + intercept)
+      depends_on: [gwas_regenie]
+      why: "reads exposure GWAS summary stats from OUT/gwas/regenie_step2/<exposure>/; munges -> ldsc.py --h2"
+
+  within_module_chains:   # ordered stages inside a single module
+    module6: "Module6_config.R (exposure_specs.tsv + module6_exposures.txt) -> prod -> {compact, frozenrisk, allcox} (consume prod FinalModelArtifact.rds)"
+    population_architecture: "BuildMasterUnrelated -> ProtGremlGrmCutoff (per-protein array) -> SummaryGremlGrmCutoff   (SLURM afterok)"
+    gwas_regenie: "prepare_gwas_exposures.R (batch; writes evars_*_heap.txt) -> {continuous, binary} arrays"
+    ldsc: "submit_ldsc.sh (writes ldsc_exposures.txt from completed GWAS) -> ldsc_h2_array (per exposure: preprocess -> munge -> h2) -> collect_ldsc_h2.R -> [optional] ldsc_rg (curated well-powered set) -> collect_ldsc_rg.R"
+
+modules:
+
+  module1:
+    name: Variance decomposition (predictive R2 / score partition)
+    orchestration: manifest
+    entrypoint: slurm/module1/HEAPmodule1_manifest.sh        # EXPERIMENT=<name>
+    job_source: ${MANIFEST}/module1/<experiment>.tsv         # rows: array_index=chunk_id (n_chunks=400)
+    inputs:
+      - ${HEAP_RDS}
+      - genetic scores (Gcis/Gtrans)
+    output_root: ${OUT}/module1_predictive_r2_score_partition/<experiment>
+    per_run_dir: <output_root>/<covariate_set>/<family>
+    per_task_output: <per_run_dir>/predictive_r2_coarse_<chunk_id>.txt
+    other_outputs:
+      - <per_run_dir>/PredictiveR2_<protein>_<covariate_set>_<family>_score_partition.rds
+      - <per_run_dir>/mediation_scores/mediation_scores_<chunk_id>.txt   # consumed by module3
+      - <per_run_dir>/run_config_<chunk_id>.txt
+    experiment_dims: [covariate_set, family]                  # e.g. M1_base_lasso, M1_base_ridge, M1_base_prevalent_lasso, M1_base_exclprev_lasso
+    completion_check: "count(<per_run_dir>/predictive_r2_coarse_*.txt) == n_chunks"
+
+  module2:
+    name: Univariate E~protein associations
+    orchestration: manifest
+    entrypoint: slurm/module2/HEAPmodule2_manifest.sh
+    job_source: ${MANIFEST}/module2/<experiment>.tsv         # rows: array_index=chunk_id (400)
+    inputs:
+      - ${HEAP_RDS}
+    output_root: ${OUT}/module2/<experiment>                 # interaction sens experiments -> ${OUT}/module2_sens/<experiment>
+    per_task_output: <output_root>/<covariate_set>/univar_assoc_<chunk_id>.rds
+    experiment_dims: [covariate_set, sample_filter, covar_variant]   # e.g. M2_base_main, M2_base_exclprev, M2_base_ses, M2_base_prevalent
+    completion_check: "count(<output_root>/<covariate_set>/univar_assoc_*.rds) == n_chunks"
+
+  module3:
+    name: Mediation (E -> protein -> disease)
+    orchestration: manifest
+    entrypoint: slurm/module3/HEAPmodule3_manifest.sh
+    job_source: ${MANIFEST}/module3/<experiment>.tsv         # rows: array_index=chunk_id (400)
+    inputs:
+      - ${HEAP_RDS}
+      - upstream module1 scores: ${OUT}/module1_predictive_r2_score_partition/<upstream_module1_experiment>/<covariate_set>/<family>/mediation_scores
+    output_root: ${OUT}/module3/<experiment>
+    per_task_output: <output_root>/<covariate_set>/<family>/<mediation_mode>/MDres_<chunk_id>.txt
+    experiment_dims: [covariate_set, family, mediation_mode, sample_filter]
+    upstream: module1.<upstream_module1_experiment>          # MUST run module1 first (matching covariate_set)
+    completion_check: "count(.../<mediation_mode>/MDres_*.txt) == n_chunks"
+
+  module5:
+    name: Mendelian randomization (network edges)   # NOT part of the covariate restructure
+    orchestration: manifest
+    entrypoint: slurm/module5_mr/...
+    job_source: ${MANIFEST}/module5/<experiment>.tsv         # rows: edge_type x chunk
+    inputs: [GWAS summary stats]
+    output_root: ${OUT}/mr_edges/<experiment>
+    note: uses its own edge config; no covariate_set dimension.
+
+  module6:
+    name: Longitudinal proteomic exposure scores (PES) + Cox validation
+    orchestration: list
+    prerequisite: "Rscript scripts/module6_prediction/Module6_config.R"   # writes exposure_specs.tsv + module6_exposures.txt from analysis_exposures.tsv
+    entrypoints:
+      prod:    slurm/module6/Module6_longitudinal_array.sh                 # --array=1-172, COVAR_TYPE=base; reads HEAP.rds directly
+      compact: slurm/module6/Module6_compact_pes_array.sh                  # depends on prod artifacts
+      cox:     slurm/module6/Module6_longitudinal_pes_{frozenrisk,allcox}_array.sh
+    job_source: config/exposure_sets/module6_exposures.txt                 # 172 lines; array index -> exposure_id
+    inputs:
+      - ${HEAP_RDS}                                                         # read directly; longitudinal PXS derived in-process via as_pxs_longitudinal()
+      - ${OUT}/module6_pes_test/exposure_specs.tsv                         # exposure_id -> exposure_type (gaussian/binomial)
+      - ${IGLOO}/UKB/OlinkSoma/OlinkSoma.csv                               # portability (compact)
+    prod_output_root: ${OUT}/module6_pes_longitudinal/<covariate_set>
+    per_task_output: <prod_output_root>/PESlong_<covariate_set>_<exposure>_FinalModelArtifact.rds
+    experiment_dims: [covariate_set]                                       # base (default); base_clinical etc. as sensitivity
+    completion_check: "count(<prod_output_root>/PESlong_<covariate_set>_*_FinalModelArtifact.rds) == 172"
+    note: |
+      All module6 stages share ${OUT}/module6_pes_longitudinal/<covariate_set>/ (IGLOO;
+      nothing writes into the code repo). Module6 reads HEAP.rds directly and derives the
+      longitudinal PXS in-process via as_pxs_longitudinal() (like modules 1/2/3); the
+      separate longitudinal loader step + UKB_PGS_PXS_longitudinal_load.rds were removed
+      (2026-06-04, moved to slurm/TRASH). Run order: Module6_config.R -> prod -> compact/cox.
+
+  population_architecture:
+    name: Genetic / environment variance partition (GREML)
+    orchestration: list
+    entrypoint: slurm/greml/submit_greml_workflow.sh         # SPEC=base; 3 chained stages (afterok)
+    stages: [BuildMasterUnrelated (1 job), ProtGremlGrmCutoff (array 1-2923), SummaryGremlGrmCutoff (1 job)]
+    job_source: scripts/population_architecture/config/protein_sets/all_proteins_from_loader.txt   # 2923; array index -> protein
+    inputs:
+      - ${HEAP_RDS} (loader)
+      - genotype pfile (LD-pruned) + master unrelated keep list
+      - exposures: analysis_exposures.tsv include==1 (172) -> E kernel
+    output_root: ${OUT}/population_architecture/<SPEC>/grm_cutoff_<label>
+    per_task_output: <output_root>/models/<MODEL>/<protein>_summary.tsv
+    aggregate_output: <output_root>/summary/per_protein_summary_<MODEL>.tsv
+    experiment_dims: [SPEC (covariate_set), grm_cutoff, MODEL]            # SPEC=base primary; base_clinical sensitivity
+    completion_check: "count(<output_root>/models/<MODEL>/*_summary.tsv) == n_proteins"
+
+  gwas_regenie:
+    name: Exposure GWAS (REGENIE; two-sample MR, excludes proteomics cohort)
+    orchestration: list
+    prerequisite: "Rscript scripts/gwas_regenie/prepare_gwas_exposures.R"  # writes evars_*_heap.txt + QC; regenerate after any exposure/covariate change
+    entrypoints:
+      continuous: slurm/gwas_regenie/gwas_regenie_exposures_continuous_v2.sh  # sbatch --array=1-<N_CONT>; --apply-rint
+      binary:     slurm/gwas_regenie/gwas_regenie_exposures_binary_v2.sh       # sbatch --array=1-<N_BIN>;  --bt --firth
+    job_source:
+      - slurm/gwas_regenie/evars_continuous_heap.txt          # continuous+ordinal (~81)
+      - slurm/gwas_regenie/evars_binary_heap.txt              # binary (~91)
+    inputs:
+      - ${HEAP_RDS} (via prepare_gwas_exposures.R; per-job pheno/covar regenerated in node-local tmp)
+      - genotypes: ${IGLOO}/UKB/gwas/ukb_nonimputed_snps (step1), ${IGLOO}/UKB/gwas/UKBallchr (step2)
+    covariate_set: base   # one-hot assessment centre; GWAS_COVAR_SET env (default base)
+    output_root: ${OUT}/gwas/regenie_step2/<exposure>
+    per_task_output: <output_root>/<exposure>.regenie                        # one all-chromosome summary per exposure (simplified name; legacy regenie_step2_<exp>_<exp>.regenie still read as fallback)
+    scratch_intermediate: ${SCRATCH}/regenie_step2/<exposure>                # per-user working copy, wiped fresh each run, then copied to IGLOO
+    completion_check: "exists(<output_root>/<exposure>.regenie) per exposure"
+
+  ldsc:
+    name: LD Score Regression (SNP heritability + genomic-inflation intercept)
+    orchestration: list
+    base_method: true                           # like regenie/greml; not a numbered module
+    prerequisite: "slurm/ldsc/submit_ldsc.sh (regenerates slurm/ldsc/ldsc_exposures.txt from completed GWAS, sizes + submits the array)"
+    entrypoint: slurm/ldsc/ldsc_h2_array.sh      # sbatch --array=1-<N>; one exposure/task -> scripts/ldsc/run_ldsc_h2.sh
+    job_source: slurm/ldsc/ldsc_exposures.txt    # one exposure id per line (completed exposure GWAS)
+    optional_stage: slurm/ldsc/ldsc_rg.sh        # pairwise genetic correlations (consumes munged/, run after h2)
+    inputs:
+      - ${OUT}/gwas/regenie_step2/<exposure>/<exposure>.regenie   # LOG10P->P; effect allele = REGENIE ALLELE1
+      - ldsc package:   ${IGLOO}/LDSC/ldsc                         # ldsc.py, munge_sumstats.py (Bulik-Sullivan)
+      - ld reference:   ${IGLOO}/LDSC/eur_w_ld_chr                 # EUR HapMap3 LD scores + w_hm3.snplist
+      - conda env:      ${IGLOO}/envs/ldsc_env                     # python 2.7 + numpy/scipy/pandas/bitarray/pybedtools
+    output_root: ${OUT}/gwas/ldsc
+    per_task_output: <output_root>/h2/<exposure>.log              # h2, h2_se, Intercept (model-based inflation), Lambda GC, Mean Chi^2, Ratio
+    rg_source: slurm/ldsc/ldsc_rg_exposures.txt  # curated well-powered exposures for rg (h2 z>=4 & h2>=0.02); else ALL munged
+    other_outputs:
+      - <output_root>/munged/<exposure>.sumstats.gz               # HapMap3-filtered; reused by ldsc_rg
+      - <output_root>/rg/<root>.rg.log                            # genetic correlations (optional stage)
+      - <output_root>/ldsc_h2_summary.tsv                         # collect_ldsc_h2.R aggregate (+ figures/data copy)
+      - <output_root>/ldsc_rg_summary.tsv                         # collect_ldsc_rg.R pairwise aggregate (+ figures/data copy)
+    collect: "scripts/ldsc/collect_ldsc_h2.R ; scripts/ldsc/collect_ldsc_rg.R (after rg stage)"
+    completion_check: "exists(<output_root>/h2/<exposure>.log) per exposure"
+    figures:
+      - fig_ldsc_h2          # SNP heritability of the exposures (load_ldsc_h2)
+      - fig_ldsc_intercept   # genomic inflation: polygenicity vs confounding (load_ldsc_h2)
+      - fig_ldsc_rg          # genetic correlation between exposures (load_ldsc_rg)
+    note: "observed-scale h2; EUR LD reference; the intercept is the model-based companion to the QQ lambda_GC (fig_gwas_qq). rg = bivariate LDSC genetic correlation across the curated well-powered exposures."

@@ -1,0 +1,231 @@
+# HEAP Module 6 Experiment Configurations (Longitudinal Prediction)
+# ============================================================
+# Module 6 builds Proteome-based Exposure Scores (PES) that predict
+# individual exposure levels from proteomics data, then validates
+# them in longitudinal and risk-prediction contexts.
+#
+# ------------------------------------------------------------
+# IMPORTANT — HOW MODULE 6 ACTUALLY RUNS (read before editing)
+# ------------------------------------------------------------
+# The `prod` (train + longitudinal) and `frozenrisk` (train + longitudinal +
+# Cox) sub-workflows are NOT driven by this manifest file. They are driven by
+# the COVAR_TYPE array launchers:
+#     slurm/module6/Module6_longitudinal_array.sh                 (train + longitudinal)
+#     slurm/module6/Module6_longitudinal_pes_frozenrisk_array.sh  (train + longitudinal + frozenrisk Cox)
+# each submitted as   COVAR_TYPE=<set> sbatch <launcher>   as an array over the
+# 169 exposures in config/exposure_sets/module6_exposures.txt. The covariate set
+# is resolved from the hardcoded `CovarSpec` in
+#     scripts/module6_prediction/Module6_prod_longitudinal.R
+# (which mirrors config/covariates/covariate_sets.yml). ALL of these outputs land
+# in a single shared tree, per covariate set:
+#     output/module6_pes_longitudinal/<covar_type>/
+# The manifest system (generate_module6_manifest) is used ONLY for the `compact`
+# deployability sub-workflow. The prod/frozenrisk entries below are therefore
+# DOCUMENTATION of the COVAR_TYPE runs (status/priority/provenance), not manifest
+# inputs.
+#
+# ------------------------------------------------------------
+# PRIMARY = base  (corrected 2026-06-24)
+# ------------------------------------------------------------
+# The production M6 run used the `base` covariate set (age polys + sex + centre +
+# 20 PCs; no BMI/fasting/meds) — verified on disk at module6_pes_longitudinal/base/
+# (160/169 exposures, longitudinal + frozenrisk Cox). This is consistent with
+# modules 1/2/3, where `base` is primary and base_clinical/base_bmi/base_draw/
+# base_prevalent/exclude_prevalent are SENSITIVITY layers.
+#   Historical drift (now fixed): earlier versions of this file flagged
+#   base_clinical as `priority: main`, and the viz scripts defaulted to the old
+#   "Type5" name (= base_clinical) pointing at a pre-IGLOO path. Nothing actually
+#   ran base_clinical. Flags, paths, and viz defaults were corrected to `base`.
+# ============================================================
+
+version: "2.0"
+
+defaults:
+  seed: 123
+  kfold: 5
+  miss_rate_prot: 0.20
+  n_chunks: null
+  longitudinal_output_subdir: module6_pes_longitudinal   # shared tree: <subdir>/<covar_type>/
+  exposure_manifest: config/exposure_sets/module6_exposures.txt
+  portability_file: igloo_path("UKB", "OlinkSoma", "OlinkSoma.csv")
+  portability_corr_col: olink_smpnorm_corr
+  portability_threshold: 0.70
+  portability_thresholds: [0.50, 0.60, 0.70, 0.80, 0.90]
+  ks: [10, 25, 50, 100, 200, 500, all]
+  selection_modes: [lasso, portable, portable_weighted]
+  model_types: [prot]
+
+experiments:
+
+  # ----------------------------------------------------------------
+  # PRODUCTION PES MODELS  (train + longitudinal)
+  # COVAR_TYPE array driver: Module6_longitudinal_array.sh
+  #   COVAR_TYPE=<covariate_set> sbatch slurm/module6/Module6_longitudinal_array.sh
+  # Output: module6_pes_longitudinal/<covariate_set>/
+  # ----------------------------------------------------------------
+
+  M6_prod_base:
+    description: "PRIMARY PES model training — base adjustment (age polys, sex, centre, 20 PCs). Matches modules 1/2/3."
+    sub_workflow: prod
+    priority: main
+    status: done            # disk: module6_pes_longitudinal/base/ (160/169 exposures)
+    covariate_set: base
+    covar_type: base
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    run_cross_sectional: true
+    run_longitudinal: true
+    run_cox_validation: true
+    output_subdir: module6_pes_longitudinal
+
+  # ---- SENSITIVITY layers (covariate adjustment) ----
+
+  M6_prod_base_bmi:
+    description: "Sensitivity. base + BMI (isolated adjustment)."
+    sub_workflow: prod
+    priority: sensitivity
+    status: pending          # ready to run: COVAR_TYPE=base_bmi (in CovarSpec)
+    covariate_set: base_bmi
+    covar_type: base_bmi
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    run_cross_sectional: true
+    run_longitudinal: true
+    run_cox_validation: true
+    output_subdir: module6_pes_longitudinal
+
+  M6_prod_base_draw:
+    description: "Sensitivity. base + fasting time + season (blood-draw conditions)."
+    sub_workflow: prod
+    priority: sensitivity
+    status: pending          # ready to run: COVAR_TYPE=base_draw (in CovarSpec)
+    covariate_set: base_draw
+    covar_type: base_draw
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    run_cross_sectional: true
+    run_longitudinal: true
+    run_cox_validation: true
+    output_subdir: module6_pes_longitudinal
+
+  M6_prod_base_clinical:
+    description: "Sensitivity. base + BMI + fasting + season + 5 medication classes (maximal explicit adjustment)."
+    sub_workflow: prod
+    priority: sensitivity
+    status: pending          # never run (was mislabelled primary; corrected 2026-06-24)
+    covariate_set: base_clinical
+    covar_type: base_clinical
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    run_cross_sectional: true
+    run_longitudinal: true
+    run_cox_validation: true
+    output_subdir: module6_pes_longitudinal
+
+  M6_prod_base_prevalent:
+    description: "Sensitivity (reviewer). base + prevalent_major_disease (0/1) adjustment."
+    sub_workflow: prod
+    priority: sensitivity
+    status: pending          # ready to run: COVAR_TYPE=base_prevalent (in CovarSpec)
+    covariate_set: base_prevalent
+    covar_type: base_prevalent
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    run_cross_sectional: true
+    run_longitudinal: true
+    run_cox_validation: true
+    output_subdir: module6_pes_longitudinal
+
+  M6_prod_base_exclprev:
+    description: "Sensitivity (reviewer exclusion). base adjustment on the healthy-at-baseline subset (drop prevalent_major_disease==1)."
+    sub_workflow: prod
+    priority: sensitivity
+    status: blocked          # NEEDS CODE: Module6_prod_longitudinal.R has no sample_filter; add exclude_prevalent support before running
+    covariate_set: base
+    covar_type: base          # covariate adjustment = base; the difference is the SAMPLE filter
+    sample_filter: exclude_prevalent
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    run_cross_sectional: true
+    run_longitudinal: true
+    run_cox_validation: true
+    output_subdir: module6_pes_longitudinal
+
+  # ----------------------------------------------------------------
+  # FROZEN-RISK COX VALIDATION  (train + longitudinal + Cox, in one array)
+  # COVAR_TYPE array driver: Module6_longitudinal_pes_frozenrisk_array.sh
+  #   COVAR_TYPE=<covariate_set> sbatch slurm/module6/Module6_longitudinal_pes_frozenrisk_array.sh
+  # Re-trains the PES (step 1) then runs the frozen-risk Cox (step 2); writes to
+  # the same module6_pes_longitudinal/<covar_type>/ tree (PESlong_*_FrozenCox*.tsv).
+  # ----------------------------------------------------------------
+
+  M6_frozenrisk_base:
+    description: "PRIMARY frozen-risk Cox validation for trained PES (base)."
+    sub_workflow: frozenrisk
+    priority: main
+    status: done            # disk: PESlong_base_*_FrozenCoxEval.tsv (160/169)
+    upstream_prod_experiment: M6_prod_base
+    covariate_set: base
+    covar_type: base
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    output_subdir: module6_pes_longitudinal
+
+  M6_frozenrisk_base_clinical:
+    description: "Sensitivity. Frozen-risk Cox validation for PES (base_clinical)."
+    sub_workflow: frozenrisk
+    priority: sensitivity
+    status: pending
+    upstream_prod_experiment: M6_prod_base_clinical
+    covariate_set: base_clinical
+    covar_type: base_clinical
+    exposure_set: all_included
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    output_subdir: module6_pes_longitudinal
+
+  # ----------------------------------------------------------------
+  # COMPACT (DEPLOYABLE) PES MODELS
+  # This sub-workflow DOES use generate_module6_manifest(); compress trained PES
+  # to top-K protein panels + portability-threshold sweep. Outputs land alongside
+  # the longitudinal tree as PESlong_<covar>_*_CompactPESThresholdSweep_*.tsv.
+  # ----------------------------------------------------------------
+
+  M6_compact_base:
+    description: "PRIMARY. Compress base PES to top-K panels; sweep portability thresholds."
+    sub_workflow: compact
+    priority: main
+    status: pending
+    upstream_prod_experiment: M6_prod_base
+    covariate_set: base
+    covar_type: base
+    exposure_set: selected_19
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    ks: [10, 25, 50, 100, 200, 500, all]
+    selection_modes: [lasso, portable, portable_weighted]
+    model_types: [prot]
+    portability_file: igloo_path("UKB", "OlinkSoma", "OlinkSoma.csv")
+    portability_corr_col: olink_smpnorm_corr
+    portability_threshold: 0.70
+    portability_thresholds: [0.50, 0.60, 0.70, 0.80, 0.90]
+    output_tag: CompactPESThresholdSweep
+    output_subdir: module6_pes_longitudinal
+
+  M6_compact_base_clinical:
+    description: "Sensitivity. Compress base_clinical PES to top-K panels."
+    sub_workflow: compact
+    priority: sensitivity
+    status: pending
+    upstream_prod_experiment: M6_prod_base_clinical
+    covariate_set: base_clinical
+    covar_type: base_clinical
+    exposure_set: selected_19
+    exposure_manifest: config/exposure_sets/module6_exposures.txt
+    ks: [10, 25, 50, 100, 200, 500, all]
+    selection_modes: [lasso, portable, portable_weighted]
+    model_types: [prot]
+    portability_file: igloo_path("UKB", "OlinkSoma", "OlinkSoma.csv")
+    portability_corr_col: olink_smpnorm_corr
+    portability_threshold: 0.70
+    portability_thresholds: [0.50, 0.60, 0.70, 0.80, 0.90]
+    output_tag: CompactPESThresholdSweep
+    output_subdir: module6_pes_longitudinal

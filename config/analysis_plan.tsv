@@ -1,0 +1,16 @@
+experiment_id	module	covarType	family	mediation_mode	run_gxc	run_exc	priority	status	description
+M1_Type3_lasso	1	Type3	lasso	NA	FALSE	FALSE	main	ready	Primary R2 decomposition — standard ancestry+centre adjustment, lasso
+M1_Type5_lasso	1	Type5	lasso	NA	FALSE	FALSE	main	ready	Primary R2 decomposition — full covariate adjustment, lasso
+M3_Type3_lasso_primary	3	Type3	lasso	primary_total	FALSE	FALSE	main	ready	Aggregate G_raw vs PXS_total mediation — headline GEM statistic
+M3_Type3_lasso_partitioned	3	Type3	lasso	partitioned_categories	FALSE	FALSE	main	ready	Gcis/Gtrans + 13 PXS categories — conditional partitioned mediation
+M3_Type5_lasso_primary	3	Type5	lasso	primary_total	FALSE	FALSE	main	ready	Aggregate mediation with full covariate adjustment
+M3_Type5_lasso_partitioned	3	Type5	lasso	partitioned_categories	FALSE	FALSE	main	ready	Partitioned mediation with full covariate adjustment
+M1_Type1_lasso	1	Type1	lasso	NA	FALSE	FALSE	secondary	pending	Minimal adjustment (age+sex only) — covariate robustness check
+M1_Type3_ridge	1	Type3	ridge	NA	FALSE	FALSE	secondary	pending	Ridge regression — model family robustness check
+M1_Type3_enet	1	Type3	enet	NA	FALSE	FALSE	secondary	pending	Elastic net — model family robustness check
+M3_Type3_lasso_grouped	3	Type3	lasso	partitioned_grouped_categories	FALSE	FALSE	secondary	pending	Grouped category mediation — requires analysis_exposure_category_groups.tsv
+M3_Type3_ridge_primary	3	Type3	ridge	primary_total	FALSE	FALSE	secondary	pending	Aggregate mediation with ridge scores
+M3_Type3_enet_primary	3	Type3	enet	primary_total	FALSE	FALSE	secondary	pending	Aggregate mediation with enet scores
+M1_Type3_lasso_GxC	1	Type3	lasso	NA	TRUE	FALSE	sensitivity	pending	G x {age,sex} interaction terms — sensitivity for gene-environment interaction
+M1_Type3_lasso_ExC	1	Type3	lasso	NA	FALSE	TRUE	sensitivity	pending	E x {age,sex} interaction terms — sensitivity for exposure-covariate interaction
+M1_Type3_lasso_GxC_ExC	1	Type3	lasso	NA	TRUE	TRUE	sensitivity	pending	Full G x C and E x C sensitivity (~13 min/protein vs ~5 min base)

@@ -1,0 +1,380 @@
+# HEAP Covariate Set Definitions  (v2 — descriptive, base-primary)
+# ============================================================
+# Single source of truth for named covariate sets across all HEAP modules.
+#
+# DESIGN (2026-06-04 restructure):
+#   - `base` is the PRIMARY adjustment used for ALL MAIN figures. It contains only
+#     non-negotiable structural confounders (demographics, batch/site, ancestry)
+#     that cannot be mediators of an exposure->protein effect.
+#   - All other sets are SUPPLEMENTARY sensitivity layers built ON TOP of `base`,
+#     each adding one potentially-mediating / optional adjustment so you can see
+#     how estimates move. They are NOT the headline models.
+#   - The old Type1..Type7 scheme is archived in covariate_sets_v1_archive.yml.
+#     Names were changed (not redefined in place) so old Type* outputs stay valid.
+#
+# Migration of old sets:
+#   Type3 -> base (NOTE: base drops BMI + fasting from old Type3, so base != Type3)
+#   Type4 / Type5 -> base_clinical          Type6 -> base_ses
+#   Type1 (age+sex), Type2 (no-PC metabolic), Type7 (meds->E) -> dropped
+#
+# Usage in R:
+#   source("workflow/config_helpers.R")
+#   covar <- load_covariate_set("base")          # -> character vector of names
+#   disc  <- load_covariate_set_discrete("base") # factor-coercion list (pop_arch)
+#   remap <- load_covariate_set_remapping("base_ses")  # E->C remap spec or NULL
+#
+# Notes:
+#   - Every name must match a column in heap$covars_baseline (or, for base_ses, a
+#     variable in the Deprivation_Indices exposure that is remapped into covariates).
+#   - The `discrete` list drives factor coercion; `kernel_quantitative` is used by
+#     population_architecture only.
+#   - base_ses carries a `remapping` block: its deprivation variables live in the
+#     Deprivation_Indices EXPOSURE and are moved into the covariate matrix at runtime
+#     (e_to_covariate), so they are not double-counted as both exposure and covariate.
+# ============================================================
+
+version: "2.0"
+
+covariate_sets:
+
+  # ------------------------------------------------------------------
+  # base  (PRIMARY — all main figures)
+  # Demographics + technical/batch + ancestry. No potential mediators.
+  # ------------------------------------------------------------------
+  base:
+    description: "PRIMARY. age + age^2 + sex + age*sex + age^2*sex + assessment centre + 20 genetic PCs. Used for all main figures."
+    label: primary
+    modules: [module1, module2, module3, module5, module6, population_architecture]
+    covariates:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - uk_biobank_assessment_centre_f54_0_0
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+    discrete:
+      - sex_f31_0_0
+      - uk_biobank_assessment_centre_f54_0_0
+    quantitative:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+    kernel_quantitative:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_numeric
+      - age2
+      - age_sex
+      - age2_sex
+
+  # ------------------------------------------------------------------
+  # base_bmi  (supplementary) — base + BMI
+  # BMI is a likely mediator/collider for many exposures; isolated here.
+  # ------------------------------------------------------------------
+  base_bmi:
+    description: "Supplementary. base + BMI."
+    label: supplementary
+    modules: [module1, module2, module3, module6]
+    covariates:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - uk_biobank_assessment_centre_f54_0_0
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+      - body_mass_index_bmi_f23104_0_0
+    discrete:
+      - sex_f31_0_0
+      - uk_biobank_assessment_centre_f54_0_0
+
+  # ------------------------------------------------------------------
+  # base_draw  (supplementary) — base + blood-draw / timing conditions
+  # fasting time (metabolic state at draw) + season (environmental timing).
+  # ------------------------------------------------------------------
+  base_draw:
+    description: "Supplementary. base + fasting time + assessment season (conditions at blood draw)."
+    label: supplementary
+    modules: [module1, module2, module3, module6]
+    covariates:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - uk_biobank_assessment_centre_f54_0_0
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+      - fasting_time_f74_0_0
+      - assessment_season
+    discrete:
+      - sex_f31_0_0
+      - uk_biobank_assessment_centre_f54_0_0
+      - assessment_season
+
+  # ------------------------------------------------------------------
+  # base_clinical  (supplementary, maximal explicit adjustment)
+  # base + BMI + fasting + season + 5 real medication classes.
+  # Successor to old Type4 / Type5. Response-category med indicators
+  # (Do_not_know / Prefer_not_to_answer / None_of_the_above) are EXCLUDED.
+  # ------------------------------------------------------------------
+  base_clinical:
+    description: "Supplementary (maximal explicit adjustment). base + BMI + fasting + season + 5 medication classes."
+    label: supplementary
+    modules: [module1, module2, module3, module6, population_architecture]
+    covariates:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - uk_biobank_assessment_centre_f54_0_0
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+      - body_mass_index_bmi_f23104_0_0
+      - fasting_time_f74_0_0
+      - assessment_season
+      - combined_Blood_pressure_medication
+      - combined_Hormone_replacement_therapy
+      - combined_Oral_contraceptive_pill_or_minipill
+      - combined_Insulin
+      - combined_Cholesterol_lowering_medication
+    discrete:
+      - sex_f31_0_0
+      - uk_biobank_assessment_centre_f54_0_0
+      - assessment_season
+    quantitative:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+      - body_mass_index_bmi_f23104_0_0
+      - fasting_time_f74_0_0
+      - combined_Blood_pressure_medication
+      - combined_Hormone_replacement_therapy
+      - combined_Oral_contraceptive_pill_or_minipill
+      - combined_Insulin
+      - combined_Cholesterol_lowering_medication
+    kernel_quantitative:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_numeric
+      - age2
+      - age_sex
+      - age2_sex
+      - body_mass_index_bmi_f23104_0_0
+      - fasting_time_f74_0_0
+
+  # ------------------------------------------------------------------
+  # base_ses  (supplementary) — base + socioeconomic deprivation
+  # Deprivation variables live in the Deprivation_Indices EXPOSURE; they are
+  # moved into the covariate matrix at runtime (e_to_covariate) so they are not
+  # double-counted. England scores + household income only (Wales/Scotland
+  # dropped for >20% missingness; see analysis_exposures.tsv include flags).
+  # NOTE: includes the overall England IMD plus its 7 domain sub-scores -> some
+  # collinearity. Acceptable for adjustment (SES coefficients not interpreted).
+  # ------------------------------------------------------------------
+  base_ses:
+    description: "Supplementary, MODULE2 ONLY. base + Multiple Deprivation Indices (England scores + household income), remapped from exposure to covariate via E_to_Covariate() at runtime. The remap is implemented only in Module2, so this set is offered only there."
+    label: supplementary
+    modules: [module2]
+    covariates:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - uk_biobank_assessment_centre_f54_0_0
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+    discrete:
+      - sex_f31_0_0
+      - uk_biobank_assessment_centre_f54_0_0
+    remapping:
+      type: e_to_covariate
+      source_category: Deprivation_Indices
+      variables:
+        - average_total_household_income_before_tax_f738_0_0
+        - index_of_multiple_deprivation_england_f26410_0_0
+        - income_score_england_f26411_0_0
+        - employment_score_england_f26412_0_0
+        - health_score_england_f26413_0_0
+        - education_score_england_f26414_0_0
+        - housing_score_england_f26415_0_0
+        - crime_score_england_f26416_0_0
+        - living_environment_score_england_f26417_0_0
+
+  # ------------------------------------------------------------------
+  # base_prevalent  (supplementary) — base + prevalent major chronic disease
+  # Reviewer confounding check (adjustment axis). The 0/1 flag is merged into
+  # covars_baseline/covars_long by the loader (see meta$prevalent_disease_cols).
+  # See also the exclude_prevalent sample filter (config/samples/sample_filters.yml)
+  # for the complementary exclusion-axis sensitivity.
+  # ------------------------------------------------------------------
+  base_prevalent:
+    description: "Supplementary. base + prevalent_major_disease (0/1). Reviewer prevalent-disease confounding check (adjustment)."
+    label: supplementary
+    modules: [module1, module2, module3, module6]
+    covariates:
+      - age_when_attended_assessment_centre_f21003_0_0
+      - sex_f31_0_0
+      - age2
+      - age_sex
+      - age2_sex
+      - uk_biobank_assessment_centre_f54_0_0
+      - genetic_principal_components_f22009_0_1
+      - genetic_principal_components_f22009_0_2
+      - genetic_principal_components_f22009_0_3
+      - genetic_principal_components_f22009_0_4
+      - genetic_principal_components_f22009_0_5
+      - genetic_principal_components_f22009_0_6
+      - genetic_principal_components_f22009_0_7
+      - genetic_principal_components_f22009_0_8
+      - genetic_principal_components_f22009_0_9
+      - genetic_principal_components_f22009_0_10
+      - genetic_principal_components_f22009_0_11
+      - genetic_principal_components_f22009_0_12
+      - genetic_principal_components_f22009_0_13
+      - genetic_principal_components_f22009_0_14
+      - genetic_principal_components_f22009_0_15
+      - genetic_principal_components_f22009_0_16
+      - genetic_principal_components_f22009_0_17
+      - genetic_principal_components_f22009_0_18
+      - genetic_principal_components_f22009_0_19
+      - genetic_principal_components_f22009_0_20
+      - prevalent_major_disease
+    discrete:
+      - sex_f31_0_0
+      - uk_biobank_assessment_centre_f54_0_0
