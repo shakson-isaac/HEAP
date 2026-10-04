@@ -41,7 +41,7 @@ slurm/ldsc/
 | `fig_ldsc_intercept` | genomic inflation: polygenicity vs confounding (intercept vs lambda_GC) | `load_ldsc_h2` |
 | `fig_ldsc_rg` | genetic correlation between exposures (clustered rg heatmap) | `load_ldsc_rg` |
 
-Figure generation is not part of this code release; see "Release scope" in the README.
+The figure scripts are listed in `scripts/visualizations/README.md`.
 
 ## Resources this workflow needs
 

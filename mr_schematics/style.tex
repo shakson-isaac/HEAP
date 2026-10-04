@@ -1,0 +1,74 @@
+% ============================================================================
+% style.tex — shared TikZ preamble for the HEAP Module-5 MR schematic figures
+% Reused by build.sh standalone wrappers and the figure fragments
+% (mr_methods_flow.tex, mr_evidence_patterns.tex). Colours/box styles match
+% online_methods_revised so the manuscript schematics are visually consistent.
+% ============================================================================
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,fit,calc,backgrounds}
+
+% --- palette (shared with online_methods_revised) ---------------------------
+\definecolor{heapData}{HTML}{D9E8F5}  % inputs / data
+\definecolor{heapProc}{HTML}{E6F2E1}  % process
+\definecolor{heapOut}{HTML}{FCEEDB}   % outputs
+\definecolor{heapVal}{HTML}{F3E6F2}   % external / validation
+\definecolor{heapEdge}{HTML}{4D4D4D}
+\definecolor{heapNode}{HTML}{FFFFFF}
+
+\tikzset{
+  fcfont/.style={font=\sffamily\scriptsize},
+  fcsmall/.style={font=\sffamily\fontsize{6.4}{7.4}\selectfont},
+  data/.style={rectangle,rounded corners=2pt,draw=heapEdge,very thick,fill=heapData,
+               align=left,inner sep=5pt,minimum height=8mm,fcfont},
+  proc/.style={rectangle,draw=heapEdge,very thick,fill=heapProc,
+               align=left,inner sep=5pt,minimum height=8mm,fcfont},
+  outp/.style={rectangle,rounded corners=2pt,draw=heapEdge,very thick,fill=heapOut,
+               align=left,inner sep=5pt,minimum height=8mm,fcfont},
+  ext/.style={rectangle,rounded corners=2pt,draw=heapEdge,very thick,fill=heapVal,
+              align=left,inner sep=5pt,minimum height=8mm,fcfont},
+  grp/.style={rectangle,draw=heapEdge,thick,inner sep=7pt,rounded corners=2pt},
+  flow/.style={-{Stealth[length=2.6mm]},draw=heapEdge,line width=0.9pt},
+  bigflow/.style={-{Stealth[length=5mm,width=4mm]},draw=heapEdge,line width=2.6pt},
+  % --- triad node + edge styles (evidence-pattern figure) ---
+  tnode/.style={ellipse,draw=heapEdge,line width=1.1pt,fill=heapNode,
+                minimum width=20mm,minimum height=12mm,font=\sffamily\small},
+  iv/.style={-{Stealth[length=2.4mm]},draw=heapEdge,line width=1.4pt},
+  tedge/.style={-{Stealth[length=2.2mm]},draw=heapEdge,line width=1.0pt},
+  enum/.style={font=\sffamily\small\bfseries,fill=white,inner sep=1pt},
+}
+
+% --- hit-flagging flowchart: decision + tiered-outcome styles ----------------
+\definecolor{heapNull}{HTML}{E2E2E2}   % not a hit
+\definecolor{heapT3}{HTML}{F6C7A6}     % suggestive (sensitivity violation)
+\definecolor{heapT2}{HTML}{FBE6A8}     % tier 2
+\definecolor{heapT1}{HTML}{BFE3B6}     % tier 1
+\tikzset{
+  decq/.style={diamond,aspect=1.7,draw=heapEdge,very thick,fill=heapData,align=center,
+               inner sep=0pt,fcsmall,minimum width=30mm,minimum height=16mm},
+  outnull/.style={rectangle,rounded corners=2pt,draw=heapEdge,thick,fill=heapNull,align=center,inner sep=4pt,fcsmall},
+  outt3/.style={rectangle,rounded corners=2pt,draw=heapEdge,thick,fill=heapT3,align=center,inner sep=4pt,fcsmall},
+  outt2/.style={rectangle,rounded corners=2pt,draw=heapEdge,thick,fill=heapT2,align=center,inner sep=4pt,fcsmall},
+  outt1/.style={rectangle,rounded corners=2pt,draw=heapEdge,thick,fill=heapT1,align=center,inner sep=4pt,fcsmall},
+  elabel/.style={fcsmall,fill=white,inner sep=1pt},
+  rung/.style={rectangle,rounded corners=2pt,draw=heapEdge,thick,fill=heapData,align=center,
+               inner sep=3pt,fcsmall,minimum height=9mm,text width=2.1cm},
+  nabox/.style={rectangle,rounded corners=2pt,draw=gray,dashed,fill=heapNull,align=center,
+                inner sep=3pt,fcsmall,text=gray,minimum height=9mm,text width=2.1cm},
+  classbox/.style={rectangle,rounded corners=2pt,draw=heapEdge,very thick,fill=heapVal,align=center,
+                   inner sep=4pt,fcsmall,text width=2.7cm,minimum height=11mm},
+  qual/.style={rectangle,rounded corners=2pt,draw=heapEdge,very thick,fill=heapT1,align=center,
+               inner sep=5pt,fcfont,text width=8.2cm},
+}
+
+% --- evidence symbols: check / cross / open circle (in a thin ring) ----------
+\newcommand{\ck}{\tikz[baseline=-0.6ex]{%
+  \draw[line width=0.6pt] (0,0) circle (1.15ex);
+  \draw[line width=0.9pt] (-0.55ex,-0.05ex) -- (-0.12ex,-0.5ex) -- (0.62ex,0.55ex);}}
+\newcommand{\xx}{\tikz[baseline=-0.6ex]{%
+  \draw[line width=0.6pt] (0,0) circle (1.15ex);
+  \draw[line width=0.9pt] (-0.5ex,-0.5ex) -- (0.5ex,0.5ex);
+  \draw[line width=0.9pt] (-0.5ex,0.5ex) -- (0.5ex,-0.5ex);}}
+\newcommand{\oo}{\tikz[baseline=-0.6ex]{%
+  \draw[line width=0.6pt] (0,0) circle (1.15ex);}}

@@ -1,0 +1,14 @@
+category	hex	broad_group	broad_group_label	broad_hex	order
+Alcohol	#D55E00	Lifestyle_Substance_Use	Lifestyle: Substance Use	#D55E00	1
+Smoking	#444444	Lifestyle_Substance_Use	Lifestyle: Substance Use	#D55E00	2
+Vitamins	#E69F00	Lifestyle_Substance_Use	Lifestyle: Substance Use	#D55E00	3
+Diet_Weekly	#009E73	Lifestyle_Diet_Activity	Lifestyle: Diet and Activity	#117733	4
+Exercise_Freq	#117733	Lifestyle_Diet_Activity	Lifestyle: Diet and Activity	#117733	5
+Exercise_MET	#44AA99	Lifestyle_Diet_Activity	Lifestyle: Diet and Activity	#117733	6
+Internet_Usage	#CC79A7	Lifestyle_Behaviour	Lifestyle: Behaviour and Screen Time	#0072B2	7
+Sleep	#0072B2	Lifestyle_Behaviour	Lifestyle: Behaviour and Screen Time	#0072B2	8
+Sexual_Factors	#AA4499	Lifestyle_Behaviour	Lifestyle: Behaviour and Screen Time	#0072B2	9
+Sun_Exposure	#DDCC77	Lifestyle_Behaviour	Lifestyle: Behaviour and Screen Time	#0072B2	10
+Residential_Air_Pollution	#882255	Environment_Physical	Environmental: Physical Exposures	#882255	11
+Residential_Noise_Pollution	#999933	Environment_Physical	Environmental: Physical Exposures	#882255	12
+Deprivation_Indices	#56B4E9	Environment_Socioeconomic	Environmental: Socioeconomic	#56B4E9	13

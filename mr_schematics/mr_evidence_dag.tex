@@ -1,0 +1,35 @@
+% ============================================================================
+% mr_evidence_dag.tex — DAG-only version of the MR evidence schematic (panel a).
+% The E-P-D triad with the 6 numbered directed edges + a one-line edge key (the
+% A-E motif table folds into panel b). Instrument arrows and the cis>>trans note
+% live in the legend/methods, not the panel. Edge numbering matches
+% build_mr_tables.R: 1=E->P 2=P->D 3=E->D 4=P->E 5=D->P 6=D->E.
+% ============================================================================
+\begin{tikzpicture}
+
+% ---- panel title -----------------------------------------------------------
+\node[font=\sffamily\bfseries] at (0,3.40) {2-sample MR across E--P--D triads};
+
+% ---- triad nodes -----------------------------------------------------------
+\node[tnode] (P) at (0,2.5)    {Protein};
+\node[tnode] (E) at (-3.3,0)   {Exposure};
+\node[tnode] (D) at (3.3,0)    {Disease};
+
+% ---- the six directed edges (bent pairs; left & right sides mirror) --------
+% E <-> P : 1 = E->P (outer), 4 = P->E (inner)
+\draw[tedge] (E) to[bend left=13]  node[enum,midway] {1} (P);
+\draw[tedge] (P) to[bend left=13]  node[enum,midway] {4} (E);
+% P <-> D : 2 = P->D on the OUTER arc, 5 = D->P on the INNER arc (matches the
+% reference image). Both bend left.
+\draw[tedge] (P) to[bend left=13] node[enum,midway] {2} (D);
+\draw[tedge] (D) to[bend left=13] node[enum,midway] {5} (P);
+% E <-> D : 3 = E->D, 6 = D->E
+\draw[tedge] (E) to[bend left=10]  node[enum,midway] {3} (D);
+\draw[tedge] (D) to[bend left=10]  node[enum,midway] {6} (E);
+
+% ---- one-line edge key (motif table lives in panel b) ----------------------
+\node[font=\sffamily\small, anchor=north, align=center] at (0,-0.92)
+  {\textbf{1}\,E$\to$P\quad \textbf{2}\,P$\to$D\quad \textbf{3}\,E$\to$D\quad
+   \textbf{4}\,P$\to$E\quad \textbf{5}\,D$\to$P\quad \textbf{6}\,D$\to$E};
+
+\end{tikzpicture}

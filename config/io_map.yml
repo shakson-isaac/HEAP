@@ -1,6 +1,6 @@
-# NOTE ON SCOPE: this map describes the complete HEAP pipeline. Some stages it
-# references -- figure generation and the Module 1-6 job wrappers -- are not
-# part of this code release. See "Release scope" in README.md.
+# NOTE ON SCOPE: this map describes the complete HEAP pipeline, including
+# exploratory figures and job wrappers that are not part of this code release.
+# The manuscript figures are built by scripts/visualizations/make_figures.sh.
 
 # HEAP I/O Map
 # ============================================================

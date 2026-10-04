@@ -1,72 +1,96 @@
-# HEAP
+# HEAP: Human Exposomic Architecture of the Proteome
 
-**H**uman **E**xposomic **A**rchitecture of the **P**roteome — analysis code for the HEAP
-manuscript.
+Analysis code for **"Human Plasma Proteomics Links Modifiable Lifestyle Exposome to Disease
+Risk"** (Isaac *et al.*, in review).
+
+[**Interactive results — heap.bio**](https://heap.bio) ·
+[Reproduce the analysis](docs/REPRODUCIBILITY.md) ·
+[Reproduce the figures](#reproducing-the-figures) ·
+[Data access](docs/DATA_ACCESS.md) ·
+[Software environment](docs/ENVIRONMENT.md)
 
 ![HEAP overview](HEAP.png)
 
-HEAP partitions variation in 2,686 plasma proteins across 53,014 UK Biobank participants
-into genetic, exposomic, and gene-by-environment components against 169 exposomic features,
-then traces which proteins act as causal intermediates between exposure and disease and which
-are downstream reporters of exposure.
-
-Interactive results: **[heap.bio](https://heap.bio)**
+HEAP links lifestyle exposures, plasma proteins and disease risk in more than 50,000
+UK Biobank participants (2,686 Olink proteins, 169 exposomic features). It asks how much
+of each protein's variation is explained by genetics, the exposome, and their
+interaction; which exposure–protein associations replicate; which proteins lie on the
+path from an exposure to disease (mediation, Mendelian randomization, colocalization);
+whether observational signatures match the proteomic response to exercise training and
+GLP-1 receptor agonists; and whether proteome-based exposure scores track behavior and
+predict disease.
 
 ---
 
-## Repository layout
+## Contents
+
+- [What is in this repository](#what-is-in-this-repository)
+- [Quick start](#quick-start)
+- [Reproducing the analysis](#reproducing-the-analysis)
+- [Reproducing the figures](#reproducing-the-figures)
+- [Finding more detail](#finding-more-detail)
+- [Citation](#citation) · [License](#license) · [Contact](#contact)
+
+## What is in this repository
 
 ```
-workflow/      Path configuration, config validation, and manifest generation
-config/        YAML/TSV configuration - covariate sets, sample filters, exposure sets,
-               protein sets, and per-module experiment definitions. Nothing that
-               governs an analysis is hardcoded in a script.
-scripts/       Analysis code, one directory per module (see below)
-slurm/         Job scripts for the genetics toolchain (GWAS, LDSC, GREML,
-               protein genetic scores) -- see Release scope below
-docs/          How to reproduce, how to get the data, and the software environment
+scripts/     Analysis code, one directory per analysis (table below)
+  visualizations/   Code that draws every main and supplementary figure
+  support/, analysis_summaries/   Summary tables computed from module outputs for the figures
+config/      Every analysis setting: covariate sets, sample filters, exposure and
+             protein sets, per-module experiment definitions. Scripts hardcode none.
+slurm/       Job scripts that submit each analysis to a SLURM cluster
+workflow/    Path configuration, config validation, manifest generation
+docs/        Run guide, data access, software environment
 ```
 
-### Analysis modules
+The paper is organized into six analyses. The code directories are numbered in the
+order they were written, which differs from the paper in two places (rows marked †):
 
-| Directory | What it does |
-|---|---|
-| `scripts/loaders` | Assembles the analysis matrices from UK Biobank source data |
-| `scripts/genetic_scores` | Splits OmicsPred protein scores into cis / trans / total |
-| `scripts/module1_variance_decomposition` | Partitions protein variance into genetic, exposomic, GxE, and covariate components |
-| `scripts/module2_associations` | Univariate exposure, genetic, and GxE association models |
-| `scripts/module3_mediation` | Mediation of exposure→disease effects through the proteome |
-| `scripts/module4_enrichment` | Tissue and pathway GSEA of the association results |
-| `scripts/module5_mr` | Bidirectional Mendelian randomization and colocalization |
-| `scripts/module6_prediction` | Proteomic exposure scores and longitudinal disease prediction |
-| `scripts/population_architecture` | GREML variance-component estimation |
-| `scripts/gwas_regenie` | Genome-wide association analysis of the exposures |
-| `scripts/ldsc` | LD score regression on the exposure GWAS |
-| `scripts/setup` | Environment and dependency setup |
+| Paper | Analysis | Main figure | Code |
+|---|---|---|---|
+| Module 1 | Genetic vs. exposomic variance of each protein | Fig. 1 | [`scripts/module1_variance_decomposition`](scripts/module1_variance_decomposition) |
+| Module 2 | Exposure–protein associations | Fig. 2 | [`scripts/module2_associations`](scripts/module2_associations) |
+| Module 3 | Mediation of exposure → disease through proteins | Fig. 3 | [`scripts/module3_mediation`](scripts/module3_mediation) |
+| Module 4 † | Mendelian randomization and colocalization | Fig. 4 | [`scripts/module5_mr`](scripts/module5_mr) |
+| Module 5 | Comparison with intervention trials | Fig. 5 | [`scripts/support/intervention_compare`](scripts/support/intervention_compare) |
+| Module 6 | Proteome-based exposure scores (PES) | Fig. 6 | [`scripts/module6_prediction`](scripts/module6_prediction) |
+| — † | Tissue and pathway enrichment (supports Figs. 2–3) | | [`scripts/module4_enrichment`](scripts/module4_enrichment) |
 
-### Manuscript vs. code module numbers
+Supporting analyses: [`loaders`](scripts/loaders) (builds the analysis dataset from
+UK Biobank), [`genetic_scores`](scripts/genetic_scores) (cis/trans protein genetic
+scores), [`gwas_regenie`](scripts/gwas_regenie) and [`ldsc`](scripts/ldsc) (exposure
+GWAS and LD score regression, which supply the MR instruments), and
+[`population_architecture`](scripts/population_architecture) (GREML variance
+components).
 
-These deliberately differ. Use manuscript numbers when reading the paper, code numbers
-when navigating this repository.
+## Quick start
 
-| Manuscript | Concept | Code |
-|---|---|---|
-| Module 1 | Variance / exposure-responsive spectrum | `scripts/module1_variance_decomposition` |
-| Module 2 | Exposure–protein association | `scripts/module2_associations` |
-| Module 3 | Mediation | `scripts/module3_mediation` |
-| Module 4 | **Mendelian randomization** | `scripts/module5_mr` |
-| Module 5 | Interventional comparison | figure code — not in this release |
-| Module 6 | Proteomic exposure scores | `scripts/module6_prediction` |
-| *(un-numbered)* | Tissue / pathway enrichment | `scripts/module4_enrichment` |
+**1. Get the code**
 
-Note that the code prefix `module4` refers to **enrichment**, an un-numbered supporting
-analysis — not to the manuscript's Module 4, which is Mendelian randomization and lives
-under `scripts/module5_mr`. In the manuscript, MR precedes the interventional comparison
-because the intervention analysis annotates proteins by their MR causal edge.
+```bash
+git clone https://github.com/shakson-isaac/HEAP.git
+cd HEAP
+```
 
-## Getting started
+**2. Install the software.** R 4.4.2 and ~46 packages:
 
-All paths are configured through environment variables — no analysis path is hardcoded:
+```bash
+Rscript scripts/setup/install_r_packages.R --only-missing
+```
+
+The genetics steps also need regenie, GCTA, PLINK 2 and LDSC; conda specifications are
+checked in. Versions and sources: [`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md).
+
+**3. Get the data.** UK Biobank individual-level data need an approved
+[UK Biobank application](https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access)
+and cannot be redistributed. The external summary statistics (OmicsPred, pQTL, FinnGen,
+HERITAGE, semaglutide trials) are public. Sources: [`docs/DATA_ACCESS.md`](docs/DATA_ACCESS.md).
+
+*No UK Biobank access?* The summary-level results behind every figure are in the
+paper's Supplementary Tables and Data, downloadable from [heap.bio](https://heap.bio).
+
+**4. Point HEAP at your directories.** No path is hardcoded:
 
 ```bash
 export HEAP_ROOT=/path/to/this/repo
@@ -74,48 +98,74 @@ export HEAP_SCRATCH_ROOT=/path/to/scratch
 export HEAP_IGLOO_ROOT=/path/to/output/root
 ```
 
-Then source `workflow/00_paths.R` from R, which also sets the shared library path and
-output permissions. The full stage-by-stage run guide is
-[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md), with the machine-readable
-dependency map in `config/io_map.yml`.
+## Reproducing the analysis
 
-Analyses were run on a SLURM cluster (Harvard O2) with R 4.4.2 under GCC 14.2.0. See
-[`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md) for the full environment specification.
+The full run guide, with commands, dependencies and runtimes for each stage, is
+[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md). In outline:
 
-## Data availability
+```
+UK Biobank ─→ loader (HEAP.rds) ─┬─→ Module 1 ─→ Module 3
+                                 ├─→ Module 2 ─→ enrichment
+                                 ├─→ Module 6
+  genetic scores, exposure GWAS ─┴─→ Module 5 MR (+ pQTL, FinnGen)
+                                     GREML, LD score regression
+```
 
-This repository contains **code only**. UK Biobank individual-level data are
-access-restricted and cannot be redistributed; they must be obtained directly from
-UK Biobank under an approved application. See
-[`docs/DATA_ACCESS.md`](docs/DATA_ACCESS.md).
+1. Build the analysis dataset: `sbatch slurm/loaders/run_HEAP_loader.sh`.
+2. Run the genetics steps (protein genetic scores, exposure GWAS, LDSC, GREML).
+3. Run each module. Experiments are named in `config/modules/<module>_experiments.yml`,
+   for example `EXPERIMENT=M1_base_lasso bash slurm/module1/HEAPmodule1_manifest.sh`.
 
-To reproduce the analyses with your own UK Biobank instance, follow
-[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
+The primary analysis uses the `base` covariate set. The other sets in
+`config/covariates/covariate_sets.yml` are sensitivity analyses. An end-to-end run
+takes about 1–2 weeks on a cluster with 100–300 concurrent job slots, most of it in the
+genetic scores, exposure GWAS and GREML.
 
-## Release scope
+## Reproducing the figures
 
-This is a staged release. It contains the analysis code, the configuration that
-drives it, and the job scripts for the genetics toolchain — exposure GWAS
-(regenie), LD score regression, GREML variance components, and protein genetic
-scores.
+Every main and supplementary figure is drawn by code in
+[`scripts/visualizations`](scripts/visualizations). After the pipeline has run:
 
-Not included in this release:
+```bash
+bash scripts/visualizations/make_figures.sh          # Figs 1-6 + supplementary
+bash scripts/visualizations/make_figures.sh fig4     # a single main figure
+```
 
-- **Figure generation** — plotting code, the figure registry, and figure legends.
-  Visualizations are published separately alongside the
-  [HEAP website](https://heap.bio).
-- **Job wrappers for Modules 1–6** — thin `sbatch` array wrappers. The analysis
-  they submit is in `scripts/`, which is included here.
-- **Derived summary statistics** — these accompany the manuscript as
-  supplementary data.
+The finished main figures are written to `$HEAP_PROJECT_ROOT/figures/manuscript/`.
+[`scripts/visualizations/README.md`](scripts/visualizations/README.md) maps each figure
+and panel to its script and lists the summary scripts that build the figures' inputs.
 
-`config/io_map.yml` maps the complete pipeline, so it refers to some stages not
-included above.
+**Without UK Biobank access.** The figure scripts need pipeline outputs, which require
+UK Biobank data. The summary-level results behind every figure are released with the
+paper as Supplementary Tables and Supplementary Data, downloadable from
+[heap.bio](https://heap.bio).
+
+## Finding more detail
+
+| I want to know… | Look in |
+|---|---|
+| Why each method was chosen and how it was specified | The paper's Methods and Supplementary Notes |
+| The exact command and order to run each stage | [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) |
+| What each stage reads and writes | [`config/io_map.yml`](config/io_map.yml) |
+| The covariates, sample filters or exposure set used | [`config/`](config) |
+| Software versions and reference datasets | [`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md) |
+| Details of a specific analysis | the README in that analysis's directory, e.g. [`scripts/module5_mr`](scripts/module5_mr/README.md), [`slurm/gwas_regenie`](slurm/gwas_regenie/README_gwas_exposure_workflow.md) |
+| The results themselves | Supplementary Tables and Data accompanying the paper, and [heap.bio](https://heap.bio) |
 
 ## Citation
 
-<!-- TODO: fill in once the manuscript has a DOI / preprint URL -->
+Isaac S, Ellis RJ, Jee YH, Murthy VL, Udler MS, Neale BM, Sunyaev S, Gusev A,
+Martin AR, Patel CJ. *Human Plasma Proteomics Links Modifiable Lifestyle Exposome to
+Disease Risk.* In review.
+
+<!-- TODO: add DOI and BibTeX once the preprint/article is public -->
 
 ## License
 
-See [LICENSE](LICENSE).
+Code is released under the [MIT License](LICENSE). UK Biobank data are subject to the
+UK Biobank access conditions and are not covered by this license.
+
+## Contact
+
+Shakson Isaac — shakson_isaac@g.harvard.edu. Bug reports and questions:
+[GitHub issues](https://github.com/shakson-isaac/HEAP/issues).

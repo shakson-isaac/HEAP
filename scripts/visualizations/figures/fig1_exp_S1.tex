@@ -1,0 +1,44 @@
+\documentclass[border=2pt]{standalone}
+\usepackage{fontawesome5}\usepackage{xcolor}\usepackage{tikz}
+\renewcommand{\familydefault}{\sfdefault}
+\usetikzlibrary{positioning,calc,arrows.meta,decorations.pathreplacing}
+\definecolor{ink}{HTML}{1F2937}\definecolor{mute}{HTML}{6B7280}\definecolor{expo}{HTML}{2E9E48}
+\definecolor{rule}{HTML}{D9DDE2}
+\definecolor{cAlcohol}{HTML}{D55E00}\definecolor{cSmoking}{HTML}{444444}\definecolor{cVitamins}{HTML}{E69F00}
+\definecolor{cDiet}{HTML}{009E73}\definecolor{cExFreq}{HTML}{117733}\definecolor{cExMET}{HTML}{44AA99}
+\definecolor{cInternet}{HTML}{CC79A7}\definecolor{cSleep}{HTML}{0072B2}\definecolor{cSexual}{HTML}{AA4499}
+\definecolor{cSun}{HTML}{DDCC77}\definecolor{cAir}{HTML}{882255}\definecolor{cNoise}{HTML}{999933}
+\definecolor{cDeprivation}{HTML}{56B4E9}
+\begin{document}\begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily,
+  ic/.style={circle,minimum size=0.40cm,text=white,font=\fontsize{5}{5}\selectfont,inner sep=0pt},
+  gl/.style={anchor=west,font=\fontsize{6}{6.4}\selectfont\bfseries,text=ink},
+  rn/.style={anchor=east,font=\fontsize{4.9}{5.1}\selectfont,text=ink}]
+\node[anchor=west,font=\fontsize{8.4}{8.8}\selectfont\bfseries,text=ink] at (0,0.05){THE EXPOSOME};
+\def\bx{5.45}\def\bw{0.46}\def\ty{-1.30}\def\bH{5.05}
+% group headers + rules
+\node[gl] at (0,-0.92){Lifestyle \textcolor{mute}{\textmd{(10)}}};\draw[rule,line width=0.5pt] (1.55,-0.92)--(4.7,-0.92);
+\node[gl] at (0,-4.78){Physical env. \textcolor{mute}{\textmd{(2)}}};\draw[rule,line width=0.5pt] (2.05,-4.78)--(4.7,-4.78);
+\node[gl] at (0,-5.86){Socioeconomic \textcolor{mute}{\textmd{(1)}}};\draw[rule,line width=0.5pt] (2.3,-5.86)--(4.7,-5.86);
+% flows + icons + name/count
+\foreach \ic/\col/\nme/\feat/\cum/\iy in {%
+  \faUtensils/cDiet/Diet/47/0/-1.28, \faRunning/cExFreq/{Exercise freq.}/25/47/-1.62, \faPills/cVitamins/Vitamins/15/72/-1.96,
+  \faSmoking/cSmoking/Smoking/14/87/-2.30, \faLaptop/cInternet/Internet/11/101/-2.64, \faBed/cSleep/Sleep/10/112/-2.98,
+  \faDumbbell/cExMET/{Exercise MET}/9/122/-3.32, \faWineGlass/cAlcohol/Alcohol/5/131/-3.66, \faVenusMars/cSexual/{Sexual history}/5/136/-4.00,
+  \faSun/cSun/{Sun exposure}/5/141/-4.34, \faSmog/cAir/{Air pollution}/11/146/-5.14, \faVolumeUp/cNoise/{Noise pollution}/3/157/-5.48,
+  \faHandHoldingUsd/cDeprivation/{Deprivation}/9/160/-6.22}{%
+  \pgfmathsetmacro\segc{\ty-(\cum+\feat/2)/169*\bH}\pgfmathsetmacro\lw{\feat/47*4.0+0.5}
+  \draw[\col,line width=\lw pt,opacity=0.42] (1.62,\iy) to[out=0,in=180] (\bx,\segc);
+  \node[ic,fill=\col,text=white] at (1.40,\iy){\ic};
+  \node[rn] at (1.16,\iy){\nme \ \textcolor{mute}{\feat}};}
+% PXS bar
+\foreach \col/\feat/\cum in {%
+  cDiet/47/0,cExFreq/25/47,cVitamins/15/72,cSmoking/14/87,cInternet/11/101,cSleep/10/112,
+  cExMET/9/122,cAlcohol/5/131,cSexual/5/136,cSun/5/141,cAir/11/146,cNoise/3/157,cDeprivation/9/160}{%
+  \pgfmathsetmacro\sy{\ty-\cum/169*\bH}\pgfmathsetmacro\sh{\feat/169*\bH}\fill[\col] (\bx,\sy) rectangle ++(\bw,-\sh);}
+\draw[ink,line width=0.5pt] (\bx,\ty) rectangle ++(\bw,-\bH);
+\draw[decorate,decoration={brace,amplitude=4pt},ink,line width=0.6pt] (\bx+\bw+0.10,\ty) -- (\bx+\bw+0.10,\ty-\bH);
+\node[anchor=west,font=\fontsize{6.4}{6.8}\selectfont\bfseries,text=ink] at (\bx+\bw+0.30,{\ty-\bH/2+0.18}){PXS};
+\node[anchor=west,font=\fontsize{4.8}{5.2}\selectfont,text=mute,align=left] at (\bx+\bw+0.30,{\ty-\bH/2-0.18}){169 features,\\1 score / person};
+% "$\to$ variance partition" removed 2026-08-30: the arrow read as a diagram
+% element rather than a caption, and the block beneath already carries the idea.
+\end{tikzpicture}\end{document}

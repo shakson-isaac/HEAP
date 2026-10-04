@@ -1,0 +1,33 @@
+% TRIANGULATION: three independent evidence sources arranged around a CENTRAL
+% conclusion node (Convergent proteins), each pointing inward. The column variant
+% tried on 2026-09-01 was rejected; the width it costs the top row is paid for by
+% narrowing the heatmap's four disease columns instead.
+\documentclass[border=8pt]{standalone}
+\usepackage{fontawesome5}\usepackage{xcolor}\usepackage{tikz}
+\renewcommand{\familydefault}{\sfdefault}
+\hyphenpenalty=10000\exhyphenpenalty=10000
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,backgrounds,fit,shadows.blur}
+\definecolor{ink}{HTML}{1F2937}\definecolor{mute}{HTML}{6B7280}
+\definecolor{accblue}{HTML}{1B6CA8}\definecolor{accorange}{HTML}{D95F02}
+\definecolor{accgreen}{HTML}{1B7837}\definecolor{accpurple}{HTML}{6A51A3}
+\definecolor{accnavy}{HTML}{37474F}
+\definecolor{paleblue}{HTML}{EAF2F8}\definecolor{paleorange}{HTML}{FDF0E6}
+\definecolor{palegreen}{HTML}{EAF3EC}\definecolor{palepurple}{HTML}{F0ECF8}
+\begin{document}
+\begin{tikzpicture}[font=\small\sffamily,>={Stealth[round]},
+  box/.style={rectangle,rounded corners=4pt,line width=.9pt,align=center,inner sep=4pt,text=ink,
+    minimum width=3.0cm,blur shadow={shadow blur steps=4,shadow yshift=-1pt,shadow opacity=12}},
+  heap/.style={box,draw=accblue,fill=paleblue},
+  trial/.style={box,draw=accorange,fill=paleorange},
+  mr/.style={box,draw=accpurple,fill=palepurple}]
+% panel title "Triangulation of evidence" removed 2026-08-30 (author)
+\node[heap]  (O) at (0, 3.15){{\large\textcolor{accblue}{\faUsers}}\\[1pt]\textbf{Observational}\\{\scriptsize HEAP exposure$\to$protein}};
+\node[trial] (I) at (-2.35,-2.75){{\large\textcolor{accorange}{\faDumbbell~\faPills}}\\[1pt]\textbf{Interventional}\\{\scriptsize HERITAGE, GLP1-RA}};
+\node[mr]    (G) at (2.35,-2.75){{\large\textcolor{accpurple}{\faDna}}\\[1pt]\textbf{Genetic}\\{\scriptsize MR cis-pQTL+coloc}};
+\node[box,draw=accgreen,fill=palegreen,minimum width=3.6cm] (C) at (0,0.1)
+  {{\large\textcolor{accgreen}{\faVials}\,\textcolor{mute}{$\to$}\,\textcolor{accnavy}{\faHeartbeat}}\\[1pt]\textbf{Convergent proteins}\\{\scriptsize cardiometabolic disease}};
+\draw[->,accblue!80,line width=1.2pt]   (O) -- (C);
+\draw[->,accorange!90,line width=1.2pt] (I) -- (C);
+\draw[->,accpurple!80,line width=1.2pt]  (G) -- (C);
+\end{tikzpicture}
+\end{document}
