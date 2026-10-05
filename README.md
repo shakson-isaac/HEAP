@@ -9,7 +9,7 @@ Risk"** (Isaac *et al.*, in review).
 [Data access](docs/DATA_ACCESS.md) ·
 [Software environment](docs/ENVIRONMENT.md)
 
-![HEAP overview](HEAP.png)
+[![The HEAP results website, heap.bio](docs/img/heap_bio.png)](https://heap.bio)
 
 HEAP links lifestyle exposures, plasma proteins and disease risk in more than 50,000
 UK Biobank participants (2,686 Olink proteins, 169 exposomic features). It asks how much
