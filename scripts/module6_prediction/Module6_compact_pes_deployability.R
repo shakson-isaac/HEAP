@@ -1,5 +1,26 @@
 #!/usr/bin/env Rscript
 
+# HEAP Module 6 -- Compact (top-K protein) PES panels for one exposure (Fig. 6)
+#
+# Does not refit. Takes the final LASSO from Module6_prod_longitudinal.R, ranks
+# proteins by absolute coefficient (optionally only those that also correlate with
+# SomaScan, the "portable" modes), and scores the held-out repeat visits with
+# top-K panels (K = 10, 25, 50, 100, 200, 500 by default).
+#
+# Reads:
+#   HEAP.rds (heap_loader_rds); module6_pes_test/exposure_specs.tsv
+#   module6_pes_longitudinal/<covarType>/PESlong_<covarType>_<exposure>_FinalModelArtifact.rds
+#   UKB/OlinkSoma/OlinkSoma.csv  (Olink-SomaScan correlations; --portability-file)
+#
+# Writes, next to the artifact, PESlong_<covarType>_<exposure>_CompactPES_*:
+#   Metrics, DeltaMetrics, ProteinPanels, PanelSummary, README.txt
+#   (and Scores.tsv with --save-scores)
+#
+# Usage:
+#   Rscript Module6_compact_pes_deployability.R <covarType> <exposure_id> [options]
+#   Options: --ks, --selection-modes, --model-types, --portability-file,
+#            --portability-threshold(s), --output-tag, --save-scores
+
 local({
   candidates <- c(
     Sys.getenv("HEAP_PATHS_FILE", unset = ""),

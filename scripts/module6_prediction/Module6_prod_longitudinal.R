@@ -1,5 +1,27 @@
 #!/usr/bin/env Rscript
 
+# HEAP Module 6 -- Proteome-based exposure score (PES) for one exposure (Fig. 6)
+#
+# Trains a LASSO (cv.glmnet, alpha = 1) predicting the exposure from proteins,
+# covariates, or both, with 5-fold out-of-fold predictions, on participants with
+# baseline proteomics only (split_df: train_baseline_only, instance 0). Scores the
+# held-out participants with repeat proteomics (holdout_repeat_proteomics) at
+# instances 0, 2 and 3, and tests whether within-person changes in the score track
+# changes in the exposure.
+#
+# Reads:
+#   HEAP.rds (heap_loader_rds)  -> longitudinal proteins, exposures, covariates
+#   module6_pes_test/exposure_specs.tsv  (written by Module6_config.R)
+#
+# Writes heap_project_output("module6_pes_longitudinal")/<covarType>/
+#   PESlong_<covarType>_<exposure>_*: TrainOOF, TrainFoldMetrics,
+#   TrainOverallMetrics, FinalModelArtifact.rds, HoldoutScores,
+#   HoldoutByVisitMetrics, WithinPersonChangeMetrics,
+#   WithinPersonTransitionSummary, SelectedProteins
+#
+# Usage:
+#   Rscript Module6_prod_longitudinal.R <covarType> <exposure_id>
+
 local({
   candidates <- c(
     Sys.getenv("HEAP_PATHS_FILE", unset = ""),

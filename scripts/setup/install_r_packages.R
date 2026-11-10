@@ -1,29 +1,24 @@
 #!/usr/bin/env Rscript
 
 # ============================================================================
-# install_r_packages.R — build/refresh the shared HEAP R library
+# install_r_packages.R -- install the R packages HEAP needs
 # ----------------------------------------------------------------------------
-# Installs the HEAP package set (config/r_packages.tsv) into the SHARED group
-# R library so any hpc_patel member can run the HEAP R scripts without
-# installing anything themselves. Run by the library maintainer.
+# Installs the packages in config/r_packages.tsv: CRAN packages with
+# install.packages, Bioconductor packages with BiocManager, GitHub packages with
+# remotes. Current releases are installed, except for the versions pinned below
+# (PINNED), which are installed at exactly that version.
 #
-# Target library: $HEAP_RLIB, else /n/groups/patel/IGLOO/Rlib/<R-version>
-# (the same path 00_paths.R prepends to .libPaths()).
+# Target library: $HEAP_RLIB if set; else the shared library on the original
+# cluster if it exists; else your default R library (as install.packages uses).
 #
-# Usage (maintainer):
-#   module load gcc/14.2.0 R/4.4.2
-#   HEAP_PATHS_FILE=/n/groups/patel/shakson_ukb/HEAP/workflow/00_paths.R \
-#     Rscript scripts/setup/install_r_packages.R [--only-missing] [package ...]
+# Usage (from the repository root, with R 4.4.x):
+#   Rscript scripts/setup/install_r_packages.R [--only-missing] [package ...]
 #
-#   --only-missing  install just packages not already resolvable (default if no
-#                   explicit packages are given)
-#   package ...     install only these (overrides the manifest)
+#   --only-missing  install only packages that are missing, or whose installed
+#                   version differs from a pin (default when no packages are named)
+#   package ...     install only these
 #
-# Notes:
-#   - Bioconductor packages are installed via BiocManager.
-#   - GitHub packages (TwoSampleMR, genetics.binaRies) via remotes.
-#   - Compiled packages must match the loaded R module (gcc/14.2.0 R/4.4.2);
-#     everyone running HEAP should use that module so the shared lib is ABI-safe.
+# Packages built from source on Linux need C, C++ and Fortran compilers.
 # ============================================================================
 
 local({
@@ -39,26 +34,46 @@ only_missing <- ("--only-missing" %in% args) ||
   !length(setdiff(args, c("--only-missing")))
 explicit    <- setdiff(args, "--only-missing")
 
-# Target shared library (matches 00_paths.R logic)
-rlib <- Sys.getenv("HEAP_RLIB",
-  unset = file.path("/n/groups/patel/IGLOO", "Rlib", as.character(getRversion())))
+# Versions installed exactly rather than at the current release:
+#   ggplot2 4.x breaks the ggtree -> enrichplot -> clusterProfiler stack;
+#   qs has been archived on CRAN, so it is installed from the CRAN archive.
+PINNED <- c(ggplot2 = "3.5.2", qs = "0.27.3")
+
+# Target library: HEAP_RLIB, else the original cluster's shared library (same
+# path 00_paths.R prepends to .libPaths()), else the user's default library.
+cluster_lib <- file.path("/n/groups/patel/IGLOO", "Rlib", as.character(getRversion()))
+rlib <- Sys.getenv("HEAP_RLIB", unset = "")
+if (!nzchar(rlib)) {
+  rlib <- if (dir.exists(cluster_lib) && file.access(cluster_lib, 2) == 0) cluster_lib else {
+    user_lib <- Sys.getenv("R_LIBS_USER")
+    writable <- .libPaths()[file.access(.libPaths(), 2) == 0]
+    if (length(writable)) writable[1] else user_lib
+  }
+}
 dir.create(rlib, recursive = TRUE, showWarnings = FALSE)
+if (file.access(rlib, 2) != 0) stop("Cannot write to the R library ", rlib,
+                                    "; set HEAP_RLIB to a writable directory.")
 .libPaths(c(rlib, .libPaths()))
-message("Shared HEAP R library: ", rlib)
+message("Installing into R library: ", rlib)
 
 # --- read manifest ----------------------------------------------------------
 manifest_path <- if (exists("heap_config")) heap_config("r_packages.tsv") else
-  "/n/groups/patel/shakson_ukb/HEAP/config/r_packages.tsv"
+  file.path(getwd(), "config", "r_packages.tsv")
 man <- read.delim(manifest_path, stringsAsFactors = FALSE)
 if (length(explicit)) man <- man[man$package %in% explicit, , drop = FALSE]
 
-resolvable <- function(p) requireNamespace(p, quietly = TRUE)
+resolvable <- function(p) {
+  if (!requireNamespace(p, quietly = TRUE)) return(FALSE)
+  if (p %in% names(PINNED)) return(as.character(packageVersion(p)) == PINNED[[p]])
+  TRUE
+}
 if (only_missing) man <- man[!vapply(man$package, resolvable, logical(1)), , drop = FALSE]
 
 if (!nrow(man)) { message("Nothing to install (all resolvable)."); quit(status = 0) }
 message("To install (", nrow(man), "): ", paste(man$package, collapse = ", "))
 
-cran   <- man$package[man$repo == "CRAN"]
+pinned <- intersect(man$package, names(PINNED))
+cran   <- setdiff(man$package[man$repo == "CRAN"], pinned)
 bioc   <- man$package[man$repo == "Bioconductor"]
 github <- man[grepl("^GitHub:", man$repo), ]
 
@@ -73,6 +88,13 @@ try_install <- function(p, fn) {
 if (length(cran)) {
   repos <- "https://cloud.r-project.org"
   for (p in cran) try_install(p, function() install.packages(p, lib = rlib, repos = repos))
+}
+if (length(pinned)) {
+  if (!requireNamespace("remotes", quietly = TRUE))
+    install.packages("remotes", lib = rlib, repos = "https://cloud.r-project.org")
+  for (p in pinned) try_install(p, function()
+    remotes::install_version(p, version = PINNED[[p]], lib = rlib, upgrade = "never",
+                             repos = "https://cloud.r-project.org"))
 }
 if (length(bioc)) {
   if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -91,5 +113,5 @@ if (nrow(github)) {
 
 message("\nInstalled: ", length(ok), " | Failed: ", length(failed))
 if (length(failed)) message("Failed: ", paste(failed, collapse = ", "))
-# keep the shared lib group-readable for the team
-try(system(paste("chmod -R g+rX", shQuote(rlib))), silent = TRUE)
+# On the original cluster, keep the shared library group-readable.
+if (identical(rlib, cluster_lib)) try(system(paste("chmod -R g+rX", shQuote(rlib))), silent = TRUE)

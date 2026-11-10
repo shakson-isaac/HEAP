@@ -1,3 +1,12 @@
+# HEAP loaders -- Parallel wrappers around the UK Biobank loading helpers
+#
+# Loads and preprocesses several UK Biobank paths at once with future_lapply, and
+# writes the results as parquet. Sources dataloader_functions_upd.R from the
+# working directory.
+#
+# Sourced by: HEAP_loader.R.
+# Main functions: parallel_UKB_load, preprocess_UKB_df, parallel_UKB_preprocess,
+#   parallel_write_parquet
 
 local({
   candidates <- c(

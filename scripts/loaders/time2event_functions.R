@@ -1,3 +1,12 @@
+# HEAP loaders -- Disease time-to-event helpers
+#
+# Derives ages at diagnosis from ICD-10 records, baseline and censoring ages, and
+# survival times for incident disease, plus Cox model wrappers and feature scaling.
+#
+# Sourced by: HEAP_loader.R (to build the disease tables in HEAP.rds).
+# Main functions: age_of_diagnosis, load_icd10_matrix, load_baseline_info,
+#   fastload_baseline_info, time2event_ages, survival_time, load_disease_T2E,
+#   run_coxph, inv_normal
 
 local({
   candidates <- c(

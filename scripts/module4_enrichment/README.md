@@ -1,48 +1,31 @@
-# Module 4 — Tissue / Pathway Enrichment
+# Tissue and pathway enrichment
 
-> **Numbering:** this directory is the tissue and pathway enrichment analysis
-> (supplementary figures). Fig. 4 (MR) is in [`module5_mr/`](../module5_mr/); the Fig. 5
-> intervention figures are built by `build_module4_composite*`. Full map:
-> [Figures and code](../../README.md#figures-and-code).
+Tests whether the proteins associated with each exposure are enriched for tissue-specific
+or pathway gene sets. Results feed Fig. 2b and the enrichment supplementary figures.
 
-A dedicated **analysis module** (not a visualization step) that tests whether the
-proteins associated with each exposure (Module 2 output) are enriched for
-tissue-specific or pathway gene sets. Outputs are canonical IGLOO tables that
-visualization scripts then plot.
+The directory is named `module4` for historical reasons. Fig. 4 (MR) is in
+[`module5_mr/`](../module5_mr/), and the Fig. 5 panels are built by
+`build_module4_composite*`. Full map: [Figures and code](../../README.md#figures-and-code).
 
-> Status: **scaffold** (2026-06-03). Stubs define the I/O contract and name the
-> legacy source to port from. Not yet implemented — see
-> `docs/SUPPORT_ANALYSIS_PLAN.md §2`.
+## Run order
 
-## Inputs (all IGLOO-canonical via `workflow/00_paths.R` helpers)
-- Module 2 significant exposures → `heap_project_output("module2", "ReplicatedEassoc.csv")`
-  (and/or per-batch `module2/<covarType>/univar_assoc_*.rds`)
-- GTEx v10 median-TPM GCTs → `heap_gtex_rna_dir()`  (`/n/groups/patel/IGLOO/UKB/GTEX/RNA`)
-- HPA tables → `heap_hpa_or_legacy("normal_ihc_data.tsv" | "subcellular_location.tsv")`
-- OmicsPred protein map (universe) → `heap_omicspred_or_legacy(...)`
-
-## Outputs → `heap_project_output("module4_enrichment", ...)`
-```
-genesets/{GTEX_tissue,HPA_specific,HPA_enriched,HPA_expressed,HPA_secretome,KEGG_T2G,KEGG_T2N}.txt
-GTEX_tau_scores.csv
-OlinkEntrezConv.txt          # cached BioMart map
-HEAPgsea.qs                  # GSEA result object
-tissue_enrichment.csv        # figure-input (NES, p.adjust per exposure x tissue)
-pathway_enrichment.csv       # figure-input (NES, p.adjust per exposure x pathway)
-ora_tissue.csv / ora_pathway.csv   # ORA results (separate functionality)
-```
-
-## Scripts
-| Script | Role | Ports from |
+| Step | Script | Does |
 |---|---|---|
-| `00_build_genesets.R` | GTEx Tau + FC>4 tissue Term2Gene; HPA sets; KEGG T2G/T2N | `ModuleExt/GTEX_ident.R`, `ModuleExt/HPA_ident.R` |
-| `01_entrez_map.R` | one BioMart call → cached `OlinkEntrezConv.txt` | `ModuleExt/ObtainEntrezMapping.R` |
-| `02_enrichment_core.R` | sourced fn library: `CreateGenelists`, `convertEntrez`, GSEA/ORA wrappers | `Module2/HEAPassoc_pathway.R`, `TissueSpec/TissueSpec_RunExample.R` |
-| `03_run_gsea.R` | **GSEA** (primary): GTEx-tissue + Reactome `gsePathway` → `HEAPgsea.qs` | `Module2/HEAPassoc_pathway.R` |
-| `03b_run_ora.R` | **ORA** (separate functionality): `enricher`/`enrichPathway`/`enrichGO` over sig protein lists → `ora_*.csv` | `TissueSpec/TissueSpec_RunExample.R` (ORA_tissue/ORA_paths) |
-| `04_enrichment_tables.R` | flatten `HEAPgsea.qs` → `tissue_enrichment.csv`, `pathway_enrichment.csv` | `Module2/HEAPassoc_pathwaytables.R` |
-| `05_enrichment_figures.R` | ComplexHeatmap tissue/pathway figures + GTEx Tau density (plotting only) | `Module2/HEAPassoc_pathwayviz.R` |
+| 1 | `00_build_genesets.R` | GTEx tissue (Tau and fold-change), Human Protein Atlas and KEGG gene sets |
+| 2 | `01_entrez_map.R` | Gene symbol → Entrez ID map for the Olink proteins |
+| 3 | `00b_prepare_gsea_input.R` | Ranked exposure → protein associations from the Module 2 output |
+| 4 | `slurm/module4_enrichment/run_gsea.sh` | `03_run_gsea.R` (tissue and Reactome GSEA per exposure) → `04_enrichment_tables.R` (flat tables) → tissue and pathway heatmaps |
+| 5 | `slurm/module4_enrichment/run_category_gsea.sh` | `05_category_enrichment.R`: GSEA per exposure category |
+| 6 | `run_module1_r2_gsea.R`, `run_module1_greml_gsea.R`, `run_module1_category_gsea.R` | GSEA of proteins ranked by their Module 1 variance components (supplementary) |
 
-Scope decision (2026-06-03): **GSEA is the primary/manuscript path** (`03_run_gsea.R`);
-ORA is provided as a **separate, optional** script (`03b_run_ora.R`) for
-functionality, not the default figure path.
+`02_enrichment_core.R` holds the shared functions. `03b_run_ora.R` and
+`run_module1_category_ora.R` run over-representation analysis as an alternative to GSEA;
+the paper uses GSEA.
+
+## Inputs and outputs
+
+Inputs: the Module 2 associations, GTEx v10 median TPM, Human Protein Atlas tables and the
+OmicsPred protein list (sources in [`docs/DATA_ACCESS.md`](../../docs/DATA_ACCESS.md)).
+Outputs go to `$HEAP_IGLOO_ROOT/UKB/HEAP/output/module4_enrichment/`: the gene sets, the
+GSEA result object `HEAPgsea.qs`, and `tissue_enrichment.csv` / `pathway_enrichment.csv`
+(one row per exposure × tissue or pathway).

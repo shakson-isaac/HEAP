@@ -1,3 +1,14 @@
+# HEAP loaders -- UK Biobank field loading and recoding helpers
+#
+# Functions that read the lab's staged UK Biobank tables (indexed by project and
+# path IDs) and recode fields: select instances, collapse multi-array fields, drop
+# fields by missingness, and handle integer, ordinal, one-hot, factor and binary
+# codings. Many assign globals (projID, directoryInfo, ...) with <<-.
+#
+# Sourced by: dataloader_functions_parallel.R (itself sourced by HEAP_loader.R).
+# Main functions: load_project, load_path, fast_dataloader, UKB_instances,
+#   UKB_multiarray_handle, UKB_filter_data, UKB_ordinal_handle,
+#   UKB_onehot_handle, UKB_binary_handle, codings
 
 local({
   candidates <- c(

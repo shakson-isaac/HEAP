@@ -6,8 +6,7 @@
 #SBATCH -p short
 umask 002
 module load gcc/14.2.0 R/4.4.2
-export R_LIBS=/n/groups/patel/shakson_ukb/Rlib/gsea_env   # group-shared GSEA stack
-HEAP_ROOT=/n/groups/patel/shakson_ukb/HEAP
+HEAP_ROOT="${HEAP_ROOT:-/n/groups/patel/shakson_ukb/HEAP}"
 export HEAP_PATHS_FILE="$HEAP_ROOT/workflow/00_paths.R"
 export OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1
 S=$HEAP_ROOT/scripts

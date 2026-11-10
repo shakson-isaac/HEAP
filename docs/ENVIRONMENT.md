@@ -10,16 +10,21 @@ to 1 core / 60 GB (GREML) and 8 cores / 50 GB (regenie), as declared in `slurm/`
 
 ## R
 
-R 4.4.2 (GCC 14.2.0) and 46 packages, listed with the versions used in
-[`config/r_packages.tsv`](../config/r_packages.tsv):
+R 4.4.2 (built with GCC 14.2.0) and 46 packages, listed with the versions used in
+[`config/r_packages.tsv`](../config/r_packages.tsv). From the repository root:
 
 ```bash
-Rscript scripts/setup/install_r_packages.R --only-missing
+Rscript scripts/setup/install_r_packages.R
 ```
 
-Three come from GitHub: `MRCIEU/TwoSampleMR`, `MRCIEU/genetics.binaRies` and
-`rmgpanw/ukbwranglr` (pinned to commit `50d7ae4`, as it has no release). Keep ggplot2 on
-3.5.x: 4.0.0 breaks the `ggtree → enrichplot → clusterProfiler` stack used for enrichment.
+This installs the missing packages into your default R library, or into `HEAP_RLIB` if
+set: CRAN packages with `install.packages`, Bioconductor packages with `BiocManager`, and
+three GitHub packages with `remotes` (`MRCIEU/TwoSampleMR`, `MRCIEU/genetics.binaRies`,
+and `rmgpanw/ukbwranglr` pinned to commit `50d7ae4`). Current releases are installed,
+except two pinned versions: ggplot2 3.5.2 (4.x breaks the `ggtree → enrichplot →
+clusterProfiler` stack used for enrichment) and qs 0.27.3 (archived on CRAN, installed
+from the archive). On Linux, packages are built from source and need C, C++ and Fortran
+compilers. Rerunning the command installs only what is still missing.
 
 ## Genetics tools
 
@@ -33,7 +38,12 @@ Three come from GitHub: `MRCIEU/TwoSampleMR`, `MRCIEU/genetics.binaRies` and
 
 ## Environment variables
 
-No path is hardcoded; defaults in the scripts point at the original cluster.
+The analysis scripts resolve their paths through these variables. When one is unset,
+they fall back to the original cluster's paths (`/n/groups/patel/...`), which will not exist
+elsewhere. Some helper scripts, mainly the colocalization scripts in
+`scripts/support/coloc/` and a few figure and summary scripts, still set those paths
+directly; edit the path lines near the top of each to run them elsewhere. `IGLOO` is the
+name of the lab's shared data directory on the original cluster.
 
 | Variable | Points at |
 |---|---|

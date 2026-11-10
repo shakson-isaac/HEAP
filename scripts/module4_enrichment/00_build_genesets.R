@@ -44,7 +44,7 @@
 #   * Legacy hard-coded /n/groups/patel/shakson_ukb/UK_Biobank/... paths are
 #     replaced by IGLOO helpers.
 #   * The exploratory ggplot Tau-density plot in GTEX_ident.R is dropped here
-#     (plotting belongs in 05_enrichment_figures.R); the Tau scores it consumed
+#     (plotting is in scripts/visualizations/figures/); the Tau scores it consumed
 #     are written to GTEX_tau_scores.csv instead.
 #   * KEGG (network) is isolated in tryCatch so the file-based GTEx/HPA outputs
 #     still complete if KEGGREST/network is unavailable.

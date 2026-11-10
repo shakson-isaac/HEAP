@@ -1,5 +1,29 @@
 #!/usr/bin/env Rscript
 
+# HEAP Module 2 -- Exposure-protein associations (Fig. 2)
+#
+# For each protein in this chunk, splits the proteomics cohort 80/20 into train
+# and test sets and fits, per exposure, in each split:
+#   protein ~ exposure + Gcis + Gtrans + covariates + Gcis:exposure + Gtrans:exposure
+# where Gcis and Gtrans are the protein's cis and trans genetic scores. Returns
+# four tables per split: exposure effects, GxE effects, R2, and block F-tests.
+#
+# Reads:
+#   HEAP.rds (heap_loader_rds)        -> proteins, exposures, covariates
+#   UKB/ProtGScis, UKB/ProtGStrans    -> per-protein genetic scores (.sscore)
+#   OmicsPred protein list            -> the proteins, cut into n_chunks batches
+#
+# Writes:
+#   <out_root>/<covarType>/univar_assoc_<idx>.rds   list(train = ..., test = ...)
+#   <out_root>/<covarType>/run_config_<idx>.yml
+#   out_root = the manifest's output_path, else heap_project_output("module2")
+#
+# Usage:
+#   Rscript Module2.R --manifest <path> --array-index <N>
+#   Rscript Module2.R <idx> <n_chunks> <covarType>
+#   covarType: base | base_bmi | base_draw | base_clinical | base_ses | base_prevalent
+#   (interaction sensitivities and sample filters need manifest mode)
+
 local({
   candidates <- c(
     Sys.getenv("HEAP_PATHS_FILE", unset = ""),

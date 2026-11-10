@@ -43,8 +43,8 @@ them in this order.
 | **Fig. 6** Proteome-based exposure scores | `figures/fig_module6_schematic_compact.tex`; `figures/fig_m6_panel_b.R`; `figures/fig_m6_panel_c.R`; `figures/fig_m6_panel_d.R` | `build_module6_composite_landscape.R` |
 
 Panel scripts run with `HEAP_CELL=1`, which writes the panel at its print size for the
-composite. The `fig_m4_*` and `module4` names refer to the paper's Module 5
-(interventions); see the module-number table in the [top-level README](../../README.md).
+composite. The `fig_m4_*` and `module4` names are the Fig. 5 (intervention) panels; code
+numbers differ from figure numbers ([Figures and code](../../README.md#figures-and-code)).
 
 ## Supplementary figures
 

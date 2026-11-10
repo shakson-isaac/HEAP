@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article below."
+title: "HEAP: Human Exposomic Architecture of the Proteome"
+type: software
+license: MIT
+repository-code: "https://github.com/shakson-isaac/HEAP"
+url: "https://heap.bio"
+authors:
+  - given-names: Shakson
+    family-names: Isaac
+  - given-names: Randall J.
+    family-names: Ellis
+  - given-names: Yon Ho
+    family-names: Jee
+  - given-names: Venkatesh L.
+    family-names: Murthy
+  - given-names: Miriam S.
+    family-names: Udler
+  - given-names: Benjamin M.
+    family-names: Neale
+  - given-names: Shamil
+    family-names: Sunyaev
+  - given-names: Alexander
+    family-names: Gusev
+  - given-names: Alicia R.
+    family-names: Martin
+  - given-names: Chirag J.
+    family-names: Patel
+preferred-citation:
+  type: article
+  title: "Human Plasma Proteomics Links Modifiable Lifestyle Exposome to Disease Risk"
+  status: submitted
+  authors:
+    - given-names: Shakson
+      family-names: Isaac
+    - given-names: Randall J.
+      family-names: Ellis
+    - given-names: Yon Ho
+      family-names: Jee
+    - given-names: Venkatesh L.
+      family-names: Murthy
+    - given-names: Miriam S.
+      family-names: Udler
+    - given-names: Benjamin M.
+      family-names: Neale
+    - given-names: Shamil
+      family-names: Sunyaev
+    - given-names: Alexander
+      family-names: Gusev
+    - given-names: Alicia R.
+      family-names: Martin
+    - given-names: Chirag J.
+      family-names: Patel

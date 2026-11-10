@@ -49,7 +49,7 @@ shared:
 #   independent -> needs only HEAP.rds (+ static genotype/portability inputs); run in
 #                  any order, in parallel, by different users.
 #   dependent   -> needs another stage's OUTPUT first (run upstream, then downstream).
-# A progress agent should gate "dependent" stages on the upstream completion_check.
+# Run a "dependent" stage only after its upstream completion_check passes.
 # ============================================================
 run_order:
   foundation:

@@ -1,5 +1,31 @@
 #!/usr/bin/env Rscript
 
+# HEAP Module 5 -- Mendelian randomization, UK Biobank pQTL arm (Fig. 4)
+#
+# Two-sample MR for one chunk of one edge type of the exposure (E) -> protein (P)
+# -> disease (D) triads. Instruments: p < 5e-8, F > 10, clumped (r2 < 0.001,
+# 10 Mb window) against the EUR LD reference; protein instruments are split into
+# cis (gene start/end +/- 1 Mb) and trans. Methods: Wald ratio (1 SNP), IVW + MR-Egger
+# (2 SNPs), plus weighted median and weighted mode (3+), with Cochran's Q, the
+# Egger intercept, and the analyses in mr_sensitivity.R.
+#
+# Reads:
+#   <HEAP_MR_EDGES_DIR>/edges_<edge_type>.tsv  (default mr_edges/global_edges,
+#                                             written by Module5_load.R)
+#   Exposure GWAS (regenie step 2; HEAP_REGENIE_STEP2_DIR), UK Biobank Olink pQTL (parquet, UKB/pQTL),
+#   FinnGen R12 summary statistics and manifest
+#
+# Writes (under HEAP_MR_OUTDIR, default mr_edges/edges):
+#   <E_to_P|E_to_D|Pcis_to_D|Ptrans_to_D|Pcis_to_E|Ptrans_to_E|D_to_E|D_to_P>/<from>/<to>/
+#     <edge>_summary.tsv, _mr_methods.tsv, _harmonised.tsv, _heterogeneity.tsv,
+#     _pleiotropy.tsv and the mr_sensitivity.R tables
+#   logs/<edge_type>/chunk_<idx>.log; instrument caches under heap_project_output("mr")
+#
+# Usage:
+#   Rscript Module5.R <EP|PE|PD|DP|ED|DE> <chunk_idx> [n_chunks=5000] [make_plots=0]
+#   HEAP_MR_WARM_ONLY=1 defines the functions without running edges
+#   (used by prewarm_instruments.R)
+
 local({
   candidates <- c(
     Sys.getenv("HEAP_PATHS_FILE", unset = ""),

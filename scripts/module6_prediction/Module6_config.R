@@ -1,3 +1,15 @@
+# HEAP Module 6 -- Exposure list for the PES runs
+#
+# Builds the Module 6 exposure manifest from config/exposure_sets/analysis_exposures.tsv
+# (include == 1). Continuous and ordinal exposures get type "continuous"
+# (gaussian PES), binary ones "binary" (binomial PES).
+#
+# Writes:
+#   heap_project_output("module6_pes_test", "exposure_specs.tsv")  exposure_id, exposure_type
+#   config/exposure_sets/module6_exposures.txt                     one exposure_id per line
+#
+# Usage:
+#   Rscript Module6_config.R   (run first by slurm/module6/submit_longitudinal_workflow.sh)
 
 local({
   candidates <- c(

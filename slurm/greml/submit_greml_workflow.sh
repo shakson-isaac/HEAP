@@ -23,8 +23,6 @@ HEAP_ROOT="${HEAP_ROOT:-/n/groups/patel/shakson_ukb/HEAP}"
 
 # Run label, baked in with a default so the workflow runs as a one-liner.
 # Override by exporting RUN_GROUP before calling, e.g. for a distinct concurrent run.
-# Note: this does NOT affect dashboard detection (heap_status.R keys on the
-# `poparch*` SLURM job names + `*_summary.tsv` output files, not RUN_GROUP).
 RUN_GROUP="${RUN_GROUP:-heap_v1}"
 
 export RUN_GROUP HEAP_ROOT

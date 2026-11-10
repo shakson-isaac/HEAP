@@ -5,7 +5,7 @@
 #   2. Rebuild the triad/edge lists     (Module5_load.R -> global_edges/*, mr_triads.tsv)
 #   3. Regenerate the Module 5 manifests (per-edge-type chunking)
 #
-# See TRIAD_CONNECTIONS.md for what each step connects and the resulting counts.
+# See README.md in this directory for what each step connects.
 #
 # Usage:
 #   bash scripts/module5_mr/rebuild_triads.sh

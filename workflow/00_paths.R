@@ -1,13 +1,12 @@
 #!/usr/bin/env Rscript
 
 # Central path configuration for the HEAP reproducible workflow.
-# Scripts copied into HEAP should source this file and write new analysis
-# outputs under HEAP/output while reading protected legacy inputs in place.
+# Every script sources this file to resolve input and output paths; each path
+# can be overridden with the HEAP_* environment variables (docs/ENVIRONMENT.md).
 
 heap_find_root <- function(start = getwd()) {
-  # Explicit override wins FIRST. Required for git worktrees: their leaf dir is
-  # named after the agent (not "HEAP"), so the auto-walk below would otherwise
-  # climb past them to the canonical main checkout and ignore the worktree's code.
+  # Explicit override wins FIRST. Needed when the checkout is not named
+  # "HEAP" (e.g. a git worktree), which the directory walk below would miss.
   env_root <- Sys.getenv("HEAP_ROOT", unset = "")
   if (nzchar(env_root)) return(normalizePath(env_root, mustWork = FALSE))
   path <- normalizePath(start, mustWork = FALSE)

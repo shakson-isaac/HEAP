@@ -16,7 +16,7 @@ bash demo/run_demo.sh m1 m2 m3     # selected stages
 ```
 
 **Needs:** R 4.4.2 and the packages in `config/r_packages.tsv`
-(`Rscript scripts/setup/install_r_packages.R --only-missing`; set `HEAP_RLIB` if they are
+(`Rscript scripts/setup/install_r_packages.R`; set `HEAP_RLIB` if they are
 in a non-default library). GREML also needs [GCTA](https://yanglab.westlake.edu.cn/software/gcta/)
 and [PLINK 2](https://www.cog-genomics.org/plink/2.0/) (`GCTA_BIN`, `PLINK2_BIN`, or on `PATH`),
 bash 4 and GNU `time`; without them that step is skipped. **Run time:** 14 minutes for all

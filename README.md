@@ -15,7 +15,7 @@ use the paper's Supplementary Tables and Data. No code or data access is needed.
 
 ```bash
 git clone https://github.com/shakson-isaac/HEAP.git && cd HEAP
-Rscript scripts/setup/install_r_packages.R --only-missing   # R 4.4.2 + 46 packages
+Rscript scripts/setup/install_r_packages.R                  # R 4.4.2 + 46 packages
 bash demo/run_demo.sh                                       # synthetic data, one core
 ```
 
@@ -53,7 +53,7 @@ docs/      Run guide, software environment, data sources
 | Fig. 4 | Mendelian randomization and colocalization | [`scripts/module5_mr`](scripts/module5_mr) |
 | Fig. 5 | Comparison with intervention trials | [`scripts/support/intervention_compare`](scripts/support/intervention_compare) |
 | Fig. 6 | Proteome-based exposure scores (PES) | [`scripts/module6_prediction`](scripts/module6_prediction) |
-| Supplementary | Tissue and pathway enrichment | [`scripts/module4_enrichment`](scripts/module4_enrichment) |
+| Fig. 2b, supplementary | Tissue and pathway enrichment | [`scripts/module4_enrichment`](scripts/module4_enrichment) |
 
 Code directory numbers reflect the order the analyses were written, not the figure order. Supporting steps:
 [`loaders`](scripts/loaders) (builds the analysis dataset),
@@ -75,8 +75,6 @@ Code directory numbers reflect the order the analyses were written, not the figu
 Isaac S, Ellis RJ, Jee YH, Murthy VL, Udler MS, Neale BM, Sunyaev S, Gusev A,
 Martin AR, Patel CJ. *Human Plasma Proteomics Links Modifiable Lifestyle Exposome to
 Disease Risk.* In review.
-
-<!-- TODO: add DOI and BibTeX once the preprint/article is public -->
 
 ## License and contact
 
