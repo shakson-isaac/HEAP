@@ -1,11 +1,9 @@
 # Module 4 — Tissue / Pathway Enrichment
 
-> **📍 Numbering (the code `module4` label is overloaded):** *this* dir is the
-> **un-numbered** enrichment analysis (feeds Fig 3 biology + FigS8/S9). The manuscript's
-> **Module 4 / Fig 4 is MR** (= code [`module5_mr/`](../module5_mr/)), and the intervention
-> figures built under the `module4` namespace (`build_module4_composite*`) are the
-> manuscript's **Module 5 / Fig 5**. Full map:
-> [Manuscript vs. code module numbers](../../README.md#manuscript-vs-code-module-numbers).
+> **Numbering:** this directory is the tissue and pathway enrichment analysis
+> (supplementary figures). Fig. 4 (MR) is in [`module5_mr/`](../module5_mr/); the Fig. 5
+> intervention figures are built by `build_module4_composite*`. Full map:
+> [Figures and code](../../README.md#figures-and-code).
 
 A dedicated **analysis module** (not a visualization step) that tests whether the
 proteins associated with each exposure (Module 2 output) are enriched for

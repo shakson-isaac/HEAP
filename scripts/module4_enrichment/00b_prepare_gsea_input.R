@@ -22,7 +22,7 @@ suppressPackageStartupMessages(library(data.table))
 local({ cand <- c(Sys.getenv("HEAP_PATHS_FILE", unset = ""),
                   "/n/groups/patel/shakson_ukb/HEAP/workflow/00_paths.R")
         source(cand[file.exists(cand)][1]) })
-CM <- "/n/groups/patel/shakson_ukb/HEAP/scripts/visualizations/common"
+CM <- file.path(Sys.getenv("HEAP_ROOT", unset = "/n/groups/patel/shakson_ukb/HEAP"), "scripts", "visualizations", "common")
 source(file.path(CM, "figure_paths.R")); source(file.path(CM, "load_heap_results.R"))
 
 a <- commandArgs(trailingOnly = TRUE)

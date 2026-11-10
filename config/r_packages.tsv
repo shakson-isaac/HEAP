@@ -1,47 +1,47 @@
-package	repo	used_by	notes
-data.table	CRAN	all	core
-dplyr	CRAN	all	tidyverse
-tidyr	CRAN	all	tidyverse
-purrr	CRAN	all	tidyverse
-tibble	CRAN	all	tidyverse
-tidyverse	CRAN	loaders,viz	meta
-stringr	CRAN	loaders
-readxl	CRAN	support/intervention_compare	GLP1/HERITAGE xlsx
-readr	CRAN	loaders
-arrow	CRAN	loaders	parquet/feather (IGLOO RAW)
-qs	CRAN	enrichment,viz	fast serialize
-yaml	CRAN	workflow	manifests/run configs
-jsonlite	CRAN	viz/export	website JSON
-glmnet	CRAN	module1,module6	penalized regression
-survival	CRAN	module3,module6	coxph
-weights	CRAN	support/intervention_compare	wtd.cor
-psych	CRAN	support/intervention_compare	corr.test (legacy v1)
-fastDummies	CRAN	loaders	one-hot encoding
-ukbwranglr	CRAN	loaders	UKB field helpers
-furrr	CRAN	loaders	parallel
-future	CRAN	loaders	parallel
-future.apply	CRAN	loaders	parallel
-pbapply	CRAN	enrichment	progress
-ggplot2	CRAN	viz	plotting; PIN 3.5.x (4.0.0 removed check_linewidth -> breaks ggtree/enrichplot/clusterProfiler)
-ggrepel	CRAN	viz	labels
-ggpmisc	CRAN	viz	stat annotations
-ggforce	CRAN	viz (MR diagrams)
-ggcorrplot	CRAN	viz (cor matrices)	MISSING -> install
-ComplexHeatmap	Bioconductor	viz (enrichment/intervention heatmaps)
-circlize	CRAN	viz	heatmap colors
-enrichplot	Bioconductor	module4_enrichment	MISSING -> install
-clusterProfiler	Bioconductor	module4_enrichment	MISSING -> install (GSEA/ORA)
-ReactomePA	Bioconductor	module4_enrichment	MISSING -> install (pathway)
-org.Hs.eg.db	Bioconductor	module4_enrichment	MISSING -> install (annotation)
-DOSE	Bioconductor	module4_enrichment	MISSING -> install (disease ontology)
-biomaRt	Bioconductor	module4_enrichment/01_entrez_map	present
-KEGGREST	Bioconductor	module4_enrichment/00_build_genesets	present
-TwoSampleMR	GitHub:MRCIEU/TwoSampleMR	module5	MR
-genetics.binaRies	GitHub:MRCIEU/genetics.binaRies	module5	plink binary
-coloc	CRAN	support/coloc	colocalization
-pwr	CRAN	viz (power calc)	MISSING -> install
-simr	CRAN	viz (power calc)	MISSING -> install
-longpower	CRAN	viz (power calc)	MISSING -> install
-polycor	CRAN	viz	MISSING -> install
-plotly	CRAN	viz (interactive)
-htmlwidgets	CRAN	viz (interactive)
+package	version	repo	used_by	notes
+data.table	1.18.2.1	CRAN	all	core
+dplyr	1.1.4	CRAN	all	tidyverse
+tidyr	1.3.1	CRAN	all	tidyverse
+purrr	1.1.0	CRAN	all	tidyverse
+tibble	3.3.0	CRAN	all	tidyverse
+tidyverse	2.0.0	CRAN	loaders,viz	meta
+stringr	1.5.2	CRAN	loaders	
+readxl	1.4.5	CRAN	support/intervention_compare	GLP1/HERITAGE xlsx
+readr	2.1.5	CRAN	loaders	
+arrow	21.0.0.1	CRAN	loaders	parquet/feather (IGLOO RAW)
+qs	0.27.3	CRAN	enrichment,viz	fast serialize
+yaml	2.3.10	CRAN	workflow	manifests/run configs
+jsonlite	2.0.0	CRAN	viz/export	website JSON
+glmnet	4.1.10	CRAN	module1,module6	penalized regression
+survival	3.7.0	CRAN	module3,module6	coxph
+weights	1.1.2	CRAN	support/intervention_compare	wtd.cor
+psych	2.5.6	CRAN	support/intervention_compare	corr.test (legacy v1)
+fastDummies	1.7.5	CRAN	loaders	one-hot encoding
+ukbwranglr	0.0.0.9001	GitHub:rmgpanw/ukbwranglr@50d7ae4	loaders	UKB field helpers; dev package, not on CRAN -- pinned to the installed commit
+furrr	0.3.1	CRAN	loaders	parallel
+future	1.67.0	CRAN	loaders	parallel
+future.apply	1.20.0	CRAN	loaders	parallel
+pbapply	1.7.4	CRAN	enrichment	progress
+ggplot2	3.5.2	CRAN	viz	plotting; PIN 3.5.x (4.0.0 removed check_linewidth -> breaks ggtree/enrichplot/clusterProfiler)
+ggrepel	0.9.6	CRAN	viz	labels
+ggpmisc	0.6.2	CRAN	viz	stat annotations
+ggforce	0.5.0	CRAN	viz (MR diagrams)	
+ggcorrplot	0.1.4.1	CRAN	viz (cor matrices)	MISSING -> install
+ComplexHeatmap	2.22.0	Bioconductor	viz (enrichment/intervention heatmaps)	
+circlize	0.4.17	CRAN	viz	heatmap colors
+enrichplot	1.26.6	Bioconductor	module4_enrichment	MISSING -> install
+clusterProfiler	4.14.6	Bioconductor	module4_enrichment	GSEA/ORA (enrichment jobs load the separate gsea_env library; see docs/ENVIRONMENT.md)
+ReactomePA	1.50.0	Bioconductor	module4_enrichment	MISSING -> install (pathway)
+org.Hs.eg.db	3.20.0	Bioconductor	module4_enrichment	MISSING -> install (annotation)
+DOSE	4.0.1	Bioconductor	module4_enrichment	MISSING -> install (disease ontology)
+biomaRt	2.62.1	Bioconductor	module4_enrichment/01_entrez_map	present
+KEGGREST	1.46.0	Bioconductor	module4_enrichment/00_build_genesets	present
+TwoSampleMR	0.6.22	GitHub:MRCIEU/TwoSampleMR	module5	MR
+genetics.binaRies	0.1.2	GitHub:MRCIEU/genetics.binaRies	module5	plink binary
+coloc	6.0.1	CRAN	support/coloc	colocalization
+pwr	1.3.0	CRAN	viz (power calc)	MISSING -> install
+simr	1.0.9	CRAN	viz (power calc)	MISSING -> install
+longpower	1.0.27	CRAN	viz (power calc)	MISSING -> install
+polycor	0.8.2	CRAN	viz	MISSING -> install
+plotly	4.11.0	CRAN	viz (interactive)	
+htmlwidgets	1.6.4	CRAN	viz (interactive)	

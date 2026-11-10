@@ -1,8 +1,8 @@
 # Module 5 — Mendelian Randomization (HEAP MR framework)
 
-> **📍 Numbering:** This is **code** Module 5. In the **manuscript** it is **Module 4 /
-> Figure 4** — MR is presented *before* interventions. Full code↔paper map:
-> [Manuscript vs. code module numbers](../../README.md#manuscript-vs-code-module-numbers).
+> **Numbering:** this code directory is numbered 5, but its results are **Fig. 4** of
+> the paper. Full map:
+> [Figures and code](../../README.md#figures-and-code).
 
 Bidirectional MR across the HEAP triad **E → P → D** (Exposure → Protein →
 Disease), run with two protein-instrument arms that share an identical triad
