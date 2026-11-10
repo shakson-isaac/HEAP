@@ -8,8 +8,14 @@ Risk"** (Isaac *et al.*, in review).
 HEAP links lifestyle exposures, plasma proteins and disease risk in more than 50,000
 UK Biobank participants (2,686 Olink proteins, 169 exposomic features).
 
-**Just want the results?** Browse and download them at [heap.bio](https://heap.bio), or
-use the paper's Supplementary Tables and Data. No code or data access is needed.
+**Just want the results?** Browse them at [heap.bio](https://heap.bio), or download the
+paper's supplementary files directly (also listed on the
+[heap.bio downloads page](https://heap.bio/downloads)). No code or data access is needed.
+
+| File | Size | Contents |
+|---|---|---|
+| [Supplementary Tables](https://storage.googleapis.com/heap-data/supp/v1/HEAP_Supplementary_Tables.xlsx) (`.xlsx`) | 12.3 MB | 21 tables and an index sheet: variance decomposition and GREML, exposure–protein associations and their replication, tissue and pathway enrichment, GxE, mediation, MR motifs and triads, colocalization, intervention concordance, PES accuracy, and the exposure and disease lists |
+| [Supplementary Data](https://storage.googleapis.com/heap-data/supp/v1/HEAP_Supplementary_Data.zip) (`.zip`) | 865 MB | Full results, organized by analysis and then by covariate specification: per-protein variance components, exposure and GxE associations, mediation, MR edges with confidence tiers, intervention concordance, PES scores and the deployable PES weights. A README and `manifest.tsv` inside describe every file |
 
 ## Quick start
 
