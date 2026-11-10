@@ -30,11 +30,11 @@ HEAP R² and GREML, exposure–protein associations, mediation, Mendelian random
 GWAS summary statistics, exposure scores) on constructed synthetic data, not real
 participant data, to check that the code runs and to show the input formats. See
 [`demo/README.md`](demo/README.md). The demo takes about 14 minutes on one core with
-1.5 GB of memory (measured on a Linux cluster node).
+1.5 GB of memory.
 
 To run the full analysis you need an approved
 [UK Biobank application](https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access)
-(the data cannot be redistributed) and a cluster. Follow
+(the data cannot be redistributed). Follow
 [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
 
 ## Repository
