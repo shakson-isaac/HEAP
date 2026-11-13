@@ -29,7 +29,10 @@ authors:
 preferred-citation:
   type: article
   title: "Human Plasma Proteomics Links Modifiable Lifestyle Exposome to Disease Risk"
-  status: submitted
+  journal: medRxiv
+  year: 2026
+  doi: "10.1101/2025.05.07.25327178"
+  url: "https://doi.org/10.1101/2025.05.07.25327178"
   authors:
     - given-names: Shakson
       family-names: Isaac

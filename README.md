@@ -1,7 +1,7 @@
 # HEAP: Human Exposomic Architecture of the Proteome
 
 Analysis code for **"Human Plasma Proteomics Links Modifiable Lifestyle Exposome to Disease
-Risk"** (Isaac *et al.*, in review).
+Risk"** (Isaac *et al.*, [medRxiv preprint](https://doi.org/10.1101/2025.05.07.25327178)).
 
 [![The HEAP results website, heap.bio](docs/img/heap_bio.png)](https://heap.bio)
 
@@ -80,7 +80,8 @@ Code directory numbers reflect the order the analyses were written, not the figu
 
 Isaac S, Ellis RJ, Jee YH, Murthy VL, Udler MS, Neale BM, Sunyaev S, Gusev A,
 Martin AR, Patel CJ. *Human Plasma Proteomics Links Modifiable Lifestyle Exposome to
-Disease Risk.* In review.
+Disease Risk.* medRxiv (2026).
+doi:[10.1101/2025.05.07.25327178](https://doi.org/10.1101/2025.05.07.25327178)
 
 ## License and contact
 
