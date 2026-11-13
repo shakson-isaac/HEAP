@@ -80,7 +80,7 @@ Code directory numbers reflect the order the analyses were written, not the figu
 
 Isaac S, Ellis RJ, Jee YH, Murthy VL, Udler MS, Neale BM, Sunyaev S, Gusev A,
 Martin AR, Patel CJ. *Human Plasma Proteomics Links Modifiable Lifestyle Exposome to
-Disease Risk.* medRxiv (2026).
+Disease Risk.* medRxiv (2025).
 doi:[10.1101/2025.05.07.25327178](https://doi.org/10.1101/2025.05.07.25327178)
 
 ## License and contact
